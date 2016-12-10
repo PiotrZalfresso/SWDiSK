@@ -1,0 +1,46 @@
+5
+00000001
+Zalfresso
+Pocztowa 15
+55-444
+Wroclaw
+null
+null
+555-555-551
+small
+00000002
+Zalfresso
+Pocztowa 13
+55-444
+Wroc³aw
+null
+null
+555-555-552
+medium
+00000003
+Lidzba
+Pradzynskiego 1
+55-444
+Wroc³aw
+null
+null
+555-555-553
+big
+00000004
+Nowak
+Rynek 14
+55-444
+Wroc³aw
+null
+null
+555-555-554
+big
+00000005
+Lidzba
+Krucza 7
+55-444
+Wroc³aw
+null
+null
+555-555-555
+big
