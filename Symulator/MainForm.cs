@@ -73,7 +73,7 @@ namespace Symulator
                 listitem.SubItems.Add(PackagesList.packagesList[i].RecTimeFrom.ToString());
                 listitem.SubItems.Add(PackagesList.packagesList[i].RecTimeTo.ToString());
                 listitem.SubItems.Add(PackagesList.packagesList[i].Size.ToString());
-                listView1.Items.Add(listitem);
+                inputDataLv.Items.Add(listitem);
 
             }
 
@@ -102,7 +102,7 @@ namespace Symulator
             else
             {
                 StatusLbl.Text = "Generwonie tablic czasu i dystansu";
-                Matrices.calcMatrices(dateTimePicker2.Value, apKeyTb.Text, hubAdressTb.Text, hubCityTb.Text);
+                Matrices.calcMatrices(CalcTimeDtp.Value, apKeyTb.Text, hubAdressTb.Text, hubCityTb.Text);
                 StatusLbl.Text = "";
                 ExportDistMatrixBtn.Enabled = ExportTimeMatrixBtn.Enabled
                = ShowDistMatrixBtn.Enabled = ShowTimeMatrixBtn.Enabled = readMatrix = true;
