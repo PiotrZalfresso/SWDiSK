@@ -108,9 +108,33 @@ namespace Symulator
                = ShowDistMatrixBtn.Enabled = ShowTimeMatrixBtn.Enabled = readMatrix = true;
             }
 
-
+            if (distanceOptimization.Checked) {
+                if (simulatedAnnealing.Checked)
+                    CalculateDistanceOptimizationSA();
+                else
+                    throw new InvalidOperationException("Nie wskazano algorytmu");
+            }
+            else if (timeOptimization.Checked)
+            {
+                throw new NotImplementedException();
+            }
+            else
+            {
+                throw new InvalidOperationException("Nie wskazano typu optymalizacji");
+            }
+            
             //TODO run algorithm here
+        }
 
+        private void CalculateDistanceOptimizationSA()
+        {
+            int neighbourhoodSize = Int32.Parse(carCapTb.Text) / Int32.Parse(pckSmSizeTb.Text);
+            int carsNumber = Int32.Parse(carNumTb.Text);
+            List<int> delivered = new List<int>();
+
+            int[] toDeliver = Tsp.getNeighbors(neighbourhoodSize);
+
+            // TODO all of algorithm -> knapsack in one car + TSP for that car + iterate over cars
         }
 
         private void ShowDistMatrixBtn_Click(object sender, EventArgs e)//test

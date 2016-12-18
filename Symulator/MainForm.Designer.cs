@@ -86,7 +86,7 @@
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label18 = new System.Windows.Forms.Label();
             this.algorithm2 = new System.Windows.Forms.RadioButton();
-            this.algorithm1 = new System.Windows.Forms.RadioButton();
+            this.simulatedAnnealing = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.hubWrkTmStartDtp = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
@@ -639,7 +639,7 @@
             // 
             this.groupBox5.Controls.Add(this.label18);
             this.groupBox5.Controls.Add(this.algorithm2);
-            this.groupBox5.Controls.Add(this.algorithm1);
+            this.groupBox5.Controls.Add(this.simulatedAnnealing);
             this.groupBox5.Location = new System.Drawing.Point(314, 96);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(359, 301);
@@ -659,7 +659,7 @@
             // algorithm2
             // 
             this.algorithm2.AutoSize = true;
-            this.algorithm2.Location = new System.Drawing.Point(164, 34);
+            this.algorithm2.Location = new System.Drawing.Point(184, 34);
             this.algorithm2.Name = "algorithm2";
             this.algorithm2.Size = new System.Drawing.Size(89, 20);
             this.algorithm2.TabIndex = 1;
@@ -667,17 +667,17 @@
             this.algorithm2.Text = "Algorytm 2";
             this.algorithm2.UseVisualStyleBackColor = true;
             // 
-            // algorithm1
+            // simulatedAnnealing
             // 
-            this.algorithm1.AutoSize = true;
-            this.algorithm1.Checked = true;
-            this.algorithm1.Location = new System.Drawing.Point(6, 34);
-            this.algorithm1.Name = "algorithm1";
-            this.algorithm1.Size = new System.Drawing.Size(89, 20);
-            this.algorithm1.TabIndex = 0;
-            this.algorithm1.TabStop = true;
-            this.algorithm1.Text = "Algorytm 1";
-            this.algorithm1.UseVisualStyleBackColor = true;
+            this.simulatedAnnealing.AutoSize = true;
+            this.simulatedAnnealing.Checked = true;
+            this.simulatedAnnealing.Location = new System.Drawing.Point(6, 34);
+            this.simulatedAnnealing.Name = "simulatedAnnealing";
+            this.simulatedAnnealing.Size = new System.Drawing.Size(172, 20);
+            this.simulatedAnnealing.TabIndex = 0;
+            this.simulatedAnnealing.TabStop = true;
+            this.simulatedAnnealing.Text = "Symulowane wyżarzanie";
+            this.simulatedAnnealing.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
@@ -998,7 +998,7 @@
         private System.Windows.Forms.RadioButton timeOptimization;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.RadioButton algorithm2;
-        private System.Windows.Forms.RadioButton algorithm1;
+        private System.Windows.Forms.RadioButton simulatedAnnealing;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DateTimePicker hubWrkTmStartDtp;
         private System.Windows.Forms.Label label6;
