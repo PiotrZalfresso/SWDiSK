@@ -128,13 +128,86 @@ namespace Symulator
 
         private void CalculateDistanceOptimizationSA()
         {
+            Dictionary<packageSize, int> sizeMap = GetPackageSizeMapping();
+            int carCapacity = Int32.Parse(carCapTb.Text);
+            int carNumber = Int32.Parse(carNumTb.Text);
+
             int neighbourhoodSize = Int32.Parse(carCapTb.Text) / Int32.Parse(pckSmSizeTb.Text);
             int carsNumber = Int32.Parse(carNumTb.Text);
-            List<int> delivered = new List<int>();
 
-            int[] toDeliver = Tsp.getNeighbors(neighbourhoodSize);
+            int carId = 0;
+            while (Graph.numberOfDelivered < PackagesList.numberOfPackages) {
+                if ((PackagesList.numberOfPackages - Graph.numberOfDelivered) < neighbourhoodSize)
+                {
+                    neighbourhoodSize = PackagesList.numberOfPackages - Graph.numberOfDelivered;
+                }
+
+                int[] toDeliver = Tsp.getNeighbors(neighbourhoodSize);
+                Console.Write("Rozważamy sąsiedztwo: ");
+                for (int i = 0; i < neighbourhoodSize; i++)
+                {
+                    Console.Write(toDeliver[i].ToString() + " ");
+                }
+                Console.WriteLine();
+
+                Knapsack packageSelector = new Knapsack(toDeliver, sizeMap, carCapacity);
+                SimulatedAnnealing algoritm = new SimulatedAnnealing(1000, 0.1, 100);
+                int[] finalToDeliver = algoritm.Calculate(packageSelector);
+
+                Console.Write(String.Format("Samochód {0} dostarczy do punktów: ", carId));
+                for (int i = 0; i < finalToDeliver.Length; i++)
+                {
+                    Console.Write(finalToDeliver[i].ToString() + " ");
+                }
+                Console.WriteLine();
+
+                Tsp pointsSorter = new Tsp(finalToDeliver);
+                int[] solution = algoritm.Calculate(pointsSorter);
+
+                Console.Write("W kolejności: ");
+                for (int i = 0; i < solution.Length; i++)
+                {
+                    Console.Write(solution[i].ToString() + " ");
+                    Graph.deliveredItems.Add(new DeliveryItem(PackagesList.packagesList[solution[i]], carId)); // Set package as delived
+                }
+                Console.WriteLine();
+                if(++carId >= carsNumber)
+                {
+                    carId = 0;
+                }
+            }
+
+            ResultsLvRefresh();
 
             // TODO all of algorithm -> knapsack in one car + TSP for that car + iterate over cars
+        }
+
+        private Dictionary<packageSize, int> GetPackageSizeMapping()
+        {
+            Dictionary<packageSize, int> sizeMap = new Dictionary<packageSize, int>();
+            sizeMap.Add(packageSize.small, Int32.Parse(pckSmSizeTb.Text));
+            sizeMap.Add(packageSize.medium, Int32.Parse(pckMdSizeTb.Text));
+            sizeMap.Add(packageSize.big, Int32.Parse(pckBgSizeTb.Text));
+
+            return sizeMap;
+        }
+
+        private void ResultsLvRefresh()
+        {
+            for (int i = 0; i < Graph.numberOfDelivered; i++)
+            {
+                ListViewItem listitem = new ListViewItem(Graph.deliveredItems[i].package.Id);
+                listitem.SubItems.Add(Graph.deliveredItems[i].package.RecName);
+                listitem.SubItems.Add(Graph.deliveredItems[i].package.RecAdress);
+                listitem.SubItems.Add(Graph.deliveredItems[i].package.RecZipCode);
+                listitem.SubItems.Add(Graph.deliveredItems[i].package.RecCity);
+                listitem.SubItems.Add(Graph.deliveredItems[i].package.RecTelNum);
+                listitem.SubItems.Add("");
+                listitem.SubItems.Add(Graph.deliveredItems[i].carId.ToString());
+                resultsLv.Items.Add(listitem);
+
+            }
+
         }
 
         private void ShowDistMatrixBtn_Click(object sender, EventArgs e)//test

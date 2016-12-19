@@ -57,7 +57,7 @@ namespace Symulator
             }
         }
 
-        public void Calculate(ProblemInstance instance)
+        public int[] Calculate(ProblemInstance instance)
         {
             int[] solution = instance.GetInitialSolution();
             int count = solution.Length;
@@ -72,14 +72,14 @@ namespace Symulator
                 lastSolution = instance.Randomize(newSolution);
                 int after = instance.GetCost(newSolution);
                 int actual = instance.GetCost(solution);
-                if (after < before)
+                if (instance.compareOldNewSolution(after, before) == 1)
                 {
-                    if (after <= actual)
+                    if (instance.compareOldNewSolution(after, actual) >= 0)
                     {
                         Array.Copy(newSolution, solution, count);
                     }
                 }
-                else if (before < after)
+                else if (instance.compareOldNewSolution(after, before) == -1)
                 {
                     double p = genRandom(10000 + 1) - 1;
                     p /= 10000;
@@ -100,7 +100,7 @@ namespace Symulator
                     Array.Copy(lastSolution, newSolution, count);
                 }
             }
-            instance.SetFinalSolution(solution);
+            return instance.ConvertToFinalSolution(solution);
         }
 
         protected int genRandom(int max)

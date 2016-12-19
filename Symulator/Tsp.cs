@@ -37,16 +37,19 @@ namespace Symulator
             int[] neighbors = new int[number];
             Random gen = new Random();
             int first = gen.Next(PackagesList.numberOfPackages);
-
-           
+            while (Graph.deliveredItems.Contains(new DeliveryItem(PackagesList.packagesList[first])))
+            {
+                first = gen.Next(PackagesList.numberOfPackages);
+            }
+            
             Tuple<int, int>[] temp = new Tuple<int, int>[PackagesList.numberOfPackages - 1]; // Pierwszy element to numer miasta, drugi to odległość
             for (int i = 0; i < PackagesList.numberOfPackages; i++)
             {
-                if (i < number)
+                if (i < first)
                 {
                     temp[i] = new Tuple<int, int>(i, Matrices.Distance[first, i]);
                 }
-                else if (i > number)
+                else if (i > first)
                 {
                     temp[i-1] = new Tuple<int, int>(i, Matrices.Distance[first, i]);
                 }
@@ -54,22 +57,54 @@ namespace Symulator
             }
             Array.Sort(temp, new getNeighborsIComparer());
 
-            for (int i = 0; i < number; i++)
+            neighbors[0] = first;
+            int x = 1;
+            int z = 0;
+            while (x < number && z < PackagesList.numberOfPackages - 1)
             {
-                neighbors[i] = temp[i].Item1;
+                if (!Graph.deliveredItems.Contains(new DeliveryItem(PackagesList.packagesList[z])))
+                {
+                    neighbors[x++] = temp[z].Item1;
+                }
+                z++;
             }
 
             return neighbors;
         }
 
+        public Tsp(int[] points)
+        {
+            this.points = new int[points.Length];
+            Array.Copy(points, this.points, points.Length);
+
+            this.pointsNumber = this.points.Length;
+        }
+
         public int[] GetInitialSolution()
         {
-            throw new NotImplementedException();
+            int[] solution = Enumerable.Repeat(-1, pointsNumber).ToArray(); // Inicjalizacja za pomocą -1 
+            int i = 0;
+            while (i < pointsNumber)
+            {
+                int n = genRandom(pointsNumber); //losuje liczby
+                if (!solution.Contains(points[n])) //sprawdza czy już jest, nie ma wpisujemy jest od nowa
+                {
+                    solution[i] = points[n];
+                    i++;
+                }
+            }
+            return solution;
         }
 
         public int GetCost(int[] solution)
         {
-            throw new NotImplementedException();
+            int cost = 0;
+            for (int i = 0; i < solution.Length - 1; i++)
+            {
+                cost += Matrices.Distance[solution[i], solution[i + 1]];
+            }
+            cost += Matrices.Distance[solution.Length - 1, solution[0]];
+            return cost;
         }
 
         public int[] Randomize(int[] solution)
@@ -81,8 +116,8 @@ namespace Symulator
             int j = 0;
             while (i == j)
             {
-                i = genRandom(pointsNumber + 1) - 1;
-                j = genRandom(pointsNumber + 1) - 1;
+                i = genRandom(pointsNumber) ;
+                j = genRandom(pointsNumber) ;
             }
             int t = solution[i];
             solution[i] = solution[j];
@@ -91,14 +126,28 @@ namespace Symulator
             return copy;
         }
 
-        public void SetFinalSolution(int[] solution)
+        public int[] ConvertToFinalSolution(int[] solution)
         {
-            throw new NotImplementedException();
+            int[] final = new int[solution.Length];
+            Array.Copy(solution, final, solution.Length);
+
+            return final;
         }
 
         protected int genRandom(int max)
         {
-            return generator.Next(1, max);
+            return generator.Next(max);
+        }
+
+        public int compareOldNewSolution(int newS, int oldS)
+        {
+            int ans = 0;
+            if (newS < oldS)
+                ans = 1;
+            else if (newS > oldS)
+                ans = -1;
+
+            return ans;
         }
     }
 }
