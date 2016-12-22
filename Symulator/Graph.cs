@@ -9,6 +9,7 @@ namespace Symulator
     public class DeliveryItem : IEquatable<DeliveryItem>
     {
         public Package package { get; }
+        public long time { get; } = -1;
         public int carId { get; } = -1;
 
         public DeliveryItem(Package package)
@@ -16,9 +17,10 @@ namespace Symulator
             this.package = package;
         }
 
-        public DeliveryItem(Package package, int carId)
+        public DeliveryItem(Package package, long time, int carId)
         {
             this.package = package;
+            this.time = time;
             this.carId = carId;
         }
 
@@ -40,11 +42,20 @@ namespace Symulator
     public static class Graph
     {
         static public List<DeliveryItem> deliveredItems = new List<DeliveryItem>();
+        static public long totalDistance = 0;
+        static public long totalTime = 0;
         static public int numberOfDelivered {
             get
             {
                 return deliveredItems.Count;
             }
+        }
+
+        static public void Clear()
+        {
+            deliveredItems.Clear();
+            totalDistance = 0;
+            totalTime = 0;
         }
     }
 }

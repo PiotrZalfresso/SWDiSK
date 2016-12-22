@@ -50,6 +50,10 @@
             this.pathFileTb = new System.Windows.Forms.TextBox();
             this.HistoryTab = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.totalTimeTb = new System.Windows.Forms.TextBox();
+            this.totalDistanceTb = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.ShowRouteBtn = new System.Windows.Forms.Button();
             this.ExportTimeMatrixBtn = new System.Windows.Forms.Button();
             this.ShowTimeMatrixBtn = new System.Windows.Forms.Button();
@@ -306,6 +310,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.totalTimeTb);
+            this.groupBox1.Controls.Add(this.totalDistanceTb);
+            this.groupBox1.Controls.Add(this.label21);
+            this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.ShowRouteBtn);
             this.groupBox1.Controls.Add(this.ExportTimeMatrixBtn);
             this.groupBox1.Controls.Add(this.ShowTimeMatrixBtn);
@@ -320,6 +328,40 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rozwiązanie";
+            // 
+            // totalTimeTb
+            // 
+            this.totalTimeTb.Location = new System.Drawing.Point(459, 461);
+            this.totalTimeTb.Name = "totalTimeTb";
+            this.totalTimeTb.ReadOnly = true;
+            this.totalTimeTb.Size = new System.Drawing.Size(109, 22);
+            this.totalTimeTb.TabIndex = 6;
+            // 
+            // totalDistanceTb
+            // 
+            this.totalDistanceTb.Location = new System.Drawing.Point(155, 461);
+            this.totalDistanceTb.Name = "totalDistanceTb";
+            this.totalDistanceTb.ReadOnly = true;
+            this.totalDistanceTb.Size = new System.Drawing.Size(109, 22);
+            this.totalDistanceTb.TabIndex = 5;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(333, 464);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(120, 16);
+            this.label21.TabIndex = 4;
+            this.label21.Text = "Całkowity czas: [s]";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 464);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(143, 16);
+            this.label20.TabIndex = 3;
+            this.label20.Text = "Całkowity dystans: [m]";
             // 
             // ShowRouteBtn
             // 
@@ -395,7 +437,7 @@
             this.resultsLv.GridLines = true;
             this.resultsLv.Location = new System.Drawing.Point(5, 21);
             this.resultsLv.Name = "resultsLv";
-            this.resultsLv.Size = new System.Drawing.Size(764, 459);
+            this.resultsLv.Size = new System.Drawing.Size(764, 432);
             this.resultsLv.TabIndex = 1;
             this.resultsLv.UseCompatibleStateImageBehavior = false;
             this.resultsLv.View = System.Windows.Forms.View.Details;
@@ -940,6 +982,7 @@
             this.LoadDataBox.PerformLayout();
             this.HistoryTab.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.SettingsTab.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
@@ -1045,6 +1088,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button ExportTimeMatrixBtn;
         private System.Windows.Forms.Button ExportDistMatrixBtn;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox totalTimeTb;
+        private System.Windows.Forms.TextBox totalDistanceTb;
     }
 }
 

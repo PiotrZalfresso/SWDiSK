@@ -116,7 +116,10 @@ namespace Symulator
             }
             else if (timeOptimization.Checked)
             {
-                throw new NotImplementedException();
+                if (simulatedAnnealing.Checked)
+                    CalculateTimeOptimizationSA();
+                else
+                    throw new InvalidOperationException("Nie wskazano algorytmu");
             }
             else
             {
@@ -128,6 +131,11 @@ namespace Symulator
 
         private void CalculateDistanceOptimizationSA()
         {
+            // Clean up after previous optimizations
+            if (Graph.deliveredItems.Count > 0) {
+                Graph.Clear();
+            }
+
             Dictionary<packageSize, int> sizeMap = GetPackageSizeMapping();
             int carCapacity = Int32.Parse(carCapTb.Text);
             int carNumber = Int32.Parse(carNumTb.Text);
@@ -142,7 +150,7 @@ namespace Symulator
                     neighbourhoodSize = PackagesList.numberOfPackages - Graph.numberOfDelivered;
                 }
 
-                int[] toDeliver = Tsp.getNeighbors(neighbourhoodSize);
+                int[] toDeliver = Tsp.getNeighbors(neighbourhoodSize, Matrices.Distance);
                 Console.Write("Rozważamy sąsiedztwo: ");
                 for (int i = 0; i < neighbourhoodSize; i++)
                 {
@@ -151,7 +159,7 @@ namespace Symulator
                 Console.WriteLine();
 
                 Knapsack packageSelector = new Knapsack(toDeliver, sizeMap, carCapacity);
-                SimulatedAnnealing algoritm = new SimulatedAnnealing(1000, 0.1, 100);
+                SimulatedAnnealing algoritm = new SimulatedAnnealing(10000, 0.1, 1000);
                 int[] finalToDeliver = algoritm.Calculate(packageSelector);
 
                 Console.Write(String.Format("Samochód {0} dostarczy do punktów: ", carId));
@@ -161,16 +169,20 @@ namespace Symulator
                 }
                 Console.WriteLine();
 
-                Tsp pointsSorter = new Tsp(finalToDeliver);
+                Tsp pointsSorter = new Tsp(finalToDeliver, Matrices.Distance, true);
                 int[] solution = algoritm.Calculate(pointsSorter);
+                long[] times = CalcTimes(solution, Graph.totalTime);
 
-                Console.Write("W kolejności: ");
+                Graph.totalDistance += pointsSorter.GetCost(solution);
+                Graph.totalTime += (new Tsp(finalToDeliver, Matrices.Time, true)).GetCost(solution);
+
+                Console.Write("W kolejności: baza ");
                 for (int i = 0; i < solution.Length; i++)
                 {
                     Console.Write(solution[i].ToString() + " ");
-                    Graph.deliveredItems.Add(new DeliveryItem(PackagesList.packagesList[solution[i]], carId)); // Set package as delived
+                    Graph.deliveredItems.Add(new DeliveryItem(PackagesList.packagesList[solution[i]], times[i], carId)); // Set package as delived
                 }
-                Console.WriteLine();
+                Console.WriteLine(" baza");
                 if(++carId >= carsNumber)
                 {
                     carId = 0;
@@ -179,7 +191,93 @@ namespace Symulator
 
             ResultsLvRefresh();
 
-            // TODO all of algorithm -> knapsack in one car + TSP for that car + iterate over cars
+            // TODO all of algorithm -> knapsack in one car + TSP for that car + iterate over cars // CHECK
+        }
+
+        private void CalculateTimeOptimizationSA()
+        {
+            // Clean up after previous optimizations
+            if (Graph.deliveredItems.Count > 0)
+            {
+                Graph.Clear();
+            }
+
+            Dictionary<packageSize, int> sizeMap = GetPackageSizeMapping();
+            int carCapacity = Int32.Parse(carCapTb.Text);
+            int carNumber = Int32.Parse(carNumTb.Text);
+
+            int neighbourhoodSize = Int32.Parse(carCapTb.Text) / Int32.Parse(pckSmSizeTb.Text);
+            int carsNumber = Int32.Parse(carNumTb.Text);
+
+            int carId = 0;
+            while (Graph.numberOfDelivered < PackagesList.numberOfPackages)
+            {
+                if ((PackagesList.numberOfPackages - Graph.numberOfDelivered) < neighbourhoodSize)
+                {
+                    neighbourhoodSize = PackagesList.numberOfPackages - Graph.numberOfDelivered;
+                }
+
+                int[] toDeliver = Tsp.getNeighbors(neighbourhoodSize, Matrices.Time);
+                Console.Write("Rozważamy sąsiedztwo: ");
+                for (int i = 0; i < neighbourhoodSize; i++)
+                {
+                    Console.Write(toDeliver[i].ToString() + " ");
+                }
+                Console.WriteLine();
+
+                Knapsack packageSelector = new Knapsack(toDeliver, sizeMap, carCapacity);
+                SimulatedAnnealing algoritm = new SimulatedAnnealing(10000, 0.1, 1000);
+                int[] finalToDeliver = algoritm.Calculate(packageSelector);
+
+                Console.Write(String.Format("Samochód {0} dostarczy do punktów: ", carId));
+                for (int i = 0; i < finalToDeliver.Length; i++)
+                {
+                    Console.Write(finalToDeliver[i].ToString() + " ");
+                }
+                Console.WriteLine();
+
+                Tsp pointsSorter = new Tsp(finalToDeliver, Matrices.Time, true);
+                int[] solution = algoritm.Calculate(pointsSorter);
+                long[] times = CalcTimes(solution, Graph.totalTime);
+
+                Graph.totalTime += pointsSorter.GetCost(solution);
+                Graph.totalDistance += (new Tsp(finalToDeliver, Matrices.Distance, true)).GetCost(solution);
+
+                Console.Write("W kolejności: baza ");
+                for (int i = 0; i < solution.Length; i++)
+                {
+                    Console.Write(solution[i].ToString() + " ");
+                    Graph.deliveredItems.Add(new DeliveryItem(PackagesList.packagesList[solution[i]], times[i], carId)); // Set package as delived
+                }
+                Console.WriteLine(" baza");
+                if (++carId >= carsNumber)
+                {
+                    carId = 0;
+                }
+            }
+
+            ResultsLvRefresh();
+
+            // TODO all of algorithm -> knapsack in one car + TSP for that car + iterate over cars // CHECKS
+        }
+
+        private long[] CalcTimes(int[] solution, long startTime)
+        {
+            long[] times = new long[solution.Count()];
+
+            for (int i = 0; i < solution.Length; i++)
+            {
+                if (i == 0)
+                {
+                    times[i] = startTime + Matrices.Time[PackagesList.numberOfPackages, solution[i]];
+                }
+                else
+                {
+                    times[i] = times[i - 1] + Matrices.Time[solution[i - 1], solution[i]];
+                }
+            }
+
+            return times;
         }
 
         private Dictionary<packageSize, int> GetPackageSizeMapping()
@@ -194,6 +292,11 @@ namespace Symulator
 
         private void ResultsLvRefresh()
         {
+            totalDistanceTb.Text = Graph.totalDistance.ToString();
+            totalTimeTb.Text = Graph.totalTime.ToString();
+
+            resultsLv.Items.Clear();
+
             for (int i = 0; i < Graph.numberOfDelivered; i++)
             {
                 ListViewItem listitem = new ListViewItem(Graph.deliveredItems[i].package.Id);
@@ -202,10 +305,9 @@ namespace Symulator
                 listitem.SubItems.Add(Graph.deliveredItems[i].package.RecZipCode);
                 listitem.SubItems.Add(Graph.deliveredItems[i].package.RecCity);
                 listitem.SubItems.Add(Graph.deliveredItems[i].package.RecTelNum);
-                listitem.SubItems.Add("");
+                listitem.SubItems.Add(Graph.deliveredItems[i].time.ToString());
                 listitem.SubItems.Add(Graph.deliveredItems[i].carId.ToString());
                 resultsLv.Items.Add(listitem);
-
             }
 
         }

@@ -28,14 +28,14 @@ namespace Symulator
             this.maxSize = maxSize;
         }
 
-        public int GetCost(int[] solution)
+        public long GetCost(int[] solution)
         {
             if (GetTotalWeight(solution) > maxSize)
             {
                 return 0;
             }
 
-            int sum = 0; 
+            long sum = 0; 
             for (int i = 0; i < solution.Length; i++)
             {
                 if (solution[i] > 0)
@@ -110,7 +110,7 @@ namespace Symulator
             return final;
         }
 
-        public int compareOldNewSolution(int newS, int oldS)
+        public int compareOldNewSolution(long newS, long oldS)
         {
             int ans = 0;
             if (newS > oldS)

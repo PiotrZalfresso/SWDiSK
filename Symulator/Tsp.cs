@@ -13,8 +13,8 @@ namespace Symulator
         {
             int IComparer.Compare(Object x, Object y)
             {
-                Tuple<int, int> t1 = (Tuple<int, int>)x;
-                Tuple<int, int> t2 = (Tuple<int, int>)y;
+                Tuple<int, long> t1 = (Tuple<int, long>)x;
+                Tuple<int, long> t2 = (Tuple<int, long>)y;
                 if (t1.Item2 < t2.Item2)               // Item2 zawiera odległości między miastami
                 {
                     return -1;
@@ -30,9 +30,11 @@ namespace Symulator
 
         private Random generator = new Random();
         private int[] points;
+        private readonly long[,] costs;
         private int pointsNumber;
+        private bool fromHub;
 
-        static public int[] getNeighbors(int number)
+        static public int[] getNeighbors(int number, long[,] costs)
         {
             int[] neighbors = new int[number];
             Random gen = new Random();
@@ -42,16 +44,16 @@ namespace Symulator
                 first = gen.Next(PackagesList.numberOfPackages);
             }
             
-            Tuple<int, int>[] temp = new Tuple<int, int>[PackagesList.numberOfPackages - 1]; // Pierwszy element to numer miasta, drugi to odległość
+            Tuple<int, long>[] temp = new Tuple<int, long>[PackagesList.numberOfPackages - 1]; // Pierwszy element to numer miasta, drugi to odległość
             for (int i = 0; i < PackagesList.numberOfPackages; i++)
             {
                 if (i < first)
                 {
-                    temp[i] = new Tuple<int, int>(i, Matrices.Distance[first, i]);
+                    temp[i] = new Tuple<int, long>(i, costs[first, i]);
                 }
                 else if (i > first)
                 {
-                    temp[i-1] = new Tuple<int, int>(i, Matrices.Distance[first, i]);
+                    temp[i-1] = new Tuple<int, long>(i, costs[first, i]);
                 }
                 
             }
@@ -72,12 +74,14 @@ namespace Symulator
             return neighbors;
         }
 
-        public Tsp(int[] points)
+        public Tsp(int[] points, long [,] costs, bool fromHub = false)
         {
             this.points = new int[points.Length];
             Array.Copy(points, this.points, points.Length);
+            this.costs = costs;
 
             this.pointsNumber = this.points.Length;
+            this.fromHub = fromHub;
         }
 
         public int[] GetInitialSolution()
@@ -96,14 +100,28 @@ namespace Symulator
             return solution;
         }
 
-        public int GetCost(int[] solution)
+        public long GetCost(int[] solution)
         {
-            int cost = 0;
+            long cost = 0;
+            if (fromHub)
+            {
+                cost = costs[PackagesList.numberOfPackages, solution[0]];
+            }
+
             for (int i = 0; i < solution.Length - 1; i++)
             {
-                cost += Matrices.Distance[solution[i], solution[i + 1]];
+                cost += costs[solution[i], solution[i + 1]];
             }
-            cost += Matrices.Distance[solution.Length - 1, solution[0]];
+
+            if (fromHub)
+            {
+                cost += costs[solution.Length - 1, PackagesList.numberOfPackages];
+            }
+            else
+            {
+                cost += costs[solution.Length - 1, solution[0]];
+            }
+
             return cost;
         }
 
@@ -139,7 +157,7 @@ namespace Symulator
             return generator.Next(max);
         }
 
-        public int compareOldNewSolution(int newS, int oldS)
+        public int compareOldNewSolution(long newS, long oldS)
         {
             int ans = 0;
             if (newS < oldS)

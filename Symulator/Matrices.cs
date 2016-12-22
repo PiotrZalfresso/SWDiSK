@@ -11,10 +11,10 @@ namespace Symulator
 {
     public static class Matrices
     {
-        static int[,] distance;  //meters
+        static long[,] distance;  //meters
         static long[,] time;     // seconds
 
-        public static int[,] Distance
+        public static long[,] Distance
         {
             get
             {
@@ -45,7 +45,7 @@ namespace Symulator
             if (PackagesList.numberOfPackages > 0)
             {
                 int infinity = -1;//tymczasowo -1,  mozna zmienic -> -1 = brak czasu -> brak trasy
-                distance = new int[PackagesList.numberOfPackages + 1, PackagesList.numberOfPackages + 1];
+                distance = new long[PackagesList.numberOfPackages + 1, PackagesList.numberOfPackages + 1];
                 time = new long[PackagesList.numberOfPackages + 1, PackagesList.numberOfPackages + 1];
 
 
@@ -89,7 +89,7 @@ namespace Symulator
         {
             string url;
 
-            //System.Threading.Thread.Sleep(400); // bo sie jebie bez tego -> powód nie nadąża z odp lub odp gdzies ginie -> ??rozwiazanie przejescie na async??
+            System.Threading.Thread.Sleep(400); // bo sie jebie bez tego -> powód nie nadąża z odp lub odp gdzies ginie -> ??rozwiazanie przejescie na async??
 
             if (apiKey.Count() > 0)
             {
@@ -114,7 +114,7 @@ namespace Symulator
                 else //do testowania
                 {
                     var dlg = MessageBox.Show("Błąd dla " + PackagesList.packagesList[i].RecAdress
-                   + " oraz" + PackagesList.packagesList[j].RecAdress, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                   + " oraz " + PackagesList.packagesList[j].RecAdress, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch
@@ -159,7 +159,7 @@ namespace Symulator
 
             if (File.Exists(filename))
             {
-                distance = new int[PackagesList.numberOfPackages + 1, PackagesList.numberOfPackages + 1];
+                distance = new long[PackagesList.numberOfPackages + 1, PackagesList.numberOfPackages + 1];
 
                 using (StreamReader sr = new StreamReader(filename))
                 {

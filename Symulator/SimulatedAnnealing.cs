@@ -68,10 +68,10 @@ namespace Symulator
             for (int r = 0; r < repetitions; r++)
             {
                 
-                int before = instance.GetCost(newSolution);
+                long before = instance.GetCost(newSolution);
                 lastSolution = instance.Randomize(newSolution);
-                int after = instance.GetCost(newSolution);
-                int actual = instance.GetCost(solution);
+                long after = instance.GetCost(newSolution);
+                long actual = instance.GetCost(solution);
                 if (instance.compareOldNewSolution(after, before) == 1)
                 {
                     if (instance.compareOldNewSolution(after, actual) >= 0)
