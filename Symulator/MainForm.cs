@@ -33,7 +33,7 @@ namespace Symulator
             using (var dlg = new OpenFileDialog())
             {
                 dlg.Multiselect = false;
-                dlg.Filter = "Text files (*.txt)|*.txt";
+                dlg.Filter = "CSV files (*.csv)|*.csv";
                 dlg.InitialDirectory = Directory.GetCurrentDirectory();
                 if (dlg.ShowDialog() == DialogResult.OK)
                     pathFileTb.Text = dlg.FileName;
