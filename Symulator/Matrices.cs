@@ -88,6 +88,8 @@ namespace Symulator
         private static void queryMap(DateTime departureTime, string apiKey, string origin, string destination, int i, int j)
         {
             string url;
+            int counter = 0;
+            int maxRetries = 3;
 
             //System.Threading.Thread.Sleep(400); // bo sie jebie bez tego -> powód nie nadąża z odp lub odp gdzies ginie -> ??rozwiazanie przejescie na async??
 
@@ -101,26 +103,54 @@ namespace Symulator
                 url = "http://maps.googleapis.com/maps/api/directions/json?origin=" + origin + "&destination=" + destination + "&sensor=false";
             }
 
-            string content = fileGetContents(url);
+            //->old code
+            //string content = fileGetContents(url);
+            //JObject o = JObject.Parse(content);
+            //try
+            //{
+            //    if (o.SelectToken("status").ToString() == "OK")
+            //    {
+            //        distance[i, j] = (int)o.SelectToken("routes[0].legs[0].distance.value");
+            //        time[i, j] = (long)o.SelectToken("routes[0].legs[0].duration.value");
+            //    }
+            //    else //do testowania
+            //    {
+            //        var dlg = MessageBox.Show("Błąd dla " + PackagesList.packagesList[i].RecAdress
+            //       + " oraz" + PackagesList.packagesList[j].RecAdress, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
+            //catch
+            //{
+            //    var dlg = MessageBox.Show("Błąd tworzenia tablic", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //<-old code
 
-            JObject o = JObject.Parse(content);
-            try
+            while (counter < maxRetries)
             {
-                if (o.SelectToken("status").ToString() == "OK")
+                string content = fileGetContents(url);
+                JObject o = JObject.Parse(content);
+
+                try
                 {
-                    distance[i, j] = (int)o.SelectToken("routes[0].legs[0].distance.value");
-                    time[i, j] = (long)o.SelectToken("routes[0].legs[0].duration.value");
+                    if (o.SelectToken("status").ToString() == "OK")
+                    {
+                        distance[i, j] = (int)o.SelectToken("routes[0].legs[0].distance.value");
+                        time[i, j] = (long)o.SelectToken("routes[0].legs[0].duration.value");
+                        counter = maxRetries;
+                    }
+                    else
+                        counter++;
                 }
-                else //do testowania
+                catch(Exception)
                 {
-                    var dlg = MessageBox.Show("Błąd dla " + PackagesList.packagesList[i].RecAdress
-                   + " oraz" + PackagesList.packagesList[j].RecAdress, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    counter++;
+                }
+                finally
+                {
+                    System.Threading.Thread.Sleep(400);
                 }
             }
-            catch
-            {
-                var dlg = MessageBox.Show("Błąd tworzenia tablic", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+           
         }
         private static double ConvertToUnixTimestamp(DateTime date)
         {
