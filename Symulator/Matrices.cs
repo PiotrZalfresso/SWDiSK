@@ -89,7 +89,8 @@ namespace Symulator
         {
             string url;
             int counter = 0;
-            int maxRetries = 3;
+            int maxRetries = 4;
+            bool succeeded = false;
 
             //System.Threading.Thread.Sleep(400); // bo sie jebie bez tego -> powód nie nadąża z odp lub odp gdzies ginie -> ??rozwiazanie przejescie na async??
 
@@ -136,16 +137,30 @@ namespace Symulator
                     {
                         distance[i, j] = (int)o.SelectToken("routes[0].legs[0].distance.value");
                         time[i, j] = (long)o.SelectToken("routes[0].legs[0].duration.value");
-                        counter = maxRetries;
+                        succeeded = true;
                     }
-                    else
-                        counter++;
                 }
                 catch(Exception)
                 {
-                    counter++;
+                    
                 }
                 finally
+                {
+                   counter++;
+                   System.Threading.Thread.Sleep(150); // jak nie ma to przekraczam limit zapytan
+                }
+
+                if (succeeded)
+                {
+                    break;
+                   
+                }
+                if (!succeeded && counter == maxRetries)
+                {
+                    var dlg = MessageBox.Show("Błąd dla " + PackagesList.packagesList[i].RecAdress
+                        + " oraz" + PackagesList.packagesList[j].RecAdress, "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                if (!succeeded)
                 {
                     System.Threading.Thread.Sleep(400);
                 }
