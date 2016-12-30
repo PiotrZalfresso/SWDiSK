@@ -24,6 +24,13 @@ namespace Symulator
             this.carId = carId;
         }
 
+        public override int GetHashCode()
+        {
+            int hash = 17;
+            hash = hash * 23 + package.GetHashCode();
+            return hash;
+        }
+
         public override bool Equals(object obj)
         {
             if (obj == null) return false;

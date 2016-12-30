@@ -149,7 +149,7 @@ namespace Symulator
                 {
                     neighbourhoodSize = PackagesList.numberOfPackages - Graph.numberOfDelivered;
                 }
-
+                Console.WriteLine(String.Format("Pozostało {0} paczek do rozwiezienia", PackagesList.numberOfPackages - Graph.numberOfDelivered));
                 int[] toDeliver = Tsp.getNeighbors(neighbourhoodSize, Matrices.Distance);
                 Console.Write("Rozważamy sąsiedztwo: ");
                 for (int i = 0; i < neighbourhoodSize; i++)

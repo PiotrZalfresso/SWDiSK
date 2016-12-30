@@ -50,9 +50,16 @@ namespace Symulator
         public int[] GetInitialSolution()
         {
             int[] solution = new int[points.Length];
-            for (int i = 0; i < points.Length; i++)
+            if (points.Length == 1)
             {
-                solution[i] = (genetaror.Next(0,2) == 0) ? points[i] : - points[i];
+                solution[0] = - points[0]; // Take it -> in constructor was set to negative value
+            }
+            else
+            {
+                for (int i = 0; i < points.Length; i++)
+                {
+                    solution[i] = (genetaror.Next(0, 2) == 0) ? points[i] : -points[i];
+                }                
             }
             return solution;
         }

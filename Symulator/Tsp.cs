@@ -64,7 +64,7 @@ namespace Symulator
             int z = 0;
             while (x < number && z < PackagesList.numberOfPackages - 1)
             {
-                if (!Graph.deliveredItems.Contains(new DeliveryItem(PackagesList.packagesList[z])))
+                if (!Graph.deliveredItems.Contains(new DeliveryItem(PackagesList.packagesList[temp[z].Item1])))
                 {
                     neighbors[x++] = temp[z].Item1;
                 }

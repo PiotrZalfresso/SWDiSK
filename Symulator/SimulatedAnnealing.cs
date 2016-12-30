@@ -61,43 +61,46 @@ namespace Symulator
         {
             int[] solution = instance.GetInitialSolution();
             int count = solution.Length;
-            int[] newSolution = new int[count]; //pi
-            Array.Copy(solution, newSolution, count);
-            int[] lastSolution;
-
-            for (int r = 0; r < repetitions; r++)
+            if (count > 1)
             {
-                
-                long before = instance.GetCost(newSolution);
-                lastSolution = instance.Randomize(newSolution);
-                long after = instance.GetCost(newSolution);
-                long actual = instance.GetCost(solution);
-                if (instance.compareOldNewSolution(after, before) == 1)
+                int[] newSolution = new int[count]; //pi
+                Array.Copy(solution, newSolution, count);
+                int[] lastSolution;
+
+                for (int r = 0; r < repetitions; r++)
                 {
-                    if (instance.compareOldNewSolution(after, actual) >= 0)
+
+                    long before = instance.GetCost(newSolution);
+                    lastSolution = instance.Randomize(newSolution);
+                    long after = instance.GetCost(newSolution);
+                    long actual = instance.GetCost(solution);
+                    if (instance.compareOldNewSolution(after, before) == 1)
                     {
-                        Array.Copy(newSolution, solution, count);
+                        if (instance.compareOldNewSolution(after, actual) >= 0)
+                        {
+                            Array.Copy(newSolution, solution, count);
+                        }
                     }
-                }
-                else if (instance.compareOldNewSolution(after, before) == -1)
-                {
-                    double p = genRandom(10000 + 1) - 1;
-                    p /= 10000;
-                    double e = -(after - before) / temperature;
-                    double a = Math.Pow(Math.E, e);
-                    if (p <= a)
+                    else if (instance.compareOldNewSolution(after, before) == -1)
                     {
-                        Array.Copy(newSolution, solution, count);
+                        double p = genRandom(10000 + 1) - 1;
+                        p /= 10000;
+                        double e = -(after - before) / temperature;
+                        double a = Math.Pow(Math.E, e);
+                        if (p <= a)
+                        {
+                            Array.Copy(newSolution, solution, count);
+                        }
+                        else
+                        {
+                            Array.Copy(lastSolution, newSolution, count);
+                        }
+                        temperature = temperature * lambda;
                     }
                     else
                     {
                         Array.Copy(lastSolution, newSolution, count);
                     }
-                    temperature = temperature * lambda;
-                }
-                else
-                {
-                    Array.Copy(lastSolution, newSolution, count);
                 }
             }
             return instance.ConvertToFinalSolution(solution);
