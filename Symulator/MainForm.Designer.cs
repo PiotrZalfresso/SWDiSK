@@ -117,6 +117,11 @@
             this.StatusBar = new System.Windows.Forms.GroupBox();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.saTempTb = new System.Windows.Forms.TextBox();
+            this.saLambdaTb = new System.Windows.Forms.TextBox();
+            this.saRepetTb = new System.Windows.Forms.TextBox();
             this.MainTabControl.SuspendLayout();
             this.StartTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -679,6 +684,11 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.saRepetTb);
+            this.groupBox5.Controls.Add(this.saLambdaTb);
+            this.groupBox5.Controls.Add(this.saTempTb);
+            this.groupBox5.Controls.Add(this.label23);
+            this.groupBox5.Controls.Add(this.label22);
             this.groupBox5.Controls.Add(this.label18);
             this.groupBox5.Controls.Add(this.algorithm2);
             this.groupBox5.Controls.Add(this.simulatedAnnealing);
@@ -692,11 +702,11 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(72, 109);
+            this.label18.Location = new System.Drawing.Point(3, 65);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(102, 16);
+            this.label18.Size = new System.Drawing.Size(86, 16);
             this.label18.TabIndex = 1;
-            this.label18.Text = "Tutaj parametry";
+            this.label18.Text = "Temperatura";
             // 
             // algorithm2
             // 
@@ -966,6 +976,48 @@
             this.StatusLbl.Size = new System.Drawing.Size(0, 13);
             this.StatusLbl.TabIndex = 0;
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 92);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(58, 16);
+            this.label22.TabIndex = 2;
+            this.label22.Text = "Lambda";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(3, 120);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(81, 16);
+            this.label23.TabIndex = 3;
+            this.label23.Text = "Powtórzenia";
+            // 
+            // saTempTb
+            // 
+            this.saTempTb.Location = new System.Drawing.Point(102, 61);
+            this.saTempTb.Name = "saTempTb";
+            this.saTempTb.Size = new System.Drawing.Size(42, 22);
+            this.saTempTb.TabIndex = 4;
+            this.saTempTb.Text = "10000";
+            // 
+            // saLambdaTb
+            // 
+            this.saLambdaTb.Location = new System.Drawing.Point(102, 89);
+            this.saLambdaTb.Name = "saLambdaTb";
+            this.saLambdaTb.Size = new System.Drawing.Size(42, 22);
+            this.saLambdaTb.TabIndex = 5;
+            this.saLambdaTb.Text = "0,1";
+            // 
+            // saRepetTb
+            // 
+            this.saRepetTb.Location = new System.Drawing.Point(102, 117);
+            this.saRepetTb.Name = "saRepetTb";
+            this.saRepetTb.Size = new System.Drawing.Size(42, 22);
+            this.saRepetTb.TabIndex = 6;
+            this.saRepetTb.Text = "1000";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1092,6 +1144,11 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.TextBox totalTimeTb;
         private System.Windows.Forms.TextBox totalDistanceTb;
+        private System.Windows.Forms.TextBox saRepetTb;
+        private System.Windows.Forms.TextBox saLambdaTb;
+        private System.Windows.Forms.TextBox saTempTb;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
     }
 }
 

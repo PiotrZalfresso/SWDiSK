@@ -137,13 +137,16 @@ namespace Symulator
             }
 
             Dictionary<packageSize, int> sizeMap = GetPackageSizeMapping();
-            int carCapacity = Int32.Parse(carCapTb.Text);
-            int carNumber = Int32.Parse(carNumTb.Text);
 
             int neighbourhoodSize = Int32.Parse(carCapTb.Text) / Int32.Parse(pckSmSizeTb.Text);
             int carsNumber = Int32.Parse(carNumTb.Text);
+            int saTemp = Int32.Parse(saTempTb.Text);
+            float saLambda = Single.Parse(saLambdaTb.Text);
+            int saRepet = Int32.Parse(saRepetTb.Text);
+            int carCapacity = Int32.Parse(carCapTb.Text);
 
             int carId = 0;
+            long[] carsTimes = Enumerable.Repeat(0L, carsNumber).ToArray();
             while (Graph.numberOfDelivered < PackagesList.numberOfPackages) {
                 if ((PackagesList.numberOfPackages - Graph.numberOfDelivered) < neighbourhoodSize)
                 {
@@ -159,7 +162,7 @@ namespace Symulator
                 Console.WriteLine();
 
                 Knapsack packageSelector = new Knapsack(toDeliver, sizeMap, carCapacity);
-                SimulatedAnnealing algoritm = new SimulatedAnnealing(10000, 0.1, 1000);
+                SimulatedAnnealing algoritm = new SimulatedAnnealing(saTemp, saLambda, saRepet);
                 int[] finalToDeliver = algoritm.Calculate(packageSelector);
 
                 Console.Write(String.Format("Samochód {0} dostarczy do punktów: ", carId));
@@ -171,10 +174,12 @@ namespace Symulator
 
                 Tsp pointsSorter = new Tsp(finalToDeliver, Matrices.Distance, true);
                 int[] solution = algoritm.Calculate(pointsSorter);
-                long[] times = CalcTimes(solution, Graph.totalTime);
+                long[] times = CalcTimes(solution, carsTimes[carId]);
 
                 Graph.totalDistance += pointsSorter.GetCost(solution);
-                Graph.totalTime += (new Tsp(finalToDeliver, Matrices.Time, true)).GetCost(solution);
+                long travelTime = (new Tsp(finalToDeliver, Matrices.Time, true)).GetCost(solution);
+                carsTimes[carId] += travelTime;
+                Graph.totalTime += travelTime;
 
                 Console.Write("W kolejności: baza ");
                 for (int i = 0; i < solution.Length; i++)
@@ -203,13 +208,16 @@ namespace Symulator
             }
 
             Dictionary<packageSize, int> sizeMap = GetPackageSizeMapping();
-            int carCapacity = Int32.Parse(carCapTb.Text);
-            int carNumber = Int32.Parse(carNumTb.Text);
 
             int neighbourhoodSize = Int32.Parse(carCapTb.Text) / Int32.Parse(pckSmSizeTb.Text);
             int carsNumber = Int32.Parse(carNumTb.Text);
+            int saTemp = Int32.Parse(saTempTb.Text);
+            float saLambda = Single.Parse(saLambdaTb.Text);
+            int saRepet = Int32.Parse(saRepetTb.Text);
+            int carCapacity = Int32.Parse(carCapTb.Text);
 
             int carId = 0;
+            long[] carsTimes = Enumerable.Repeat(0L, carsNumber).ToArray();
             while (Graph.numberOfDelivered < PackagesList.numberOfPackages)
             {
                 if ((PackagesList.numberOfPackages - Graph.numberOfDelivered) < neighbourhoodSize)
@@ -226,7 +234,7 @@ namespace Symulator
                 Console.WriteLine();
 
                 Knapsack packageSelector = new Knapsack(toDeliver, sizeMap, carCapacity);
-                SimulatedAnnealing algoritm = new SimulatedAnnealing(10000, 0.1, 1000);
+                SimulatedAnnealing algoritm = new SimulatedAnnealing(saTemp, saLambda, saRepet);
                 int[] finalToDeliver = algoritm.Calculate(packageSelector);
 
                 Console.Write(String.Format("Samochód {0} dostarczy do punktów: ", carId));
@@ -238,9 +246,11 @@ namespace Symulator
 
                 Tsp pointsSorter = new Tsp(finalToDeliver, Matrices.Time, true);
                 int[] solution = algoritm.Calculate(pointsSorter);
-                long[] times = CalcTimes(solution, Graph.totalTime);
+                long[] times = CalcTimes(solution, carsTimes[carId]);
 
-                Graph.totalTime += pointsSorter.GetCost(solution);
+                long travelTime = pointsSorter.GetCost(solution);
+                Graph.totalTime += travelTime;
+                carsTimes[carId] += travelTime;
                 Graph.totalDistance += (new Tsp(finalToDeliver, Matrices.Distance, true)).GetCost(solution);
 
                 Console.Write("W kolejności: baza ");
