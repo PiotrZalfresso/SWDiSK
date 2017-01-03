@@ -33,7 +33,7 @@
             this.StartTab = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.OptBtn = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.inputDataLv = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -56,7 +56,7 @@
             this.ExportDistMatrixBtn = new System.Windows.Forms.Button();
             this.ShowDistMatrixBtn = new System.Windows.Forms.Button();
             this.ExportSolutionBtn = new System.Windows.Forms.Button();
-            this.listView2 = new System.Windows.Forms.ListView();
+            this.resultsLv = new System.Windows.Forms.ListView();
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -67,7 +67,7 @@
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.CalcTimeDtp = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.apKeyTb = new System.Windows.Forms.TextBox();
@@ -76,19 +76,19 @@
             this.textBox14 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.reabTablesFromFile = new System.Windows.Forms.CheckBox();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.distanceOptimization = new System.Windows.Forms.RadioButton();
+            this.timeOptimization = new System.Windows.Forms.RadioButton();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.carNumTb = new System.Windows.Forms.TextBox();
+            this.carCapTb = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.algorithm2 = new System.Windows.Forms.RadioButton();
+            this.simulatedAnnealing = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.hubWrkTmStartDtp = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -103,13 +103,13 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.pckBgSizeTb = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox13 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.pckBgTimeTb = new System.Windows.Forms.TextBox();
+            this.pckMdSizeTb = new System.Windows.Forms.TextBox();
+            this.pckMdTimeTb = new System.Windows.Forms.TextBox();
+            this.pckSmSizeTb = new System.Windows.Forms.TextBox();
+            this.pckSmTimeTb = new System.Windows.Forms.TextBox();
             this.StatusBar = new System.Windows.Forms.GroupBox();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -157,7 +157,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.OptBtn);
-            this.groupBox2.Controls.Add(this.listView1);
+            this.groupBox2.Controls.Add(this.inputDataLv);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 69);
             this.groupBox2.Name = "groupBox2";
@@ -176,9 +176,9 @@
             this.OptBtn.UseVisualStyleBackColor = true;
             this.OptBtn.Click += new System.EventHandler(this.OptBtn_Click);
             // 
-            // listView1
+            // inputDataLv
             // 
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.inputDataLv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
             this.columnHeader3,
@@ -188,15 +188,15 @@
             this.columnHeader11,
             this.columnHeader13,
             this.columnHeader6});
-            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(6, 21);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(763, 393);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.inputDataLv.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.inputDataLv.FullRowSelect = true;
+            this.inputDataLv.GridLines = true;
+            this.inputDataLv.Location = new System.Drawing.Point(6, 21);
+            this.inputDataLv.Name = "inputDataLv";
+            this.inputDataLv.Size = new System.Drawing.Size(763, 393);
+            this.inputDataLv.TabIndex = 0;
+            this.inputDataLv.UseCompatibleStateImageBehavior = false;
+            this.inputDataLv.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader1
             // 
@@ -312,7 +312,7 @@
             this.groupBox1.Controls.Add(this.ExportDistMatrixBtn);
             this.groupBox1.Controls.Add(this.ShowDistMatrixBtn);
             this.groupBox1.Controls.Add(this.ExportSolutionBtn);
-            this.groupBox1.Controls.Add(this.listView2);
+            this.groupBox1.Controls.Add(this.resultsLv);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
@@ -379,9 +379,9 @@
             this.ExportSolutionBtn.Text = "Eksportuj";
             this.ExportSolutionBtn.UseVisualStyleBackColor = true;
             // 
-            // listView2
+            // resultsLv
             // 
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.resultsLv.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader7,
             this.columnHeader8,
             this.columnHeader9,
@@ -390,15 +390,15 @@
             this.columnHeader17,
             this.columnHeader18,
             this.columnHeader15});
-            this.listView2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.listView2.FullRowSelect = true;
-            this.listView2.GridLines = true;
-            this.listView2.Location = new System.Drawing.Point(5, 21);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(764, 459);
-            this.listView2.TabIndex = 1;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
+            this.resultsLv.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.resultsLv.FullRowSelect = true;
+            this.resultsLv.GridLines = true;
+            this.resultsLv.Location = new System.Drawing.Point(5, 21);
+            this.resultsLv.Name = "resultsLv";
+            this.resultsLv.Size = new System.Drawing.Size(764, 459);
+            this.resultsLv.TabIndex = 1;
+            this.resultsLv.UseCompatibleStateImageBehavior = false;
+            this.resultsLv.View = System.Windows.Forms.View.Details;
             // 
             // columnHeader7
             // 
@@ -460,7 +460,7 @@
             // 
             // groupBox7
             // 
-            this.groupBox7.Controls.Add(this.dateTimePicker2);
+            this.groupBox7.Controls.Add(this.CalcTimeDtp);
             this.groupBox7.Controls.Add(this.label2);
             this.groupBox7.Controls.Add(this.label19);
             this.groupBox7.Controls.Add(this.apKeyTb);
@@ -472,14 +472,14 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Google Maps";
             // 
-            // dateTimePicker2
+            // CalcTimeDtp
             // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker2.Location = new System.Drawing.Point(517, 38);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(89, 22);
-            this.dateTimePicker2.TabIndex = 2;
-            this.dateTimePicker2.Value = new System.DateTime(2016, 10, 17, 17, 0, 0, 0);
+            this.CalcTimeDtp.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.CalcTimeDtp.Location = new System.Drawing.Point(517, 38);
+            this.CalcTimeDtp.Name = "CalcTimeDtp";
+            this.CalcTimeDtp.Size = new System.Drawing.Size(89, 22);
+            this.CalcTimeDtp.TabIndex = 2;
+            this.CalcTimeDtp.Value = new System.DateTime(2016, 10, 17, 17, 0, 0, 0);
             // 
             // label2
             // 
@@ -520,8 +520,8 @@
             this.groupBox6.Controls.Add(this.textBox14);
             this.groupBox6.Controls.Add(this.textBox8);
             this.groupBox6.Controls.Add(this.reabTablesFromFile);
-            this.groupBox6.Controls.Add(this.radioButton4);
-            this.groupBox6.Controls.Add(this.radioButton3);
+            this.groupBox6.Controls.Add(this.distanceOptimization);
+            this.groupBox6.Controls.Add(this.timeOptimization);
             this.groupBox6.Location = new System.Drawing.Point(679, 96);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(189, 301);
@@ -563,35 +563,35 @@
             this.reabTablesFromFile.Text = "Wczytaj tablice z pliku";
             this.reabTablesFromFile.UseVisualStyleBackColor = true;
             // 
-            // radioButton4
+            // distanceOptimization
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Checked = true;
-            this.radioButton4.Location = new System.Drawing.Point(31, 63);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(75, 20);
-            this.radioButton4.TabIndex = 1;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "Dystans";
-            this.radioButton4.UseVisualStyleBackColor = true;
+            this.distanceOptimization.AutoSize = true;
+            this.distanceOptimization.Checked = true;
+            this.distanceOptimization.Location = new System.Drawing.Point(31, 63);
+            this.distanceOptimization.Name = "distanceOptimization";
+            this.distanceOptimization.Size = new System.Drawing.Size(75, 20);
+            this.distanceOptimization.TabIndex = 1;
+            this.distanceOptimization.TabStop = true;
+            this.distanceOptimization.Text = "Dystans";
+            this.distanceOptimization.UseVisualStyleBackColor = true;
             // 
-            // radioButton3
+            // timeOptimization
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(31, 37);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(56, 20);
-            this.radioButton3.TabIndex = 0;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "Czas";
-            this.radioButton3.UseVisualStyleBackColor = true;
+            this.timeOptimization.AutoSize = true;
+            this.timeOptimization.Location = new System.Drawing.Point(31, 37);
+            this.timeOptimization.Name = "timeOptimization";
+            this.timeOptimization.Size = new System.Drawing.Size(56, 20);
+            this.timeOptimization.TabIndex = 0;
+            this.timeOptimization.TabStop = true;
+            this.timeOptimization.Text = "Czas";
+            this.timeOptimization.UseVisualStyleBackColor = true;
             // 
             // groupBox8
             // 
             this.groupBox8.Controls.Add(this.label16);
             this.groupBox8.Controls.Add(this.label17);
-            this.groupBox8.Controls.Add(this.textBox9);
-            this.groupBox8.Controls.Add(this.textBox10);
+            this.groupBox8.Controls.Add(this.carNumTb);
+            this.groupBox8.Controls.Add(this.carCapTb);
             this.groupBox8.Location = new System.Drawing.Point(6, 254);
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.Size = new System.Drawing.Size(302, 143);
@@ -617,29 +617,29 @@
             this.label17.TabIndex = 1;
             this.label17.Text = "Pojemność";
             // 
-            // textBox9
+            // carNumTb
             // 
-            this.textBox9.Location = new System.Drawing.Point(151, 29);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(42, 22);
-            this.textBox9.TabIndex = 0;
-            this.textBox9.Text = "3";
-            this.textBox9.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.carNumTb.Location = new System.Drawing.Point(151, 29);
+            this.carNumTb.Name = "carNumTb";
+            this.carNumTb.Size = new System.Drawing.Size(42, 22);
+            this.carNumTb.TabIndex = 0;
+            this.carNumTb.Text = "3";
+            this.carNumTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox10
+            // carCapTb
             // 
-            this.textBox10.Location = new System.Drawing.Point(151, 59);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(42, 22);
-            this.textBox10.TabIndex = 0;
-            this.textBox10.Text = "100";
-            this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.carCapTb.Location = new System.Drawing.Point(151, 59);
+            this.carCapTb.Name = "carCapTb";
+            this.carCapTb.Size = new System.Drawing.Size(42, 22);
+            this.carCapTb.TabIndex = 0;
+            this.carCapTb.Text = "100";
+            this.carCapTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.label18);
-            this.groupBox5.Controls.Add(this.radioButton2);
-            this.groupBox5.Controls.Add(this.radioButton1);
+            this.groupBox5.Controls.Add(this.algorithm2);
+            this.groupBox5.Controls.Add(this.simulatedAnnealing);
             this.groupBox5.Location = new System.Drawing.Point(314, 96);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(359, 301);
@@ -656,32 +656,32 @@
             this.label18.TabIndex = 1;
             this.label18.Text = "Tutaj parametry";
             // 
-            // radioButton2
+            // algorithm2
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(164, 34);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(89, 20);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Algorytm 2";
-            this.radioButton2.UseVisualStyleBackColor = true;
+            this.algorithm2.AutoSize = true;
+            this.algorithm2.Location = new System.Drawing.Point(184, 34);
+            this.algorithm2.Name = "algorithm2";
+            this.algorithm2.Size = new System.Drawing.Size(89, 20);
+            this.algorithm2.TabIndex = 1;
+            this.algorithm2.TabStop = true;
+            this.algorithm2.Text = "Algorytm 2";
+            this.algorithm2.UseVisualStyleBackColor = true;
             // 
-            // radioButton1
+            // simulatedAnnealing
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(6, 34);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(89, 20);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Algorytm 1";
-            this.radioButton1.UseVisualStyleBackColor = true;
+            this.simulatedAnnealing.AutoSize = true;
+            this.simulatedAnnealing.Checked = true;
+            this.simulatedAnnealing.Location = new System.Drawing.Point(6, 34);
+            this.simulatedAnnealing.Name = "simulatedAnnealing";
+            this.simulatedAnnealing.Size = new System.Drawing.Size(172, 20);
+            this.simulatedAnnealing.TabIndex = 0;
+            this.simulatedAnnealing.TabStop = true;
+            this.simulatedAnnealing.Text = "Symulowane wyżarzanie";
+            this.simulatedAnnealing.UseVisualStyleBackColor = true;
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.dateTimePicker1);
+            this.groupBox4.Controls.Add(this.hubWrkTmStartDtp);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.label3);
@@ -694,14 +694,14 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Lokaliacja sortowni";
             // 
-            // dateTimePicker1
+            // hubWrkTmStartDtp
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Time;
-            this.dateTimePicker1.Location = new System.Drawing.Point(458, 27);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(89, 22);
-            this.dateTimePicker1.TabIndex = 2;
-            this.dateTimePicker1.Value = new System.DateTime(2016, 10, 17, 8, 0, 0, 0);
+            this.hubWrkTmStartDtp.Format = System.Windows.Forms.DateTimePickerFormat.Time;
+            this.hubWrkTmStartDtp.Location = new System.Drawing.Point(458, 27);
+            this.hubWrkTmStartDtp.Name = "hubWrkTmStartDtp";
+            this.hubWrkTmStartDtp.Size = new System.Drawing.Size(89, 22);
+            this.hubWrkTmStartDtp.TabIndex = 2;
+            this.hubWrkTmStartDtp.Value = new System.DateTime(2016, 10, 17, 8, 0, 0, 0);
             // 
             // label6
             // 
@@ -756,13 +756,13 @@
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.label10);
-            this.groupBox3.Controls.Add(this.textBox11);
+            this.groupBox3.Controls.Add(this.pckBgSizeTb);
             this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.textBox7);
-            this.groupBox3.Controls.Add(this.textBox13);
-            this.groupBox3.Controls.Add(this.textBox6);
-            this.groupBox3.Controls.Add(this.textBox12);
-            this.groupBox3.Controls.Add(this.textBox5);
+            this.groupBox3.Controls.Add(this.pckBgTimeTb);
+            this.groupBox3.Controls.Add(this.pckMdSizeTb);
+            this.groupBox3.Controls.Add(this.pckMdTimeTb);
+            this.groupBox3.Controls.Add(this.pckSmSizeTb);
+            this.groupBox3.Controls.Add(this.pckSmTimeTb);
             this.groupBox3.Location = new System.Drawing.Point(6, 96);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(302, 152);
@@ -842,14 +842,14 @@
             this.label10.TabIndex = 1;
             this.label10.Text = "Średnia";
             // 
-            // textBox11
+            // pckBgSizeTb
             // 
-            this.textBox11.Location = new System.Drawing.Point(236, 109);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(42, 22);
-            this.textBox11.TabIndex = 0;
-            this.textBox11.Text = "8";
-            this.textBox11.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.pckBgSizeTb.Location = new System.Drawing.Point(236, 109);
+            this.pckBgSizeTb.Name = "pckBgSizeTb";
+            this.pckBgSizeTb.Size = new System.Drawing.Size(42, 22);
+            this.pckBgSizeTb.TabIndex = 0;
+            this.pckBgSizeTb.Text = "8";
+            this.pckBgSizeTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
             // 
@@ -860,50 +860,50 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "Mała";
             // 
-            // textBox7
+            // pckBgTimeTb
             // 
-            this.textBox7.Location = new System.Drawing.Point(116, 109);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(42, 22);
-            this.textBox7.TabIndex = 0;
-            this.textBox7.Text = "8";
-            this.textBox7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.pckBgTimeTb.Location = new System.Drawing.Point(116, 109);
+            this.pckBgTimeTb.Name = "pckBgTimeTb";
+            this.pckBgTimeTb.Size = new System.Drawing.Size(42, 22);
+            this.pckBgTimeTb.TabIndex = 0;
+            this.pckBgTimeTb.Text = "8";
+            this.pckBgTimeTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox13
+            // pckMdSizeTb
             // 
-            this.textBox13.Location = new System.Drawing.Point(236, 81);
-            this.textBox13.Name = "textBox13";
-            this.textBox13.Size = new System.Drawing.Size(42, 22);
-            this.textBox13.TabIndex = 0;
-            this.textBox13.Text = "5";
-            this.textBox13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.pckMdSizeTb.Location = new System.Drawing.Point(236, 81);
+            this.pckMdSizeTb.Name = "pckMdSizeTb";
+            this.pckMdSizeTb.Size = new System.Drawing.Size(42, 22);
+            this.pckMdSizeTb.TabIndex = 0;
+            this.pckMdSizeTb.Text = "5";
+            this.pckMdSizeTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox6
+            // pckMdTimeTb
             // 
-            this.textBox6.Location = new System.Drawing.Point(116, 81);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(42, 22);
-            this.textBox6.TabIndex = 0;
-            this.textBox6.Text = "5";
-            this.textBox6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.pckMdTimeTb.Location = new System.Drawing.Point(116, 81);
+            this.pckMdTimeTb.Name = "pckMdTimeTb";
+            this.pckMdTimeTb.Size = new System.Drawing.Size(42, 22);
+            this.pckMdTimeTb.TabIndex = 0;
+            this.pckMdTimeTb.Text = "5";
+            this.pckMdTimeTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox12
+            // pckSmSizeTb
             // 
-            this.textBox12.Location = new System.Drawing.Point(236, 52);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(42, 22);
-            this.textBox12.TabIndex = 0;
-            this.textBox12.Text = "3";
-            this.textBox12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.pckSmSizeTb.Location = new System.Drawing.Point(236, 52);
+            this.pckSmSizeTb.Name = "pckSmSizeTb";
+            this.pckSmSizeTb.Size = new System.Drawing.Size(42, 22);
+            this.pckSmSizeTb.TabIndex = 0;
+            this.pckSmSizeTb.Text = "3";
+            this.pckSmSizeTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // textBox5
+            // pckSmTimeTb
             // 
-            this.textBox5.Location = new System.Drawing.Point(116, 52);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(42, 22);
-            this.textBox5.TabIndex = 0;
-            this.textBox5.Text = "3";
-            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.pckSmTimeTb.Location = new System.Drawing.Point(116, 52);
+            this.pckSmTimeTb.Name = "pckSmTimeTb";
+            this.pckSmTimeTb.Size = new System.Drawing.Size(42, 22);
+            this.pckSmTimeTb.TabIndex = 0;
+            this.pckSmTimeTb.Text = "3";
+            this.pckSmTimeTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // StatusBar
             // 
@@ -969,7 +969,7 @@
         private System.Windows.Forms.GroupBox LoadDataBox;
         private System.Windows.Forms.GroupBox StatusBar;
         private System.Windows.Forms.Button OptBtn;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView inputDataLv;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button readBtn;
         private System.Windows.Forms.Button readDlgBtn;
@@ -983,7 +983,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button ExportSolutionBtn;
-        private System.Windows.Forms.ListView listView2;
+        private System.Windows.Forms.ListView resultsLv;
         private System.Windows.Forms.ColumnHeader columnHeader7;
         private System.Windows.Forms.ColumnHeader columnHeader8;
         private System.Windows.Forms.ColumnHeader columnHeader9;
@@ -994,13 +994,13 @@
         private System.Windows.Forms.GroupBox groupBox7;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton distanceOptimization;
+        private System.Windows.Forms.RadioButton timeOptimization;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton algorithm2;
+        private System.Windows.Forms.RadioButton simulatedAnnealing;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker hubWrkTmStartDtp;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox hubCityTb;
@@ -1012,22 +1012,22 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox pckBgTimeTb;
+        private System.Windows.Forms.TextBox pckMdTimeTb;
+        private System.Windows.Forms.TextBox pckSmTimeTb;
         private System.Windows.Forms.Button ShowRouteBtn;
         private System.Windows.Forms.Button ShowTimeMatrixBtn;
         private System.Windows.Forms.Button ShowDistMatrixBtn;
         private System.Windows.Forms.ColumnHeader columnHeader15;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox pckBgSizeTb;
+        private System.Windows.Forms.TextBox carCapTb;
+        private System.Windows.Forms.TextBox carNumTb;
         private System.Windows.Forms.GroupBox groupBox8;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox textBox13;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox pckMdSizeTb;
+        private System.Windows.Forms.TextBox pckSmSizeTb;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox textBox14;
         private System.Windows.Forms.Label label18;
@@ -1041,7 +1041,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader11;
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker CalcTimeDtp;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button ExportTimeMatrixBtn;
         private System.Windows.Forms.Button ExportDistMatrixBtn;
