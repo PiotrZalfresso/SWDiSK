@@ -6,11 +6,8 @@ using System.Threading.Tasks;
 
 namespace Symulator
 {
-    public interface ProblemInstance
+    public interface ISimulatedAnnealing : ICalculationAlgorithm
     {
-        int[] GetInitialSolution();
-        int GetCost(int[] solution);
         int[] Randomize(int[] solution); // zwaraca kopie oryginalnej tablicy - backup
-        void SetFinalSolution(int[] solution);
     }
 }

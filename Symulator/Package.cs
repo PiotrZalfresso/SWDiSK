@@ -160,16 +160,16 @@ namespace Symulator
 
         public Package(int i, string id, string recName, string recAdress, string recZipCode, string recCity, DateTime? recTimeFrom, DateTime? recTimeTo, string recTelNum, packageSize size)
         {
-            this.sortNum       = i;
-            this.id            = id;
-            this.recName       = recName;
-            this.recAdress     = recAdress;
-            this.recZipCode    = recZipCode;
-            this.recCity       = recCity;
-            this.recTimeFrom   = recTimeFrom;
-            this.recTimeTo     = recTimeTo;
-            this.recTelNum     = recTelNum;
-            this.size          = size;
+            this.sortNum = i;
+            this.id = id;
+            this.recName = recName;
+            this.recAdress = recAdress;
+            this.recZipCode = recZipCode;
+            this.recCity = recCity;
+            this.recTimeFrom = recTimeFrom;
+            this.recTimeTo = recTimeTo;
+            this.recTelNum = recTelNum;
+            this.size = size;
 
         }
 
@@ -188,5 +188,30 @@ namespace Symulator
 
         }
 
+        public override int GetHashCode()
+        {
+            int hash = 17;
+            hash = hash * 23 + id.GetHashCode();
+
+            return hash;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            Package objAsPackage = obj as Package;
+            if (objAsPackage == null) return false;
+            else return Equals(objAsPackage);
+        }
+
+        public bool Equals(Package other)
+        {
+            if (other == null) return false;
+            if (this.id == other.id)
+                return true;
+            else {
+                return false;
+            }
+        }
     }
 }

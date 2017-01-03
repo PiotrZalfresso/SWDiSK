@@ -1,0 +1,36 @@
+id;recName;recAdress;recZipCode;recCity;recTimeFrom;recTimeTo;tecTelNum;size
+00000001;Zalfresso;Pocztowa 15;55-444;Wroclaw;null;null;555-555-551;small
+00000002;Zalfresso;Pocztowa 13;55-444;Wrocław;null;null;555-555-552;medium
+00000003;Lidzba;Pradzynskiego 1;55-444;Wrocław;null;null;555-555-553;big
+00000004;Nowak;Rynek 14;55-444;Wrocław;null;null;555-555-554;medium
+00000005;Zalfresso;Krucza 7;55-444;Wrocław;null;null;555-555-555;big
+00000006;Wozniak;Gradowa 10;55-444;Wrocław;null;null;555-555-556;medium
+00000007;Lidzba;Burzowa 14;55-444;Wrocław;null;null;555-555-557;big
+00000008;Zalfresso;Psia Kładka;55-444;Wrocław;null;null;555-555-558;big
+00000009;Lidzba;Lisia 7;55-444;Wrocław;null;null;555-555-559;medium
+00000010;Nowak;Braterska 5;55-444;Wrocław;null;null;555-555-560;small
+00000011;Lidzba;Siostrzana 4;55-444;Wrocław;null;null;555-555-561;big
+00000012;Zalfresso;Deszczowa 3;55-444;Wrocław;null;null;555-555-562;small
+00000013;Wozniak;Mokra 2;55-444;Wrocław;null;null;555-555-563;medium
+00000014;Lidzba;Modra 1;55-444;Wrocław;null;null;555-555-564;big
+00000015;Lidzba;Zawalna 35;55-444;Wrocław;null;null;555-555-565;small
+00000016;Zalfresso;Romana Dmowskiego 1;55-444;Wrocław;null;null;555-555-566;big
+00000017;Lidzba;Więzienna 32;55-444;Wrocław;null;null;555-555-567;big
+00000018;Zalfresso;Wielka 21;55-444;Wrocław;null;null;555-555-568;big
+00000019;Lidzba;Gwiaździsta 2;55-444;Wrocław;null;null;555-555-569;big
+00000020;Lidzba;Nasypowa 100;55-444;Wrocław;null;null;555-555-570;medium
+00000021;Zalfresso;Świdnicka 69;55-444;Wrocław;null;null;555-571-555;big
+00000022;Lidzba;Ptasia 11;55-444;Wrocław;null;null;555-555-572;small
+00000023;Nowak;Łowiecka 1;55-444;Wrocław;null;null;555-555-573;small
+00000024;Zalfresso;Pomorska 100;55-444;Wrocław;null;null;555-555-574;small
+00000025;Wozniak;Wałbrzyska 1;55-444;Wrocław;null;null;555-555-575;big
+00000026;Zalfresso;Terenowa 45;55-444;Wrocław;null;null;555-555-576;small
+00000027;Wozniak;Wiaduktowa 21;55-444;Wrocław;null;null;555-555-577;medium
+00000028;Lidzba;Rybnicka 10;55-444;Wrocław;null;null;555-555-578;big
+00000029;Wozniak;Szkolna 2;55-444;Wrocław;null;null;555-555-579;big
+00000030;Wozniak;Kolejowa 12A;55-444;Wrocław;null;null;555-555-580;medium
+00000031;Nowak;Spiska 2;55-444;Wrocław;null;null;555-555-581;medium
+00000032;Wozniak;Legnicka 90;55-444;Wrocław;null;null;555-555-582;small
+00000033;Lidzba;Tęczowa 1;55-444;Wrocław;null;null;555-555-583;big
+00000034;Wozniak;Krucza 8;55-444;Wrocław;null;null;555-555-584;medium
+00000035;Nowak;Grochowa 24;55-444;Wrocław;null;null;555-555-585;small

@@ -11,6 +11,18 @@ using System.IO;
 
 namespace Symulator
 {
+    enum AlgorithmType
+    {
+        annealing,
+        genetic,
+    }
+
+    enum OptimizitaionTarget
+    {
+        distance,
+        time,
+    }
+
     public partial class MainForm : Form
     {
         Boolean readPackages;
@@ -33,7 +45,7 @@ namespace Symulator
             using (var dlg = new OpenFileDialog())
             {
                 dlg.Multiselect = false;
-                dlg.Filter = "Text files (*.txt)|*.txt";
+                dlg.Filter = "CSV files (*.csv)|*.csv";
                 dlg.InitialDirectory = Directory.GetCurrentDirectory();
                 if (dlg.ShowDialog() == DialogResult.OK)
                     pathFileTb.Text = dlg.FileName;
@@ -110,31 +122,190 @@ namespace Symulator
 
             if (distanceOptimization.Checked) {
                 if (simulatedAnnealing.Checked)
-                    CalculateDistanceOptimizationSA();
+                    Optimize(AlgorithmType.annealing, OptimizitaionTarget.distance);
+                else if (geneticAlgorithm.Checked)
+                    Optimize(AlgorithmType.genetic, OptimizitaionTarget.distance);
                 else
                     throw new InvalidOperationException("Nie wskazano algorytmu");
             }
             else if (timeOptimization.Checked)
             {
-                throw new NotImplementedException();
+                if (simulatedAnnealing.Checked)
+                    Optimize(AlgorithmType.annealing, OptimizitaionTarget.time);
+                else if (geneticAlgorithm.Checked)
+                    Optimize(AlgorithmType.genetic, OptimizitaionTarget.time);
+                else
+                    throw new InvalidOperationException("Nie wskazano algorytmu");
             }
             else
             {
                 throw new InvalidOperationException("Nie wskazano typu optymalizacji");
             }
             
-            //TODO run algorithm here
         }
 
-        private void CalculateDistanceOptimizationSA()
+        private void Optimize(AlgorithmType type, OptimizitaionTarget target)
         {
+             // Clean up after previous optimizations
+            if (Graph.deliveredItems.Count > 0) {
+                Graph.Clear();
+            }
+
+            Dictionary<packageSize, int> sizeMap = GetPackageSizeMapping();
+
             int neighbourhoodSize = Int32.Parse(carCapTb.Text) / Int32.Parse(pckSmSizeTb.Text);
             int carsNumber = Int32.Parse(carNumTb.Text);
-            List<int> delivered = new List<int>();
+            int carCapacity = Int32.Parse(carCapTb.Text);
+            int saTemp = Int32.Parse(saTempTb.Text);
+            float saLambda = Single.Parse(saLambdaTb.Text);
+            int saRepet = Int32.Parse(saRepetTb.Text);
+            int gaPopulation = Int32.Parse(gaPopulationSizeTb.Text);
+            int gaGenerations = Int32.Parse(gaGenerationsNmbTb.Text);
 
-            int[] toDeliver = Tsp.getNeighbors(neighbourhoodSize);
+            long[,] costs;
+            if (target == OptimizitaionTarget.distance)
+            {
+                costs = Matrices.Distance;
+            }
+            else if (target == OptimizitaionTarget.time)
+            {
+                costs = Matrices.Time;
+            }
+            else
+            {
+                throw new InvalidEnumArgumentException("Wrong optization target!");
+            }
 
-            // TODO all of algorithm -> knapsack in one car + TSP for that car + iterate over cars
+            int carId = 0;
+            long[] carsTimes = Enumerable.Repeat(0L, carsNumber).ToArray();
+            while (Graph.numberOfDelivered < PackagesList.numberOfPackages) {
+                if ((PackagesList.numberOfPackages - Graph.numberOfDelivered) < neighbourhoodSize)
+                {
+                    neighbourhoodSize = PackagesList.numberOfPackages - Graph.numberOfDelivered;
+                }
+                Console.WriteLine(String.Format("Pozostało {0} paczek do rozwiezienia", PackagesList.numberOfPackages - Graph.numberOfDelivered));
+                int[] toDeliver = Tsp.getNeighbors(neighbourhoodSize, Matrices.Distance);
+                Console.Write("Rozważamy sąsiedztwo: ");
+                for (int i = 0; i < neighbourhoodSize; i++)
+                {
+                    Console.Write(toDeliver[i].ToString() + " ");
+                }
+                Console.WriteLine();
+
+                Knapsack packageSelector = new Knapsack(toDeliver, sizeMap, carCapacity);
+                SimulatedAnnealing algorithm = new SimulatedAnnealing(saTemp, saLambda, saRepet);
+               // GeneticAlgorithm algorithm = new GeneticAlgorithm(gaPopulation, gaGenerations);
+                int[] finalToDeliver = algorithm.Calculate(packageSelector);
+
+                Console.Write(String.Format("Samochód {0} dostarczy do punktów: ", carId));
+                for (int i = 0; i < finalToDeliver.Length; i++)
+                {
+                    Console.Write(finalToDeliver[i].ToString() + " ");
+                }
+                Console.WriteLine();
+
+                Tsp pointsSorter = new Tsp(finalToDeliver, costs, true);
+                int[] solution;
+                long travelTime;
+                if (type == AlgorithmType.annealing)
+                {
+                    solution = (new SimulatedAnnealing(saTemp, saLambda, saRepet)).Calculate(pointsSorter);
+                }
+                else if (type == AlgorithmType.genetic)
+                {
+                    solution = (new GeneticAlgorithm(gaPopulation, gaGenerations)).Calculate(pointsSorter);
+                }
+                else
+                {
+                    throw new InvalidEnumArgumentException("Wrong algorithm type!");
+                }
+                long[] times = CalcTimes(solution, carsTimes[carId]);
+
+                if (target == OptimizitaionTarget.time)
+                {
+                    travelTime = pointsSorter.GetCost(solution);
+                    Graph.totalTime += travelTime;
+                    carsTimes[carId] += travelTime;
+                    Graph.totalDistance += (new Tsp(finalToDeliver, Matrices.Distance, true)).GetCost(solution);
+                }
+                else if (target == OptimizitaionTarget.distance)
+                {
+                    Graph.totalDistance += pointsSorter.GetCost(solution);
+                    travelTime = (new Tsp(finalToDeliver, Matrices.Time, true)).GetCost(solution);
+                    carsTimes[carId] += travelTime;
+                    Graph.totalTime += travelTime;
+                }
+                else
+                {
+                    throw new InvalidEnumArgumentException("Wrong optization target!");
+                }
+
+
+                Console.Write("W kolejności: baza ");
+                for (int i = 0; i < solution.Length; i++)
+                {
+                    Console.Write(solution[i].ToString() + " ");
+                    Graph.deliveredItems.Add(new DeliveryItem(PackagesList.packagesList[solution[i]], times[i], carId)); // Set package as delived
+                }
+                Console.WriteLine(" baza");
+                if(++carId >= carsNumber)
+                {
+                    carId = 0;
+                }
+            }
+
+            ResultsLvRefresh();
+        }
+
+        private long[] CalcTimes(int[] solution, long startTime)
+        {
+            long[] times = new long[solution.Count()];
+
+            for (int i = 0; i < solution.Length; i++)
+            {
+                if (i == 0)
+                {
+                    times[i] = startTime + Matrices.Time[PackagesList.numberOfPackages, solution[i]];
+                }
+                else
+                {
+                    times[i] = times[i - 1] + Matrices.Time[solution[i - 1], solution[i]];
+                }
+            }
+
+            return times;
+        }
+
+        private Dictionary<packageSize, int> GetPackageSizeMapping()
+        {
+            Dictionary<packageSize, int> sizeMap = new Dictionary<packageSize, int>();
+            sizeMap.Add(packageSize.small, Int32.Parse(pckSmSizeTb.Text));
+            sizeMap.Add(packageSize.medium, Int32.Parse(pckMdSizeTb.Text));
+            sizeMap.Add(packageSize.big, Int32.Parse(pckBgSizeTb.Text));
+
+            return sizeMap;
+        }
+
+        private void ResultsLvRefresh()
+        {
+            totalDistanceTb.Text = Graph.totalDistance.ToString();
+            totalTimeTb.Text = Graph.totalTime.ToString();
+
+            resultsLv.Items.Clear();
+
+            for (int i = 0; i < Graph.numberOfDelivered; i++)
+            {
+                ListViewItem listitem = new ListViewItem(Graph.deliveredItems[i].package.Id);
+                listitem.SubItems.Add(Graph.deliveredItems[i].package.RecName);
+                listitem.SubItems.Add(Graph.deliveredItems[i].package.RecAdress);
+                listitem.SubItems.Add(Graph.deliveredItems[i].package.RecZipCode);
+                listitem.SubItems.Add(Graph.deliveredItems[i].package.RecCity);
+                listitem.SubItems.Add(Graph.deliveredItems[i].package.RecTelNum);
+                listitem.SubItems.Add(Graph.deliveredItems[i].time.ToString());
+                listitem.SubItems.Add(Graph.deliveredItems[i].carId.ToString());
+                resultsLv.Items.Add(listitem);
+            }
+
         }
 
         private void ShowDistMatrixBtn_Click(object sender, EventArgs e)//test

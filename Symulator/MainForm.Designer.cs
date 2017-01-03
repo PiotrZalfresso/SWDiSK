@@ -50,6 +50,10 @@
             this.pathFileTb = new System.Windows.Forms.TextBox();
             this.HistoryTab = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.totalTimeTb = new System.Windows.Forms.TextBox();
+            this.totalDistanceTb = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.ShowRouteBtn = new System.Windows.Forms.Button();
             this.ExportTimeMatrixBtn = new System.Windows.Forms.Button();
             this.ShowTimeMatrixBtn = new System.Windows.Forms.Button();
@@ -84,8 +88,13 @@
             this.carNumTb = new System.Windows.Forms.TextBox();
             this.carCapTb = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.saRepetTb = new System.Windows.Forms.TextBox();
+            this.saLambdaTb = new System.Windows.Forms.TextBox();
+            this.saTempTb = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.algorithm2 = new System.Windows.Forms.RadioButton();
+            this.geneticAlgorithm = new System.Windows.Forms.RadioButton();
             this.simulatedAnnealing = new System.Windows.Forms.RadioButton();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.hubWrkTmStartDtp = new System.Windows.Forms.DateTimePicker();
@@ -113,6 +122,10 @@
             this.StatusBar = new System.Windows.Forms.GroupBox();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.gaPopulationSizeTb = new System.Windows.Forms.TextBox();
+            this.gaGenerationsNmbTb = new System.Windows.Forms.TextBox();
             this.MainTabControl.SuspendLayout();
             this.StartTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -306,6 +319,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.totalTimeTb);
+            this.groupBox1.Controls.Add(this.totalDistanceTb);
+            this.groupBox1.Controls.Add(this.label21);
+            this.groupBox1.Controls.Add(this.label20);
             this.groupBox1.Controls.Add(this.ShowRouteBtn);
             this.groupBox1.Controls.Add(this.ExportTimeMatrixBtn);
             this.groupBox1.Controls.Add(this.ShowTimeMatrixBtn);
@@ -320,6 +337,40 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rozwiązanie";
+            // 
+            // totalTimeTb
+            // 
+            this.totalTimeTb.Location = new System.Drawing.Point(459, 461);
+            this.totalTimeTb.Name = "totalTimeTb";
+            this.totalTimeTb.ReadOnly = true;
+            this.totalTimeTb.Size = new System.Drawing.Size(109, 22);
+            this.totalTimeTb.TabIndex = 6;
+            // 
+            // totalDistanceTb
+            // 
+            this.totalDistanceTb.Location = new System.Drawing.Point(155, 461);
+            this.totalDistanceTb.Name = "totalDistanceTb";
+            this.totalDistanceTb.ReadOnly = true;
+            this.totalDistanceTb.Size = new System.Drawing.Size(109, 22);
+            this.totalDistanceTb.TabIndex = 5;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(333, 464);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(120, 16);
+            this.label21.TabIndex = 4;
+            this.label21.Text = "Całkowity czas: [s]";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(6, 464);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(143, 16);
+            this.label20.TabIndex = 3;
+            this.label20.Text = "Całkowity dystans: [m]";
             // 
             // ShowRouteBtn
             // 
@@ -395,7 +446,7 @@
             this.resultsLv.GridLines = true;
             this.resultsLv.Location = new System.Drawing.Point(5, 21);
             this.resultsLv.Name = "resultsLv";
-            this.resultsLv.Size = new System.Drawing.Size(764, 459);
+            this.resultsLv.Size = new System.Drawing.Size(764, 432);
             this.resultsLv.TabIndex = 1;
             this.resultsLv.UseCompatibleStateImageBehavior = false;
             this.resultsLv.View = System.Windows.Forms.View.Details;
@@ -637,8 +688,17 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.gaGenerationsNmbTb);
+            this.groupBox5.Controls.Add(this.gaPopulationSizeTb);
+            this.groupBox5.Controls.Add(this.label25);
+            this.groupBox5.Controls.Add(this.label24);
+            this.groupBox5.Controls.Add(this.saRepetTb);
+            this.groupBox5.Controls.Add(this.saLambdaTb);
+            this.groupBox5.Controls.Add(this.saTempTb);
+            this.groupBox5.Controls.Add(this.label23);
+            this.groupBox5.Controls.Add(this.label22);
             this.groupBox5.Controls.Add(this.label18);
-            this.groupBox5.Controls.Add(this.algorithm2);
+            this.groupBox5.Controls.Add(this.geneticAlgorithm);
             this.groupBox5.Controls.Add(this.simulatedAnnealing);
             this.groupBox5.Location = new System.Drawing.Point(314, 96);
             this.groupBox5.Name = "groupBox5";
@@ -647,25 +707,67 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Algorytm";
             // 
+            // saRepetTb
+            // 
+            this.saRepetTb.Location = new System.Drawing.Point(102, 117);
+            this.saRepetTb.Name = "saRepetTb";
+            this.saRepetTb.Size = new System.Drawing.Size(42, 22);
+            this.saRepetTb.TabIndex = 6;
+            this.saRepetTb.Text = "1000";
+            // 
+            // saLambdaTb
+            // 
+            this.saLambdaTb.Location = new System.Drawing.Point(102, 89);
+            this.saLambdaTb.Name = "saLambdaTb";
+            this.saLambdaTb.Size = new System.Drawing.Size(42, 22);
+            this.saLambdaTb.TabIndex = 5;
+            this.saLambdaTb.Text = "0,1";
+            // 
+            // saTempTb
+            // 
+            this.saTempTb.Location = new System.Drawing.Point(102, 61);
+            this.saTempTb.Name = "saTempTb";
+            this.saTempTb.Size = new System.Drawing.Size(42, 22);
+            this.saTempTb.TabIndex = 4;
+            this.saTempTb.Text = "10000";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(3, 120);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(81, 16);
+            this.label23.TabIndex = 3;
+            this.label23.Text = "Powtórzenia";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(6, 92);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(58, 16);
+            this.label22.TabIndex = 2;
+            this.label22.Text = "Lambda";
+            // 
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(72, 109);
+            this.label18.Location = new System.Drawing.Point(3, 65);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(102, 16);
+            this.label18.Size = new System.Drawing.Size(86, 16);
             this.label18.TabIndex = 1;
-            this.label18.Text = "Tutaj parametry";
+            this.label18.Text = "Temperatura";
             // 
-            // algorithm2
+            // geneticAlgorithm
             // 
-            this.algorithm2.AutoSize = true;
-            this.algorithm2.Location = new System.Drawing.Point(184, 34);
-            this.algorithm2.Name = "algorithm2";
-            this.algorithm2.Size = new System.Drawing.Size(89, 20);
-            this.algorithm2.TabIndex = 1;
-            this.algorithm2.TabStop = true;
-            this.algorithm2.Text = "Algorytm 2";
-            this.algorithm2.UseVisualStyleBackColor = true;
+            this.geneticAlgorithm.AutoSize = true;
+            this.geneticAlgorithm.Location = new System.Drawing.Point(184, 34);
+            this.geneticAlgorithm.Name = "geneticAlgorithm";
+            this.geneticAlgorithm.Size = new System.Drawing.Size(150, 20);
+            this.geneticAlgorithm.TabIndex = 1;
+            this.geneticAlgorithm.TabStop = true;
+            this.geneticAlgorithm.Text = "Algorytm genetyczny";
+            this.geneticAlgorithm.UseVisualStyleBackColor = true;
             // 
             // simulatedAnnealing
             // 
@@ -924,6 +1026,40 @@
             this.StatusLbl.Size = new System.Drawing.Size(0, 13);
             this.StatusLbl.TabIndex = 0;
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(181, 64);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(116, 16);
+            this.label24.TabIndex = 7;
+            this.label24.Text = "Rozmiar populacji";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(181, 92);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(88, 16);
+            this.label25.TabIndex = 8;
+            this.label25.Text = "Ilość pokoleń";
+            // 
+            // gaPopulationSizeTb
+            // 
+            this.gaPopulationSizeTb.Location = new System.Drawing.Point(303, 62);
+            this.gaPopulationSizeTb.Name = "gaPopulationSizeTb";
+            this.gaPopulationSizeTb.Size = new System.Drawing.Size(42, 22);
+            this.gaPopulationSizeTb.TabIndex = 9;
+            this.gaPopulationSizeTb.Text = "200";
+            // 
+            // gaGenerationsNmbTb
+            // 
+            this.gaGenerationsNmbTb.Location = new System.Drawing.Point(303, 89);
+            this.gaGenerationsNmbTb.Name = "gaGenerationsNmbTb";
+            this.gaGenerationsNmbTb.Size = new System.Drawing.Size(42, 22);
+            this.gaGenerationsNmbTb.TabIndex = 10;
+            this.gaGenerationsNmbTb.Text = "500";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -940,6 +1076,7 @@
             this.LoadDataBox.PerformLayout();
             this.HistoryTab.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.SettingsTab.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
@@ -997,7 +1134,7 @@
         private System.Windows.Forms.RadioButton distanceOptimization;
         private System.Windows.Forms.RadioButton timeOptimization;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.RadioButton algorithm2;
+        private System.Windows.Forms.RadioButton geneticAlgorithm;
         private System.Windows.Forms.RadioButton simulatedAnnealing;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DateTimePicker hubWrkTmStartDtp;
@@ -1045,6 +1182,19 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button ExportTimeMatrixBtn;
         private System.Windows.Forms.Button ExportDistMatrixBtn;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox totalTimeTb;
+        private System.Windows.Forms.TextBox totalDistanceTb;
+        private System.Windows.Forms.TextBox saRepetTb;
+        private System.Windows.Forms.TextBox saLambdaTb;
+        private System.Windows.Forms.TextBox saTempTb;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox gaGenerationsNmbTb;
+        private System.Windows.Forms.TextBox gaPopulationSizeTb;
     }
 }
 
