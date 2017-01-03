@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Symulator
 {
-    class Knapsack : ProblemInstance
+    class Knapsack : ISimulatedAnnealing, IGeneticAlgorithm
     {
         private int[] points; // All point have + 1 and are nagated if not taken
         private Dictionary<packageSize, int> sizes;
@@ -73,21 +73,21 @@ namespace Symulator
             if (!holdingEverything)
             { // prevent infinite loop
 
-                int i = genetaror.Next(0, solution.Length);
+                int i = genetaror.Next(0, returnedSolution.Length);
 
                 // find one that isn't being taken
-                while (solution[i] > 0)
+                while (returnedSolution[i] > 0)
                 {
-                    i = genetaror.Next(0, solution.Length);
+                    i = genetaror.Next(0, returnedSolution.Length);
                 }
 
-                solution[i] = - solution[i]; // take random item -> make it positive
+                returnedSolution[i] = - returnedSolution[i]; // take random item -> make it positive
 
-                while(GetTotalWeight(solution) > maxSize)
+                while(GetTotalWeight(returnedSolution) > maxSize)
                 {
-                    int idx = genetaror.Next(0, solution.Length);
-                    if (solution[idx] > 0)
-                        solution[idx] = - solution[idx];
+                    int idx = genetaror.Next(0, returnedSolution.Length);
+                    if (returnedSolution[idx] > 0)
+                        returnedSolution[idx] = - returnedSolution[idx];
                 }
             }
 
@@ -147,6 +147,58 @@ namespace Symulator
             packageSize sizeEnum = PackagesList.packagesList[i].Size;
             size = sizes[sizeEnum];
             return size;
+        }
+
+        public int[] Mutate(int[] solution)
+        {
+            return Randomize(solution);
+        }
+
+        public Tuple<int[], int[]> Crossover(int[] parent1, int[] parent2)
+        {
+            if (parent1.Length != parent2.Length)
+            {
+                throw new ArgumentException("Parents have different sizes");
+            }
+
+            int a, b, tmp;
+            int elementsNmb = parent1.Length;
+            int[] par1 = new int[elementsNmb];
+            Array.Copy(parent1, par1, elementsNmb);
+            int[] par2 = new int[elementsNmb];
+            Array.Copy(parent2, par2, elementsNmb);
+
+            b = genetaror.Next(elementsNmb);
+            do
+            {
+                a = b;
+                tmp = par2[a];
+                par2[a] = par1[a];
+                par1[a] = tmp;
+                b = -1;
+                for (int i = 0; i < elementsNmb; i++)
+                    if (par1[i] == tmp && i != a)
+                        b = i;
+            } while (b >= 0);
+
+            return new Tuple<int[], int[]>(par1, par2);
+        }
+
+        public bool Check(int[][] a, int n)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                while (GetTotalWeight(a[i]) > maxSize)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public int GetInstanceSize()
+        {
+            return points.Length;
         }
     }
 }

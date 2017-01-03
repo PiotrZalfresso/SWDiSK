@@ -11,6 +11,18 @@ using System.IO;
 
 namespace Symulator
 {
+    enum AlgorithmType
+    {
+        annealing,
+        genetic,
+    }
+
+    enum OptimizitaionTarget
+    {
+        distance,
+        time,
+    }
+
     public partial class MainForm : Form
     {
         Boolean readPackages;
@@ -110,14 +122,18 @@ namespace Symulator
 
             if (distanceOptimization.Checked) {
                 if (simulatedAnnealing.Checked)
-                    CalculateDistanceOptimizationSA();
+                    Optimize(AlgorithmType.annealing, OptimizitaionTarget.distance);
+                else if (geneticAlgorithm.Checked)
+                    Optimize(AlgorithmType.genetic, OptimizitaionTarget.distance);
                 else
                     throw new InvalidOperationException("Nie wskazano algorytmu");
             }
             else if (timeOptimization.Checked)
             {
                 if (simulatedAnnealing.Checked)
-                    CalculateTimeOptimizationSA();
+                    Optimize(AlgorithmType.annealing, OptimizitaionTarget.time);
+                else if (geneticAlgorithm.Checked)
+                    Optimize(AlgorithmType.genetic, OptimizitaionTarget.time);
                 else
                     throw new InvalidOperationException("Nie wskazano algorytmu");
             }
@@ -126,12 +142,11 @@ namespace Symulator
                 throw new InvalidOperationException("Nie wskazano typu optymalizacji");
             }
             
-            //TODO run algorithm here
         }
 
-        private void CalculateDistanceOptimizationSA()
+        private void Optimize(AlgorithmType type, OptimizitaionTarget target)
         {
-            // Clean up after previous optimizations
+             // Clean up after previous optimizations
             if (Graph.deliveredItems.Count > 0) {
                 Graph.Clear();
             }
@@ -140,10 +155,26 @@ namespace Symulator
 
             int neighbourhoodSize = Int32.Parse(carCapTb.Text) / Int32.Parse(pckSmSizeTb.Text);
             int carsNumber = Int32.Parse(carNumTb.Text);
+            int carCapacity = Int32.Parse(carCapTb.Text);
             int saTemp = Int32.Parse(saTempTb.Text);
             float saLambda = Single.Parse(saLambdaTb.Text);
             int saRepet = Int32.Parse(saRepetTb.Text);
-            int carCapacity = Int32.Parse(carCapTb.Text);
+            int gaPopulation = Int32.Parse(gaPopulationSizeTb.Text);
+            int gaGenerations = Int32.Parse(gaGenerationsNmbTb.Text);
+
+            long[,] costs;
+            if (target == OptimizitaionTarget.distance)
+            {
+                costs = Matrices.Distance;
+            }
+            else if (target == OptimizitaionTarget.time)
+            {
+                costs = Matrices.Time;
+            }
+            else
+            {
+                throw new InvalidEnumArgumentException("Wrong optization target!");
+            }
 
             int carId = 0;
             long[] carsTimes = Enumerable.Repeat(0L, carsNumber).ToArray();
@@ -162,8 +193,9 @@ namespace Symulator
                 Console.WriteLine();
 
                 Knapsack packageSelector = new Knapsack(toDeliver, sizeMap, carCapacity);
-                SimulatedAnnealing algoritm = new SimulatedAnnealing(saTemp, saLambda, saRepet);
-                int[] finalToDeliver = algoritm.Calculate(packageSelector);
+                SimulatedAnnealing algorithm = new SimulatedAnnealing(saTemp, saLambda, saRepet);
+               // GeneticAlgorithm algorithm = new GeneticAlgorithm(gaPopulation, gaGenerations);
+                int[] finalToDeliver = algorithm.Calculate(packageSelector);
 
                 Console.Write(String.Format("Samochód {0} dostarczy do punktów: ", carId));
                 for (int i = 0; i < finalToDeliver.Length; i++)
@@ -172,14 +204,42 @@ namespace Symulator
                 }
                 Console.WriteLine();
 
-                Tsp pointsSorter = new Tsp(finalToDeliver, Matrices.Distance, true);
-                int[] solution = algoritm.Calculate(pointsSorter);
+                Tsp pointsSorter = new Tsp(finalToDeliver, costs, true);
+                int[] solution;
+                long travelTime;
+                if (type == AlgorithmType.annealing)
+                {
+                    solution = (new SimulatedAnnealing(saTemp, saLambda, saRepet)).Calculate(pointsSorter);
+                }
+                else if (type == AlgorithmType.genetic)
+                {
+                    solution = (new GeneticAlgorithm(gaPopulation, gaGenerations)).Calculate(pointsSorter);
+                }
+                else
+                {
+                    throw new InvalidEnumArgumentException("Wrong algorithm type!");
+                }
                 long[] times = CalcTimes(solution, carsTimes[carId]);
 
-                Graph.totalDistance += pointsSorter.GetCost(solution);
-                long travelTime = (new Tsp(finalToDeliver, Matrices.Time, true)).GetCost(solution);
-                carsTimes[carId] += travelTime;
-                Graph.totalTime += travelTime;
+                if (target == OptimizitaionTarget.time)
+                {
+                    travelTime = pointsSorter.GetCost(solution);
+                    Graph.totalTime += travelTime;
+                    carsTimes[carId] += travelTime;
+                    Graph.totalDistance += (new Tsp(finalToDeliver, Matrices.Distance, true)).GetCost(solution);
+                }
+                else if (target == OptimizitaionTarget.distance)
+                {
+                    Graph.totalDistance += pointsSorter.GetCost(solution);
+                    travelTime = (new Tsp(finalToDeliver, Matrices.Time, true)).GetCost(solution);
+                    carsTimes[carId] += travelTime;
+                    Graph.totalTime += travelTime;
+                }
+                else
+                {
+                    throw new InvalidEnumArgumentException("Wrong optization target!");
+                }
+
 
                 Console.Write("W kolejności: baza ");
                 for (int i = 0; i < solution.Length; i++)
@@ -195,80 +255,6 @@ namespace Symulator
             }
 
             ResultsLvRefresh();
-
-            // TODO all of algorithm -> knapsack in one car + TSP for that car + iterate over cars // CHECK
-        }
-
-        private void CalculateTimeOptimizationSA()
-        {
-            // Clean up after previous optimizations
-            if (Graph.deliveredItems.Count > 0)
-            {
-                Graph.Clear();
-            }
-
-            Dictionary<packageSize, int> sizeMap = GetPackageSizeMapping();
-
-            int neighbourhoodSize = Int32.Parse(carCapTb.Text) / Int32.Parse(pckSmSizeTb.Text);
-            int carsNumber = Int32.Parse(carNumTb.Text);
-            int saTemp = Int32.Parse(saTempTb.Text);
-            float saLambda = Single.Parse(saLambdaTb.Text);
-            int saRepet = Int32.Parse(saRepetTb.Text);
-            int carCapacity = Int32.Parse(carCapTb.Text);
-
-            int carId = 0;
-            long[] carsTimes = Enumerable.Repeat(0L, carsNumber).ToArray();
-            while (Graph.numberOfDelivered < PackagesList.numberOfPackages)
-            {
-                if ((PackagesList.numberOfPackages - Graph.numberOfDelivered) < neighbourhoodSize)
-                {
-                    neighbourhoodSize = PackagesList.numberOfPackages - Graph.numberOfDelivered;
-                }
-
-                int[] toDeliver = Tsp.getNeighbors(neighbourhoodSize, Matrices.Time);
-                Console.Write("Rozważamy sąsiedztwo: ");
-                for (int i = 0; i < neighbourhoodSize; i++)
-                {
-                    Console.Write(toDeliver[i].ToString() + " ");
-                }
-                Console.WriteLine();
-
-                Knapsack packageSelector = new Knapsack(toDeliver, sizeMap, carCapacity);
-                SimulatedAnnealing algoritm = new SimulatedAnnealing(saTemp, saLambda, saRepet);
-                int[] finalToDeliver = algoritm.Calculate(packageSelector);
-
-                Console.Write(String.Format("Samochód {0} dostarczy do punktów: ", carId));
-                for (int i = 0; i < finalToDeliver.Length; i++)
-                {
-                    Console.Write(finalToDeliver[i].ToString() + " ");
-                }
-                Console.WriteLine();
-
-                Tsp pointsSorter = new Tsp(finalToDeliver, Matrices.Time, true);
-                int[] solution = algoritm.Calculate(pointsSorter);
-                long[] times = CalcTimes(solution, carsTimes[carId]);
-
-                long travelTime = pointsSorter.GetCost(solution);
-                Graph.totalTime += travelTime;
-                carsTimes[carId] += travelTime;
-                Graph.totalDistance += (new Tsp(finalToDeliver, Matrices.Distance, true)).GetCost(solution);
-
-                Console.Write("W kolejności: baza ");
-                for (int i = 0; i < solution.Length; i++)
-                {
-                    Console.Write(solution[i].ToString() + " ");
-                    Graph.deliveredItems.Add(new DeliveryItem(PackagesList.packagesList[solution[i]], times[i], carId)); // Set package as delived
-                }
-                Console.WriteLine(" baza");
-                if (++carId >= carsNumber)
-                {
-                    carId = 0;
-                }
-            }
-
-            ResultsLvRefresh();
-
-            // TODO all of algorithm -> knapsack in one car + TSP for that car + iterate over cars // CHECKS
         }
 
         private long[] CalcTimes(int[] solution, long startTime)

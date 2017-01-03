@@ -57,7 +57,7 @@ namespace Symulator
             }
         }
 
-        public int[] Calculate(ProblemInstance instance)
+        public int[] Calculate(ISimulatedAnnealing instance)
         {
             int[] solution = instance.GetInitialSolution();
             int count = solution.Length;
@@ -71,7 +71,8 @@ namespace Symulator
                 {
 
                     long before = instance.GetCost(newSolution);
-                    lastSolution = instance.Randomize(newSolution);
+                    lastSolution = newSolution;
+                    newSolution = instance.Randomize(lastSolution);
                     long after = instance.GetCost(newSolution);
                     long actual = instance.GetCost(solution);
                     if (instance.compareOldNewSolution(after, before) == 1)

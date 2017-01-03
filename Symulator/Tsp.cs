@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Symulator
 {
-    class Tsp : ProblemInstance
+    class Tsp : ISimulatedAnnealing, IGeneticAlgorithm
     {
         class getNeighborsIComparer : IComparer
         {
@@ -129,17 +129,19 @@ namespace Symulator
         {
             int[] copy = new int[pointsNumber];
             Array.Copy(solution, copy, pointsNumber);
-
-            int i = 0;
-            int j = 0;
-            while (i == j)
-            {
-                i = genRandom(pointsNumber) ;
-                j = genRandom(pointsNumber) ;
+            
+            if (pointsNumber > 1) {
+                int i = 0;
+                int j = 0;
+                while (i == j)
+                {
+                    i = genRandom(pointsNumber) ;
+                    j = genRandom(pointsNumber) ;
+                }
+                int t = copy[i];
+                copy[i] = copy[j];
+                copy[j] = t;
             }
-            int t = solution[i];
-            solution[i] = solution[j];
-            solution[j] = t;
 
             return copy;
         }
@@ -166,6 +168,64 @@ namespace Symulator
                 ans = -1;
 
             return ans;
+        }
+
+        public int[] Mutate(int[] solution)
+        {
+            return Randomize(solution); 
+        }
+
+        public Tuple<int[], int[]> Crossover(int[] parent1, int[] parent2)
+        {
+            if (parent1.Length != parent2.Length)
+            {
+                throw new ArgumentException("Parents have different sizes");
+            }
+
+            int a, b, tmp;
+            int elementsNmb = parent1.Length;
+            int[] par1 = new int[elementsNmb];
+            Array.Copy(parent1, par1, elementsNmb);
+            int[] par2 = new int[elementsNmb];
+            Array.Copy(parent2, par2, elementsNmb);
+
+            b = genRandom(elementsNmb);
+            do
+            {
+                a = b;
+                tmp = par2[a];
+                par2[a] = par1[a];
+                par1[a] = tmp;
+                b = -1;
+                for (int i = 0; i < elementsNmb; i++)
+                    if (par1[i] == tmp && i != a)
+                        b = i;
+            } while (b >= 0);
+
+            return new Tuple<int[], int[]>(par1, par2);
+        }
+
+        public bool Check(int[][] a, int n)
+        {
+            bool b;
+            for (int i = 0; i < n; i++)
+            {
+                b = true;
+                for (int j = 0; j < a[0].Length; j++)
+                    if (a[i][j] != a[n][j])
+                    {
+                        b = false;
+                        break;
+                    }
+                if (b)
+                    return true;
+            }
+            return false;
+        }
+
+        public int GetInstanceSize()
+        {
+            return points.Length;
         }
     }
 }
