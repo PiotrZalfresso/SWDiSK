@@ -161,6 +161,7 @@ namespace Symulator
             }
 
             Dictionary<packageSize, int> sizeMap = GetPackageSizeMapping();
+            Dictionary<packageSize, long> timeMap = GetPackageSizeTimeMapping();
 
             int neighbourhoodSize = Int32.Parse(carCapTb.Text) / Int32.Parse(pckSmSizeTb.Text);
             int carsNumber = Int32.Parse(carNumTb.Text);
@@ -213,7 +214,19 @@ namespace Symulator
                 }
                 Console.WriteLine();
 
-                Tsp pointsSorter = new Tsp(finalToDeliver, costs, true);
+                Tsp pointsSorter;
+                if ( target == OptimizitaionTarget.time) {
+                    pointsSorter = new Tsp(finalToDeliver, costs, timeMap, true);
+                }
+                else if (target == OptimizitaionTarget.distance)
+                {
+                    pointsSorter = new Tsp(finalToDeliver, costs, null, true);
+                }
+                else
+                {
+                    throw new InvalidEnumArgumentException("Wrong optization target!");
+                }
+
                 int[] solution;
                 long travelTime;
                 if (type == AlgorithmType.annealing)
@@ -228,19 +241,19 @@ namespace Symulator
                 {
                     throw new InvalidEnumArgumentException("Wrong algorithm type!");
                 }
-                long[] times = CalcTimes(solution, carsTimes[carId]);
+                long[] times = CalcTimes(solution, carsTimes[carId], timeMap);
 
                 if (target == OptimizitaionTarget.time)
                 {
                     travelTime = pointsSorter.GetCost(solution);
                     Graph.totalTime += travelTime;
                     carsTimes[carId] += travelTime;
-                    Graph.totalDistance += (new Tsp(finalToDeliver, Matrices.Distance, true)).GetCost(solution);
+                    Graph.totalDistance += (new Tsp(finalToDeliver, Matrices.Distance, null, true)).GetCost(solution);
                 }
                 else if (target == OptimizitaionTarget.distance)
                 {
                     Graph.totalDistance += pointsSorter.GetCost(solution);
-                    travelTime = (new Tsp(finalToDeliver, Matrices.Time, true)).GetCost(solution);
+                    travelTime = (new Tsp(finalToDeliver, Matrices.Time, timeMap, true)).GetCost(solution);
                     carsTimes[carId] += travelTime;
                     Graph.totalTime += travelTime;
                 }
@@ -267,7 +280,7 @@ namespace Symulator
             MainTabControl.SelectedTab = HistoryTab;
         }
 
-        private long[] CalcTimes(int[] solution, long startTime)
+        private long[] CalcTimes(int[] solution, long startTime, Dictionary<packageSize, long> timeMap)
         {
             long[] times = new long[solution.Count()];
 
@@ -276,10 +289,12 @@ namespace Symulator
                 if (i == 0)
                 {
                     times[i] = startTime + Matrices.Time[PackagesList.numberOfPackages, solution[i]];
+                    times[i] += timeMap[PackagesList.packagesList[solution[i]].Size];
                 }
                 else
                 {
                     times[i] = times[i - 1] + Matrices.Time[solution[i - 1], solution[i]];
+                    times[i] += timeMap[PackagesList.packagesList[solution[i]].Size];
                 }
             }
 
@@ -292,6 +307,16 @@ namespace Symulator
             sizeMap.Add(packageSize.small, Int32.Parse(pckSmSizeTb.Text));
             sizeMap.Add(packageSize.medium, Int32.Parse(pckMdSizeTb.Text));
             sizeMap.Add(packageSize.big, Int32.Parse(pckBgSizeTb.Text));
+
+            return sizeMap;
+        }
+
+        private Dictionary<packageSize, long> GetPackageSizeTimeMapping()
+        {
+            Dictionary<packageSize, long> sizeMap = new Dictionary<packageSize, long>();
+            sizeMap.Add(packageSize.small, Int64.Parse(pckSmTimeTb.Text) * 60);
+            sizeMap.Add(packageSize.medium, Int64.Parse(pckMdTimeTb.Text) * 60);
+            sizeMap.Add(packageSize.big, Int64.Parse(pckBgTimeTb.Text) * 60);
 
             return sizeMap;
         }
