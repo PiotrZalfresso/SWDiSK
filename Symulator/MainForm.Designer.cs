@@ -88,6 +88,10 @@
             this.carNumTb = new System.Windows.Forms.TextBox();
             this.carCapTb = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.gaGenerationsNmbTb = new System.Windows.Forms.TextBox();
+            this.gaPopulationSizeTb = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.saRepetTb = new System.Windows.Forms.TextBox();
             this.saLambdaTb = new System.Windows.Forms.TextBox();
             this.saTempTb = new System.Windows.Forms.TextBox();
@@ -122,10 +126,7 @@
             this.StatusBar = new System.Windows.Forms.GroupBox();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.gaPopulationSizeTb = new System.Windows.Forms.TextBox();
-            this.gaGenerationsNmbTb = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.MainTabControl.SuspendLayout();
             this.StartTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -214,47 +215,47 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Nr przesyłki";
-            this.columnHeader1.Width = 91;
+            this.columnHeader1.Width = 73;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Odbiorca";
-            this.columnHeader2.Width = 88;
+            this.columnHeader2.Width = 128;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Adres";
-            this.columnHeader3.Width = 63;
+            this.columnHeader3.Width = 100;
             // 
             // columnHeader12
             // 
             this.columnHeader12.Text = "Kod Poczt.";
-            this.columnHeader12.Width = 65;
+            this.columnHeader12.Width = 71;
             // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Miejscowość";
-            this.columnHeader4.Width = 75;
+            this.columnHeader4.Width = 90;
             // 
             // columnHeader5
             // 
             this.columnHeader5.Text = "Telefon";
-            this.columnHeader5.Width = 69;
+            this.columnHeader5.Width = 102;
             // 
             // columnHeader11
             // 
             this.columnHeader11.Text = "Dostawa od";
-            this.columnHeader11.Width = 73;
+            this.columnHeader11.Width = 70;
             // 
             // columnHeader13
             // 
             this.columnHeader13.Text = "do";
-            this.columnHeader13.Width = 53;
+            this.columnHeader13.Width = 63;
             // 
             // columnHeader6
             // 
             this.columnHeader6.Text = "Rozmiar ";
-            this.columnHeader6.Width = 53;
+            this.columnHeader6.Width = 62;
             // 
             // LoadDataBox
             // 
@@ -475,17 +476,17 @@
             // 
             this.columnHeader14.DisplayIndex = 5;
             this.columnHeader14.Text = "Telefon";
-            this.columnHeader14.Width = 65;
+            this.columnHeader14.Width = 104;
             // 
             // columnHeader17
             // 
             this.columnHeader17.DisplayIndex = 4;
             this.columnHeader17.Text = "Miejscowość";
-            this.columnHeader17.Width = 129;
+            this.columnHeader17.Width = 91;
             // 
             // columnHeader18
             // 
-            this.columnHeader18.Text = "Czas";
+            this.columnHeader18.Text = "Czas doręczenia";
             this.columnHeader18.Width = 81;
             // 
             // columnHeader15
@@ -511,6 +512,7 @@
             // 
             // groupBox7
             // 
+            this.groupBox7.Controls.Add(this.textBox1);
             this.groupBox7.Controls.Add(this.CalcTimeDtp);
             this.groupBox7.Controls.Add(this.label2);
             this.groupBox7.Controls.Add(this.label19);
@@ -537,9 +539,8 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(435, 63);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(273, 16);
+            this.label2.Size = new System.Drawing.Size(0, 16);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Uwaga: działa tylko, gdy podany jest APKey";
             // 
             // label19
             // 
@@ -556,6 +557,7 @@
             this.apKeyTb.Name = "apKeyTb";
             this.apKeyTb.Size = new System.Drawing.Size(299, 22);
             this.apKeyTb.TabIndex = 0;
+            this.apKeyTb.TextChanged += new System.EventHandler(this.APKey);
             // 
             // label4
             // 
@@ -588,9 +590,10 @@
             this.textBox14.Multiline = true;
             this.textBox14.Name = "textBox14";
             this.textBox14.ReadOnly = true;
-            this.textBox14.Size = new System.Drawing.Size(175, 55);
+            this.textBox14.Size = new System.Drawing.Size(175, 72);
             this.textBox14.TabIndex = 2;
-            this.textBox14.Text = "Uwaga: Wczytuje tablice odlełości i czasu z pliku tylko dla celów testowych";
+            this.textBox14.Text = "Uwaga: Wczytuje tablice odlełości i czasu z pliku, nie są genrowane nowe. Tylko d" +
+    "la celów testowych";
             // 
             // textBox8
             // 
@@ -600,7 +603,7 @@
             this.textBox8.Multiline = true;
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(175, 42);
+            this.textBox8.Size = new System.Drawing.Size(175, 50);
             this.textBox8.TabIndex = 2;
             this.textBox8.Text = "Uwaga: Godzina dostarczenia paczki jest pominięta";
             // 
@@ -613,6 +616,7 @@
             this.reabTablesFromFile.TabIndex = 2;
             this.reabTablesFromFile.Text = "Wczytaj tablice z pliku";
             this.reabTablesFromFile.UseVisualStyleBackColor = true;
+            this.reabTablesFromFile.CheckedChanged += new System.EventHandler(this.ReadFroFileCheckedChanged);
             // 
             // distanceOptimization
             // 
@@ -625,6 +629,7 @@
             this.distanceOptimization.TabStop = true;
             this.distanceOptimization.Text = "Dystans";
             this.distanceOptimization.UseVisualStyleBackColor = true;
+            this.distanceOptimization.CheckedChanged += new System.EventHandler(this.OptChooseChange);
             // 
             // timeOptimization
             // 
@@ -636,6 +641,7 @@
             this.timeOptimization.TabStop = true;
             this.timeOptimization.Text = "Czas";
             this.timeOptimization.UseVisualStyleBackColor = true;
+            this.timeOptimization.CheckedChanged += new System.EventHandler(this.OptChooseChange);
             // 
             // groupBox8
             // 
@@ -683,7 +689,7 @@
             this.carCapTb.Name = "carCapTb";
             this.carCapTb.Size = new System.Drawing.Size(42, 22);
             this.carCapTb.TabIndex = 0;
-            this.carCapTb.Text = "100";
+            this.carCapTb.Text = "25";
             this.carCapTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // groupBox5
@@ -707,9 +713,43 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Algorytm";
             // 
+            // gaGenerationsNmbTb
+            // 
+            this.gaGenerationsNmbTb.Location = new System.Drawing.Point(192, 232);
+            this.gaGenerationsNmbTb.Name = "gaGenerationsNmbTb";
+            this.gaGenerationsNmbTb.Size = new System.Drawing.Size(42, 22);
+            this.gaGenerationsNmbTb.TabIndex = 10;
+            this.gaGenerationsNmbTb.Text = "500";
+            // 
+            // gaPopulationSizeTb
+            // 
+            this.gaPopulationSizeTb.Location = new System.Drawing.Point(192, 202);
+            this.gaPopulationSizeTb.Name = "gaPopulationSizeTb";
+            this.gaPopulationSizeTb.Size = new System.Drawing.Size(42, 22);
+            this.gaPopulationSizeTb.TabIndex = 9;
+            this.gaPopulationSizeTb.Text = "200";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(70, 234);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(88, 16);
+            this.label25.TabIndex = 8;
+            this.label25.Text = "Ilość pokoleń";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(70, 204);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(116, 16);
+            this.label24.TabIndex = 7;
+            this.label24.Text = "Rozmiar populacji";
+            // 
             // saRepetTb
             // 
-            this.saRepetTb.Location = new System.Drawing.Point(102, 117);
+            this.saRepetTb.Location = new System.Drawing.Point(192, 124);
             this.saRepetTb.Name = "saRepetTb";
             this.saRepetTb.Size = new System.Drawing.Size(42, 22);
             this.saRepetTb.TabIndex = 6;
@@ -717,7 +757,7 @@
             // 
             // saLambdaTb
             // 
-            this.saLambdaTb.Location = new System.Drawing.Point(102, 89);
+            this.saLambdaTb.Location = new System.Drawing.Point(192, 94);
             this.saLambdaTb.Name = "saLambdaTb";
             this.saLambdaTb.Size = new System.Drawing.Size(42, 22);
             this.saLambdaTb.TabIndex = 5;
@@ -725,7 +765,7 @@
             // 
             // saTempTb
             // 
-            this.saTempTb.Location = new System.Drawing.Point(102, 61);
+            this.saTempTb.Location = new System.Drawing.Point(192, 64);
             this.saTempTb.Name = "saTempTb";
             this.saTempTb.Size = new System.Drawing.Size(42, 22);
             this.saTempTb.TabIndex = 4;
@@ -734,7 +774,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(3, 120);
+            this.label23.Location = new System.Drawing.Point(70, 125);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(81, 16);
             this.label23.TabIndex = 3;
@@ -743,7 +783,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(6, 92);
+            this.label22.Location = new System.Drawing.Point(70, 97);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(58, 16);
             this.label22.TabIndex = 2;
@@ -752,7 +792,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(3, 65);
+            this.label18.Location = new System.Drawing.Point(70, 67);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(86, 16);
             this.label18.TabIndex = 1;
@@ -761,7 +801,7 @@
             // geneticAlgorithm
             // 
             this.geneticAlgorithm.AutoSize = true;
-            this.geneticAlgorithm.Location = new System.Drawing.Point(184, 34);
+            this.geneticAlgorithm.Location = new System.Drawing.Point(6, 170);
             this.geneticAlgorithm.Name = "geneticAlgorithm";
             this.geneticAlgorithm.Size = new System.Drawing.Size(150, 20);
             this.geneticAlgorithm.TabIndex = 1;
@@ -1026,39 +1066,17 @@
             this.StatusLbl.Size = new System.Drawing.Size(0, 13);
             this.StatusLbl.TabIndex = 0;
             // 
-            // label24
+            // textBox1
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(181, 64);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(116, 16);
-            this.label24.TabIndex = 7;
-            this.label24.Text = "Rozmiar populacji";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(181, 92);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(88, 16);
-            this.label25.TabIndex = 8;
-            this.label25.Text = "Ilość pokoleń";
-            // 
-            // gaPopulationSizeTb
-            // 
-            this.gaPopulationSizeTb.Location = new System.Drawing.Point(303, 62);
-            this.gaPopulationSizeTb.Name = "gaPopulationSizeTb";
-            this.gaPopulationSizeTb.Size = new System.Drawing.Size(42, 22);
-            this.gaPopulationSizeTb.TabIndex = 9;
-            this.gaPopulationSizeTb.Text = "200";
-            // 
-            // gaGenerationsNmbTb
-            // 
-            this.gaGenerationsNmbTb.Location = new System.Drawing.Point(303, 89);
-            this.gaGenerationsNmbTb.Name = "gaGenerationsNmbTb";
-            this.gaGenerationsNmbTb.Size = new System.Drawing.Size(42, 22);
-            this.gaGenerationsNmbTb.TabIndex = 10;
-            this.gaGenerationsNmbTb.Text = "500";
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(422, 63);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(326, 30);
+            this.textBox1.TabIndex = 2;
+            this.textBox1.Text = "Uwaga: działa tylko, gdy podany jest APKey";
             // 
             // MainForm
             // 
@@ -1195,6 +1213,7 @@
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.TextBox gaGenerationsNmbTb;
         private System.Windows.Forms.TextBox gaPopulationSizeTb;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

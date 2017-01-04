@@ -34,9 +34,9 @@ namespace Symulator
         {
             InitializeComponent();
             OptBtn.Enabled = readPackages = false;
-            ExportDistMatrixBtn.Enabled = ExportTimeMatrixBtn.Enabled = 
+            ExportDistMatrixBtn.Enabled = ExportTimeMatrixBtn.Enabled =
                 ShowDistMatrixBtn.Enabled = ShowTimeMatrixBtn.Enabled = ExportSolutionBtn.Enabled =
-                    ShowRouteBtn.Enabled = readMatrix = false;
+                    ShowRouteBtn.Enabled = readMatrix = textBox14.Visible = CalcTimeDtp.Enabled = false;
 
         }
 
@@ -82,9 +82,18 @@ namespace Symulator
                 listitem.SubItems.Add(PackagesList.packagesList[i].RecZipCode);
                 listitem.SubItems.Add(PackagesList.packagesList[i].RecCity);
                 listitem.SubItems.Add(PackagesList.packagesList[i].RecTelNum);
-                listitem.SubItems.Add(PackagesList.packagesList[i].RecTimeFrom.ToString());
-                listitem.SubItems.Add(PackagesList.packagesList[i].RecTimeTo.ToString());
-                listitem.SubItems.Add(PackagesList.packagesList[i].Size.ToString());
+
+                if (PackagesList.packagesList[i].RecTimeFrom != null)
+                    listitem.SubItems.Add(PackagesList.packagesList[i].RecTimeFrom.Value.ToString("HH:mm"));
+                else
+                    listitem.SubItems.Add("-");
+
+                if (PackagesList.packagesList[i].RecTimeTo != null)
+                    listitem.SubItems.Add(PackagesList.packagesList[i].RecTimeTo.Value.ToString("HH:mm"));
+                else
+                    listitem.SubItems.Add("-");
+              
+                listitem.SubItems.Add(PackagesList.packagesList[i].Size.GetDescription());
                 inputDataLv.Items.Add(listitem);
 
             }
@@ -255,6 +264,7 @@ namespace Symulator
             }
 
             ResultsLvRefresh();
+            MainTabControl.SelectedTab = HistoryTab;
         }
 
         private long[] CalcTimes(int[] solution, long startTime)
@@ -299,13 +309,20 @@ namespace Symulator
                 listitem.SubItems.Add(Graph.deliveredItems[i].package.RecName);
                 listitem.SubItems.Add(Graph.deliveredItems[i].package.RecAdress);
                 listitem.SubItems.Add(Graph.deliveredItems[i].package.RecZipCode);
-                listitem.SubItems.Add(Graph.deliveredItems[i].package.RecCity);
                 listitem.SubItems.Add(Graph.deliveredItems[i].package.RecTelNum);
-                listitem.SubItems.Add(Graph.deliveredItems[i].time.ToString());
+                listitem.SubItems.Add(Graph.deliveredItems[i].package.RecCity);
+                listitem.SubItems.Add(estimateDeliveryTime(Graph.deliveredItems[i].time).ToString("HH:mm"));//TODO
                 listitem.SubItems.Add(Graph.deliveredItems[i].carId.ToString());
                 resultsLv.Items.Add(listitem);
             }
 
+        }
+
+        private DateTime estimateDeliveryTime(long time)
+        {
+            DateTime dt =  hubWrkTmStartDtp.Value;
+            dt = dt.AddSeconds((double)time);
+            return dt;
         }
 
         private void ShowDistMatrixBtn_Click(object sender, EventArgs e)//test
@@ -332,6 +349,30 @@ namespace Symulator
         {
             Matrices.exportTimeMatrix(pathFileTb.Text);
             var dlg = MessageBox.Show("Info: Wyekspotowano " + filename, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void OptChooseChange(object sender, EventArgs e)
+        {
+            if (distanceOptimization.Checked == true)
+                textBox8.Visible = true;
+            else
+                textBox8.Visible = false;
+        }
+
+        private void ReadFroFileCheckedChanged(object sender, EventArgs e)
+        {
+            if (reabTablesFromFile.Checked == true)
+                textBox14.Visible = true;
+            else
+                textBox14.Visible = false;
+        }
+
+        private void APKey(object sender, EventArgs e)
+        {
+            if (apKeyTb.Text.Length == 0)
+                CalcTimeDtp.Enabled = false;
+            else
+                CalcTimeDtp.Enabled = true; 
         }
     }
 }

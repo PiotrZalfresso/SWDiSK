@@ -162,7 +162,7 @@ namespace Symulator
                 }
                 if (!succeeded)
                 {
-                    System.Threading.Thread.Sleep(400);
+                    System.Threading.Thread.Sleep(2000);//1000
                 }
             }
            
