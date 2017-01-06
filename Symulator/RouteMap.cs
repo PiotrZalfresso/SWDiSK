@@ -7,10 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GMap.NET;
-using GMap.NET.WindowsForms;
-using GMap.NET.MapProviders;
-using GMap.NET.ObjectModel;
 
 namespace Symulator
 {
