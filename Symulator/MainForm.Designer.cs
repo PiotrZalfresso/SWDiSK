@@ -71,6 +71,7 @@
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.CalcTimeDtp = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -126,7 +127,6 @@
             this.StatusBar = new System.Windows.Forms.GroupBox();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.MainTabControl.SuspendLayout();
             this.StartTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -381,6 +381,7 @@
             this.ShowRouteBtn.TabIndex = 2;
             this.ShowRouteBtn.Text = "Pokaż trasę";
             this.ShowRouteBtn.UseVisualStyleBackColor = true;
+            this.ShowRouteBtn.Click += new System.EventHandler(this.ShowRouteBtn_Click);
             // 
             // ExportTimeMatrixBtn
             // 
@@ -524,6 +525,18 @@
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Google Maps";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Enabled = false;
+            this.textBox1.Location = new System.Drawing.Point(422, 63);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(326, 30);
+            this.textBox1.TabIndex = 2;
+            this.textBox1.Text = "Uwaga: działa tylko, gdy podany jest APKey";
             // 
             // CalcTimeDtp
             // 
@@ -1065,18 +1078,6 @@
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(0, 13);
             this.StatusLbl.TabIndex = 0;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(422, 63);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(326, 30);
-            this.textBox1.TabIndex = 2;
-            this.textBox1.Text = "Uwaga: działa tylko, gdy podany jest APKey";
             // 
             // MainForm
             // 

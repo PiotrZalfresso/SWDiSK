@@ -264,6 +264,8 @@ namespace Symulator
             }
 
             ResultsLvRefresh();
+            ShowRouteBtn.Enabled = true;
+
             MainTabControl.SelectedTab = HistoryTab;
         }
 
@@ -373,6 +375,31 @@ namespace Symulator
                 CalcTimeDtp.Enabled = false;
             else
                 CalcTimeDtp.Enabled = true; 
+        }
+
+        private void ShowRouteBtn_Click(object sender, EventArgs e)
+        {
+
+            if (resultsLv.SelectedItems.Count > 0)
+            {
+                string start = resultsLv.SelectedItems[0].SubItems[2].Text + ",+" + resultsLv.SelectedItems[0].SubItems[5].Text;
+                string end = "";
+
+                if (resultsLv.Items.IndexOf(resultsLv.SelectedItems[0]) == 0
+                    || (resultsLv.SelectedItems[0].SubItems[7].Text != resultsLv.Items[resultsLv.Items.IndexOf(resultsLv.SelectedItems[0]) - 1].SubItems[7].Text
+                    && resultsLv.Items.IndexOf(resultsLv.SelectedItems[0]) > 0))
+                {
+                    end = hubAdressTb.Text + ",+" + hubCityTb.Text;
+                }
+                else
+                {
+                    end = resultsLv.Items[resultsLv.Items.IndexOf(resultsLv.SelectedItems[0]) - 1].SubItems[2].Text 
+                        + ",+" + resultsLv.Items[resultsLv.Items.IndexOf(resultsLv.SelectedItems[0]) - 1].SubItems[5].Text;
+                }
+                  
+                var form = new RouteMap(start, end);
+                form.Show();
+            }
         }
     }
 }
