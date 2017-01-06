@@ -33,6 +33,7 @@ namespace Symulator
         private readonly long[,] costs;
         private int pointsNumber;
         private bool fromHub;
+        Dictionary<packageSize, long> timeMap = null;
 
         static public int[] getNeighbors(int number, long[,] costs)
         {
@@ -74,13 +75,14 @@ namespace Symulator
             return neighbors;
         }
 
-        public Tsp(int[] points, long [,] costs, bool fromHub = false)
+        public Tsp(int[] points, long [,] costs, Dictionary<packageSize, long> timeMap = null, bool fromHub = false)
         {
             this.points = new int[points.Length];
             Array.Copy(points, this.points, points.Length);
             this.costs = costs;
 
             this.pointsNumber = this.points.Length;
+            this.timeMap = timeMap;
             this.fromHub = fromHub;
         }
 
@@ -106,11 +108,21 @@ namespace Symulator
             if (fromHub)
             {
                 cost = costs[PackagesList.numberOfPackages, solution[0]];
+                if (timeMap != null)
+                {
+                    long time = timeMap[PackagesList.packagesList[solution[0]].Size];
+                    cost += time;
+                }
             }
 
             for (int i = 0; i < solution.Length - 1; i++)
             {
                 cost += costs[solution[i], solution[i + 1]];
+                if (timeMap != null)
+                {
+                    long time = timeMap[PackagesList.packagesList[solution[i + 1]].Size];
+                    cost += time;
+                }
             }
 
             if (fromHub)
