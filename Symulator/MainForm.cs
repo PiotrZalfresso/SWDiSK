@@ -325,6 +325,8 @@ namespace Symulator
 
         private void ResultsLvRefresh()
         {
+            Package pkg;
+            DateTime dt;
             totalDistanceTb.Text = Graph.totalDistance.ToString();
             totalTimeTb.Text = Graph.totalTime.ToString();
 
@@ -341,6 +343,52 @@ namespace Symulator
                 listitem.SubItems.Add(estimateDeliveryTime(Graph.deliveredItems[i].time).ToString("HH:mm"));//TODO
                 listitem.SubItems.Add(Graph.deliveredItems[i].carId.ToString());
                 resultsLv.Items.Add(listitem);
+
+                //color
+
+                pkg = PackagesList.findById(Graph.deliveredItems[i].package.Id);
+                if (pkg != null)
+                {
+                    dt = estimateDeliveryTime(Graph.deliveredItems[i].time);
+
+                    if (pkg.RecTimeFrom != null && pkg.RecTimeTo != null)
+                    {
+
+                        if (pkg.RecTimeFrom > dt && pkg.RecTimeTo < dt)
+                        {
+                            resultsLv.Items[i].BackColor = Color.LightGreen;
+                        }
+                       else
+                            resultsLv.Items[i].BackColor = Color.LightCoral;
+                        
+                    }
+                    if (pkg.RecTimeFrom == null && pkg.RecTimeTo != null)
+                    {
+                        if (pkg.RecTimeTo > dt)
+                        {
+                            resultsLv.Items[i].BackColor = Color.LightGreen;
+                        }
+                        else
+                            resultsLv.Items[i].BackColor = Color.LightCoral;
+                    }
+                    if (pkg.RecTimeFrom != null && pkg.RecTimeTo == null)
+                    {
+                        if (pkg.RecTimeFrom < dt)
+                        {
+                            resultsLv.Items[i].BackColor = Color.LightGreen;
+                        }
+                        else
+                            resultsLv.Items[i].BackColor = Color.LightCoral;
+                    }
+                    if (pkg.RecTimeFrom == null && pkg.RecTimeTo == null)
+                    {
+                        resultsLv.Items[i].BackColor = Color.LightGreen;
+                    }
+
+                }
+
+  
+
             }
 
         }
@@ -348,6 +396,7 @@ namespace Symulator
         private DateTime estimateDeliveryTime(long time)
         {
             DateTime dt =  hubWrkTmStartDtp.Value;
+           // dt.t
             dt = dt.AddSeconds((double)time);
             return dt;
         }

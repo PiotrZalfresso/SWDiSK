@@ -122,9 +122,17 @@ namespace Symulator
             }
         }
 
-        static public void exportSolutionToFile(string filePath)
+        static public Package findById(string id)
         {
+            foreach (Package pck in packagesList)
+            {
+                if (pck.Id == id)
+                    return pck;
+            }
 
+            return null;
         }
+
+
     }
 }

@@ -545,7 +545,7 @@
             this.CalcTimeDtp.Name = "CalcTimeDtp";
             this.CalcTimeDtp.Size = new System.Drawing.Size(89, 22);
             this.CalcTimeDtp.TabIndex = 2;
-            this.CalcTimeDtp.Value = new System.DateTime(2016, 10, 17, 17, 0, 0, 0);
+            this.CalcTimeDtp.Value = new System.DateTime(2017, 1, 7, 17, 0, 0, 0);
             // 
             // label2
             // 
@@ -856,7 +856,8 @@
             this.hubWrkTmStartDtp.Name = "hubWrkTmStartDtp";
             this.hubWrkTmStartDtp.Size = new System.Drawing.Size(89, 22);
             this.hubWrkTmStartDtp.TabIndex = 2;
-            this.hubWrkTmStartDtp.Value = new System.DateTime(2016, 10, 17, 8, 0, 0, 0);
+            var dateNow = System.DateTime.Now;
+            this.hubWrkTmStartDtp.Value = new System.DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 8, 0, 0, 0);
             // 
             // label6
             // 
