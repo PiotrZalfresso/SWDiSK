@@ -15,6 +15,7 @@ namespace Symulator
     {
         annealing,
         genetic,
+        random,
     }
 
     enum OptimizitaionTarget
@@ -134,6 +135,8 @@ namespace Symulator
                     Optimize(AlgorithmType.annealing, OptimizitaionTarget.distance);
                 else if (geneticAlgorithm.Checked)
                     Optimize(AlgorithmType.genetic, OptimizitaionTarget.distance);
+                else if (randomSearch.Checked)
+                    Optimize(AlgorithmType.random, OptimizitaionTarget.distance);
                 else
                     throw new InvalidOperationException("Nie wskazano algorytmu");
             }
@@ -143,6 +146,8 @@ namespace Symulator
                     Optimize(AlgorithmType.annealing, OptimizitaionTarget.time);
                 else if (geneticAlgorithm.Checked)
                     Optimize(AlgorithmType.genetic, OptimizitaionTarget.time);
+                else if (randomSearch.Checked)
+                    Optimize(AlgorithmType.random, OptimizitaionTarget.time);
                 else
                     throw new InvalidOperationException("Nie wskazano algorytmu");
             }
@@ -236,6 +241,10 @@ namespace Symulator
                 else if (type == AlgorithmType.genetic)
                 {
                     solution = (new GeneticAlgorithm(gaPopulation, gaGenerations)).Calculate(pointsSorter);
+                }
+                else if (type == AlgorithmType.random)
+                {
+                    solution = (new RandomSearch().Calculate(pointsSorter));
                 }
                 else
                 {

@@ -70,6 +70,7 @@
     <Compile Include="Graph.cs" />
     <Compile Include="ICalculationAlgorithm.cs" />
     <Compile Include="IGeneticAlgorithm.cs" />
+    <Compile Include="IRandomSearch.cs" />
     <Compile Include="Knapsack.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
@@ -83,6 +84,7 @@
     <Compile Include="ISimulatedAnnealing.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RandomSearch.cs" />
     <Compile Include="RouteMap.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Symulator
 {
-    class Knapsack : ISimulatedAnnealing, IGeneticAlgorithm
+    class Knapsack : ISimulatedAnnealing, IGeneticAlgorithm, IRandomSearch
     {
         private int[] points; // All point have + 1 and are nagated if not taken
         private Dictionary<packageSize, int> sizes;

@@ -127,6 +127,7 @@
             this.StatusBar = new System.Windows.Forms.GroupBox();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.randomSearch = new System.Windows.Forms.RadioButton();
             this.MainTabControl.SuspendLayout();
             this.StartTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -153,7 +154,7 @@
             this.MainTabControl.Location = new System.Drawing.Point(0, 0);
             this.MainTabControl.Name = "MainTabControl";
             this.MainTabControl.SelectedIndex = 0;
-            this.MainTabControl.Size = new System.Drawing.Size(884, 530);
+            this.MainTabControl.Size = new System.Drawing.Size(1083, 530);
             this.MainTabControl.TabIndex = 0;
             // 
             // StartTab
@@ -164,7 +165,7 @@
             this.StartTab.Location = new System.Drawing.Point(4, 34);
             this.StartTab.Name = "StartTab";
             this.StartTab.Padding = new System.Windows.Forms.Padding(3);
-            this.StartTab.Size = new System.Drawing.Size(876, 492);
+            this.StartTab.Size = new System.Drawing.Size(1075, 492);
             this.StartTab.TabIndex = 0;
             this.StartTab.Text = "Start";
             // 
@@ -175,14 +176,14 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 69);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(870, 420);
+            this.groupBox2.Size = new System.Drawing.Size(1069, 420);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Przesyłki";
             // 
             // OptBtn
             // 
-            this.OptBtn.Location = new System.Drawing.Point(775, 167);
+            this.OptBtn.Location = new System.Drawing.Point(974, 175);
             this.OptBtn.Name = "OptBtn";
             this.OptBtn.Size = new System.Drawing.Size(89, 44);
             this.OptBtn.TabIndex = 1;
@@ -207,7 +208,7 @@
             this.inputDataLv.GridLines = true;
             this.inputDataLv.Location = new System.Drawing.Point(6, 21);
             this.inputDataLv.Name = "inputDataLv";
-            this.inputDataLv.Size = new System.Drawing.Size(763, 393);
+            this.inputDataLv.Size = new System.Drawing.Size(962, 393);
             this.inputDataLv.TabIndex = 0;
             this.inputDataLv.UseCompatibleStateImageBehavior = false;
             this.inputDataLv.View = System.Windows.Forms.View.Details;
@@ -266,7 +267,7 @@
             this.LoadDataBox.Dock = System.Windows.Forms.DockStyle.Top;
             this.LoadDataBox.Location = new System.Drawing.Point(3, 3);
             this.LoadDataBox.Name = "LoadDataBox";
-            this.LoadDataBox.Size = new System.Drawing.Size(870, 66);
+            this.LoadDataBox.Size = new System.Drawing.Size(1069, 66);
             this.LoadDataBox.TabIndex = 0;
             this.LoadDataBox.TabStop = false;
             this.LoadDataBox.Text = "Wczytaj dane";
@@ -282,7 +283,7 @@
             // 
             // readBtn
             // 
-            this.readBtn.Location = new System.Drawing.Point(775, 23);
+            this.readBtn.Location = new System.Drawing.Point(974, 23);
             this.readBtn.Name = "readBtn";
             this.readBtn.Size = new System.Drawing.Size(89, 32);
             this.readBtn.TabIndex = 2;
@@ -293,7 +294,7 @@
             // readDlgBtn
             // 
             this.readDlgBtn.Image = ((System.Drawing.Image)(resources.GetObject("readDlgBtn.Image")));
-            this.readDlgBtn.Location = new System.Drawing.Point(700, 28);
+            this.readDlgBtn.Location = new System.Drawing.Point(944, 28);
             this.readDlgBtn.Name = "readDlgBtn";
             this.readDlgBtn.Size = new System.Drawing.Size(24, 23);
             this.readDlgBtn.TabIndex = 1;
@@ -304,7 +305,7 @@
             // 
             this.pathFileTb.Location = new System.Drawing.Point(102, 29);
             this.pathFileTb.Name = "pathFileTb";
-            this.pathFileTb.Size = new System.Drawing.Size(592, 22);
+            this.pathFileTb.Size = new System.Drawing.Size(836, 22);
             this.pathFileTb.TabIndex = 0;
             // 
             // HistoryTab
@@ -314,7 +315,7 @@
             this.HistoryTab.Location = new System.Drawing.Point(4, 34);
             this.HistoryTab.Name = "HistoryTab";
             this.HistoryTab.Padding = new System.Windows.Forms.Padding(3);
-            this.HistoryTab.Size = new System.Drawing.Size(876, 492);
+            this.HistoryTab.Size = new System.Drawing.Size(1075, 492);
             this.HistoryTab.TabIndex = 1;
             this.HistoryTab.Text = "Wyniki";
             // 
@@ -334,7 +335,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(870, 486);
+            this.groupBox1.Size = new System.Drawing.Size(1069, 486);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Rozwiązanie";
@@ -375,7 +376,7 @@
             // 
             // ShowRouteBtn
             // 
-            this.ShowRouteBtn.Location = new System.Drawing.Point(775, 117);
+            this.ShowRouteBtn.Location = new System.Drawing.Point(974, 112);
             this.ShowRouteBtn.Name = "ShowRouteBtn";
             this.ShowRouteBtn.Size = new System.Drawing.Size(89, 44);
             this.ShowRouteBtn.TabIndex = 2;
@@ -385,7 +386,7 @@
             // 
             // ExportTimeMatrixBtn
             // 
-            this.ExportTimeMatrixBtn.Location = new System.Drawing.Point(775, 387);
+            this.ExportTimeMatrixBtn.Location = new System.Drawing.Point(974, 382);
             this.ExportTimeMatrixBtn.Name = "ExportTimeMatrixBtn";
             this.ExportTimeMatrixBtn.Size = new System.Drawing.Size(89, 44);
             this.ExportTimeMatrixBtn.TabIndex = 2;
@@ -395,7 +396,7 @@
             // 
             // ShowTimeMatrixBtn
             // 
-            this.ShowTimeMatrixBtn.Location = new System.Drawing.Point(775, 327);
+            this.ShowTimeMatrixBtn.Location = new System.Drawing.Point(974, 322);
             this.ShowTimeMatrixBtn.Name = "ShowTimeMatrixBtn";
             this.ShowTimeMatrixBtn.Size = new System.Drawing.Size(89, 44);
             this.ShowTimeMatrixBtn.TabIndex = 2;
@@ -405,7 +406,7 @@
             // 
             // ExportDistMatrixBtn
             // 
-            this.ExportDistMatrixBtn.Location = new System.Drawing.Point(775, 253);
+            this.ExportDistMatrixBtn.Location = new System.Drawing.Point(974, 248);
             this.ExportDistMatrixBtn.Name = "ExportDistMatrixBtn";
             this.ExportDistMatrixBtn.Size = new System.Drawing.Size(89, 44);
             this.ExportDistMatrixBtn.TabIndex = 2;
@@ -415,7 +416,7 @@
             // 
             // ShowDistMatrixBtn
             // 
-            this.ShowDistMatrixBtn.Location = new System.Drawing.Point(775, 193);
+            this.ShowDistMatrixBtn.Location = new System.Drawing.Point(974, 188);
             this.ShowDistMatrixBtn.Name = "ShowDistMatrixBtn";
             this.ShowDistMatrixBtn.Size = new System.Drawing.Size(89, 44);
             this.ShowDistMatrixBtn.TabIndex = 2;
@@ -425,7 +426,7 @@
             // 
             // ExportSolutionBtn
             // 
-            this.ExportSolutionBtn.Location = new System.Drawing.Point(775, 58);
+            this.ExportSolutionBtn.Location = new System.Drawing.Point(974, 53);
             this.ExportSolutionBtn.Name = "ExportSolutionBtn";
             this.ExportSolutionBtn.Size = new System.Drawing.Size(89, 44);
             this.ExportSolutionBtn.TabIndex = 2;
@@ -448,7 +449,7 @@
             this.resultsLv.GridLines = true;
             this.resultsLv.Location = new System.Drawing.Point(5, 21);
             this.resultsLv.Name = "resultsLv";
-            this.resultsLv.Size = new System.Drawing.Size(764, 432);
+            this.resultsLv.Size = new System.Drawing.Size(963, 432);
             this.resultsLv.TabIndex = 1;
             this.resultsLv.UseCompatibleStateImageBehavior = false;
             this.resultsLv.View = System.Windows.Forms.View.Details;
@@ -507,7 +508,7 @@
             this.SettingsTab.Location = new System.Drawing.Point(4, 34);
             this.SettingsTab.Name = "SettingsTab";
             this.SettingsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.SettingsTab.Size = new System.Drawing.Size(876, 492);
+            this.SettingsTab.Size = new System.Drawing.Size(1075, 492);
             this.SettingsTab.TabIndex = 3;
             this.SettingsTab.Text = "Ustawienia";
             // 
@@ -521,7 +522,7 @@
             this.groupBox7.Controls.Add(this.label4);
             this.groupBox7.Location = new System.Drawing.Point(8, 403);
             this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(860, 83);
+            this.groupBox7.Size = new System.Drawing.Size(1060, 83);
             this.groupBox7.TabIndex = 6;
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Google Maps";
@@ -588,7 +589,7 @@
             this.groupBox6.Controls.Add(this.reabTablesFromFile);
             this.groupBox6.Controls.Add(this.distanceOptimization);
             this.groupBox6.Controls.Add(this.timeOptimization);
-            this.groupBox6.Location = new System.Drawing.Point(679, 96);
+            this.groupBox6.Location = new System.Drawing.Point(879, 96);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(189, 301);
             this.groupBox6.TabIndex = 5;
@@ -707,6 +708,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.randomSearch);
             this.groupBox5.Controls.Add(this.gaGenerationsNmbTb);
             this.groupBox5.Controls.Add(this.gaPopulationSizeTb);
             this.groupBox5.Controls.Add(this.label25);
@@ -721,7 +723,7 @@
             this.groupBox5.Controls.Add(this.simulatedAnnealing);
             this.groupBox5.Location = new System.Drawing.Point(314, 96);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(359, 301);
+            this.groupBox5.Size = new System.Drawing.Size(559, 301);
             this.groupBox5.TabIndex = 4;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Algorytm";
@@ -844,7 +846,7 @@
             this.groupBox4.Controls.Add(this.hubAdressTb);
             this.groupBox4.Location = new System.Drawing.Point(6, 6);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(862, 84);
+            this.groupBox4.Size = new System.Drawing.Size(1062, 84);
             this.groupBox4.TabIndex = 3;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Lokaliacja sortowni";
@@ -856,8 +858,7 @@
             this.hubWrkTmStartDtp.Name = "hubWrkTmStartDtp";
             this.hubWrkTmStartDtp.Size = new System.Drawing.Size(89, 22);
             this.hubWrkTmStartDtp.TabIndex = 2;
-            var dateNow = System.DateTime.Now;
-            this.hubWrkTmStartDtp.Value = new System.DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 8, 0, 0, 0);
+            this.hubWrkTmStartDtp.Value = new System.DateTime(2017, 1, 15, 8, 0, 0, 0);
             // 
             // label6
             // 
@@ -1064,10 +1065,9 @@
             // StatusBar
             // 
             this.StatusBar.Controls.Add(this.StatusLbl);
-            this.StatusBar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.StatusBar.Location = new System.Drawing.Point(0, 531);
             this.StatusBar.Name = "StatusBar";
-            this.StatusBar.Size = new System.Drawing.Size(884, 30);
+            this.StatusBar.Size = new System.Drawing.Size(1079, 30);
             this.StatusBar.TabIndex = 1;
             this.StatusBar.TabStop = false;
             this.StatusBar.Text = "Status";
@@ -1080,13 +1080,25 @@
             this.StatusLbl.Size = new System.Drawing.Size(0, 13);
             this.StatusLbl.TabIndex = 0;
             // 
+            // randomSearch
+            // 
+            this.randomSearch.AutoSize = true;
+            this.randomSearch.Location = new System.Drawing.Point(341, 37);
+            this.randomSearch.Name = "randomSearch";
+            this.randomSearch.Size = new System.Drawing.Size(124, 20);
+            this.randomSearch.TabIndex = 11;
+            this.randomSearch.TabStop = true;
+            this.randomSearch.Text = "Random Search";
+            this.randomSearch.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 561);
+            this.ClientSize = new System.Drawing.Size(1084, 561);
             this.Controls.Add(this.StatusBar);
             this.Controls.Add(this.MainTabControl);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.Text = "Symulator trasy";
             this.MainTabControl.ResumeLayout(false);
@@ -1216,6 +1228,7 @@
         private System.Windows.Forms.TextBox gaGenerationsNmbTb;
         private System.Windows.Forms.TextBox gaPopulationSizeTb;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.RadioButton randomSearch;
     }
 }
 

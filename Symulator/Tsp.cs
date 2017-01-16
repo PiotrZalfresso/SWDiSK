@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Symulator
 {
-    class Tsp : ISimulatedAnnealing, IGeneticAlgorithm
+    class Tsp : ISimulatedAnnealing, IGeneticAlgorithm, IRandomSearch
     {
         class getNeighborsIComparer : IComparer
         {
