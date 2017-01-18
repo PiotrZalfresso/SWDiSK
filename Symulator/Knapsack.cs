@@ -61,6 +61,11 @@ namespace Symulator
                     solution[i] = (genetaror.Next(0, 2) == 0) ? points[i] : -points[i];
                 }                
             }
+            while (GetTotalWeight(solution) > maxSize || GetTotalWeight(solution) == 0)
+            {
+                int idx = genetaror.Next(0, solution.Length);
+                solution[idx] = -solution[idx];
+            }
             return solution;
         }
 

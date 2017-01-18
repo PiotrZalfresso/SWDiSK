@@ -30,6 +30,7 @@ namespace Symulator
     {
         int populationSize;
         int generationsNmb;
+        int sievingReps;
         Random generator = new Random();
 
         public int PopulationSize
@@ -56,10 +57,23 @@ namespace Symulator
             }
         }
 
-        public GeneticAlgorithm(int populationSize = 200, int generationsNmb = 500)
+        public int SievingReps
+        {
+            get
+            {
+                return sievingReps;
+            }
+            set
+            {
+                sievingReps = value;
+            }
+        }
+
+        public GeneticAlgorithm(int populationSize = 200, int generationsNmb = 500, int sievingReps = 10)
         {
             this.populationSize = populationSize;
             this.generationsNmb = generationsNmb;
+            this.sievingReps = sievingReps;
         }
 
         public int[] Calculate(IGeneticAlgorithm instance)
@@ -69,7 +83,7 @@ namespace Symulator
             {
                 popul[i] = instance.GetInitialSolution();
                 int c = 0;
-                while (instance.Check(popul, i) && c < 10)
+                while (instance.Check(popul, i) && c < sievingReps)
                 {
                     popul[i] = instance.Mutate(popul[i]);
                     c++;
@@ -90,13 +104,13 @@ namespace Symulator
                     popul[i] = afterCross.Item1;
                     popul[i + 1] = afterCross.Item2;
                     int c = 0;
-                    while (instance.Check(popul, i) && c < 10)
+                    while (instance.Check(popul, i) && c < sievingReps)
                     {         
                         popul[i] = instance.Mutate(popul[i]);
                         c++;
                     }
                     c = 0;
-                    while (instance.Check(popul, i + 1) && c < 10)
+                    while (instance.Check(popul, i + 1) && c < sievingReps)
                     {
                         popul[i + 1] = instance.Mutate(popul[i + 1]);
                         c++;
@@ -109,7 +123,7 @@ namespace Symulator
                     if (generator.Next(100) < 20)                
                         popul[i] = instance.Mutate(popul[i]);
                     int c = 0;
-                    while (instance.Check(popul, i) && c < 10)
+                    while (instance.Check(popul, i) && c < sievingReps)
                     {         
                         popul[i] = instance.Mutate(popul[i]);
                         c++;

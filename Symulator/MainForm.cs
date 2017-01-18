@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace Symulator
 {
@@ -62,7 +63,7 @@ namespace Symulator
             {
                 StatusLbl.Text = "Wcztywanie pliku";
                 PackagesList.readFromFile(filename);
-                OptBtn.Enabled = readPackages = true;
+                OptBtn.Enabled = testStartBt.Enabled = readPackages = true;
                 listViewRefresh();
                 StatusLbl.Text = "";
             }
@@ -114,22 +115,22 @@ namespace Symulator
             if (reabTablesFromFile.Checked == true)
             {
                 StatusLbl.Text = "Wcztywanie tablic czasu i dystansu";
+                Application.DoEvents();
                 Matrices.readDistMatrixFormFile(filename);
                 Matrices.readTimeMatrixFormFile(filename);
-                StatusLbl.Text = "";
-
-                ExportDistMatrixBtn.Enabled = ExportTimeMatrixBtn.Enabled
-               = ShowDistMatrixBtn.Enabled = ShowTimeMatrixBtn.Enabled = readMatrix = true;
             }
             else
             {
                 StatusLbl.Text = "Generwonie tablic czasu i dystansu";
+                Application.DoEvents();
                 Matrices.calcMatrices(CalcTimeDtp.Value, apKeyTb.Text, hubAdressTb.Text, hubCityTb.Text);
-                StatusLbl.Text = "";
-                ExportDistMatrixBtn.Enabled = ExportTimeMatrixBtn.Enabled
-               = ShowDistMatrixBtn.Enabled = ShowTimeMatrixBtn.Enabled = readMatrix = true;
             }
 
+            ExportDistMatrixBtn.Enabled = ExportTimeMatrixBtn.Enabled
+           = ShowDistMatrixBtn.Enabled = ShowTimeMatrixBtn.Enabled = readMatrix = true;
+
+            StatusLbl.Text = "Jeszcze chwila...";
+            Application.DoEvents();
             if (distanceOptimization.Checked) {
                 if (simulatedAnnealing.Checked)
                     Optimize(AlgorithmType.annealing, OptimizitaionTarget.distance);
@@ -155,7 +156,6 @@ namespace Symulator
             {
                 throw new InvalidOperationException("Nie wskazano typu optymalizacji");
             }
-            
         }
 
         private void Optimize(AlgorithmType type, OptimizitaionTarget target)
@@ -176,6 +176,8 @@ namespace Symulator
             int saRepet = Int32.Parse(saRepetTb.Text);
             int gaPopulation = Int32.Parse(gaPopulationSizeTb.Text);
             int gaGenerations = Int32.Parse(gaGenerationsNmbTb.Text);
+            int sieveReps = Int32.Parse(sieveRepsTb.Text);
+            Stopwatch timer = new Stopwatch();
 
             long[,] costs;
             if (target == OptimizitaionTarget.distance)
@@ -193,6 +195,7 @@ namespace Symulator
 
             int carId = 0;
             long[] carsTimes = Enumerable.Repeat(0L, carsNumber).ToArray();
+            timer.Start();
             while (Graph.numberOfDelivered < PackagesList.numberOfPackages) {
                 if ((PackagesList.numberOfPackages - Graph.numberOfDelivered) < neighbourhoodSize)
                 {
@@ -208,9 +211,15 @@ namespace Symulator
                 Console.WriteLine();
 
                 Knapsack packageSelector = new Knapsack(toDeliver, sizeMap, carCapacity);
-                SimulatedAnnealing algorithm = new SimulatedAnnealing(saTemp, saLambda, saRepet);
-               // GeneticAlgorithm algorithm = new GeneticAlgorithm(gaPopulation, gaGenerations);
-                int[] finalToDeliver = algorithm.Calculate(packageSelector);
+                int[] finalToDeliver;
+                if (type == AlgorithmType.random)
+                {
+                    finalToDeliver = new RandomSearch().Calculate(packageSelector);
+                }
+                else
+                {
+                    finalToDeliver = new SimulatedAnnealing(saTemp, saLambda, saRepet).Calculate(packageSelector);
+                }
 
                 Console.Write(String.Format("Samochód {0} dostarczy do punktów: ", carId));
                 for (int i = 0; i < finalToDeliver.Length; i++)
@@ -240,7 +249,7 @@ namespace Symulator
                 }
                 else if (type == AlgorithmType.genetic)
                 {
-                    solution = (new GeneticAlgorithm(gaPopulation, gaGenerations)).Calculate(pointsSorter);
+                    solution = (new GeneticAlgorithm(gaPopulation, gaGenerations, sieveReps)).Calculate(pointsSorter);
                 }
                 else if (type == AlgorithmType.random)
                 {
@@ -284,7 +293,8 @@ namespace Symulator
                     carId = 0;
                 }
             }
-
+            timer.Stop();
+            StatusLbl.Text = $"Obliczono w {timer.ElapsedMilliseconds} ms";
             ResultsLvRefresh();
             ShowRouteBtn.Enabled = true;
 
@@ -482,6 +492,277 @@ namespace Symulator
                   
                 var form = new RouteMap(start, end);
                 form.Show();
+            }
+        }
+
+        private void testStartBt_Click(object sender, EventArgs e)
+        {
+            string filename = pathFileTb.Text;
+
+            if (hubAdressTb.Text == "" && hubCityTb.Text == "")
+            {
+                var dlg = MessageBox.Show("Błąd: Brak adresu sortowni", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (reabTablesFromFile.Checked == true)
+            {
+                StatusLbl.Text = "Wcztywanie tablic czasu i dystansu";
+                Application.DoEvents();
+                Matrices.readDistMatrixFormFile(filename);
+                Matrices.readTimeMatrixFormFile(filename);
+            }
+            else
+            {
+                StatusLbl.Text = "Generwonie tablic czasu i dystansu";
+                Application.DoEvents();
+                Matrices.calcMatrices(CalcTimeDtp.Value, apKeyTb.Text, hubAdressTb.Text, hubCityTb.Text);
+            }
+
+            ExportDistMatrixBtn.Enabled = ExportTimeMatrixBtn.Enabled
+           = ShowDistMatrixBtn.Enabled = ShowTimeMatrixBtn.Enabled = readMatrix = true;
+
+            StatusLbl.Text = "Jeszcze chwila...";
+            Application.DoEvents();
+
+            testOptimize();
+
+            StatusLbl.Text = "";
+        }
+
+        private void testOptimize()
+        {
+            string output; // used for displaying output
+            Dictionary<packageSize, int> sizeMap = GetPackageSizeMapping();
+            Dictionary<packageSize, long> timeMap = GetPackageSizeTimeMapping();
+
+            int smallPackageSize = Int32.Parse(pckSmSizeTb.Text);
+            int carsNumber = Int32.Parse(carNumTb.Text);
+            int carCapacity = Int32.Parse(carCapTb.Text);
+
+            int rep = Int32.Parse(testGeneralCountTb.Text);
+
+            int testSATempStart = Int32.Parse(testSATempStartTb.Text);
+            int testSATempEnd = Int32.Parse(testSATempEndTb.Text);
+            int testSATempStep = Int32.Parse(testSATempStepTb.Text);
+
+            float testSALamdaStart = Single.Parse(testSALambaStartTb.Text);
+            float testSALambaEnd = Single.Parse(testSALambaEndTb.Text);
+            float testSALambaStep = Single.Parse(testSALambaStepTb.Text);
+
+            int testSARepStart = Int32.Parse(testSARepStartTb.Text);
+            int testSARepEnd = Int32.Parse(testSARepEndTb.Text);
+            int testSARepStep = Int32.Parse(testSARepStepTb.Text);
+
+            int testGAPopStart = Int32.Parse(testGAPopStartTb.Text);
+            int testGAPopEnd = Int32.Parse(testGAPopEndTb.Text);
+            int testGAPopStep = Int32.Parse(testGAPopStepTb.Text);
+
+            int testGAGenStart = Int32.Parse(testGAGenStartTb.Text);
+            int testGAGenEnd = Int32.Parse(testGAGenEndTb.Text);
+            int testGAGenStep = Int32.Parse(testGAGenStepTb.Text);
+
+            int testGASievStart = Int32.Parse(testGASievStartTb.Text);
+            int testGASievEnd = Int32.Parse(testGASievEndTb.Text);
+            int testGASievStep = Int32.Parse(testGASievStepTb.Text);
+
+            OptimizitaionTarget target;
+            if (distanceOptimization.Checked)
+            {
+                target = OptimizitaionTarget.distance;
+                output = "Optymalizacja odległości\r\n";
+            }
+            else if (timeOptimization.Checked)
+            {
+                target = OptimizitaionTarget.time;
+                output = "Optymalizacja czasu\r\n";
+            }
+            else
+            {
+                throw new InvalidOperationException("Nie wskazano typu optymalizacji");
+            }
+            Console.Write(output);
+            testResultsTb.AppendText(output);
+            Application.DoEvents();
+
+            AlgorithmType type;
+            if (simulatedAnnealing.Checked)
+                type = AlgorithmType.annealing;
+            else if (geneticAlgorithm.Checked)
+                type = AlgorithmType.genetic;
+            else if (randomSearch.Checked)
+                type = AlgorithmType.random;
+            else
+                throw new InvalidOperationException("Nie wskazano algorytmu");
+
+            int sieveReps = Int32.Parse(sieveRepsTb.Text);
+
+
+            if (type == AlgorithmType.genetic)
+            {
+                output = $"Algorytm genetyczny\r\nParametry:\r\n\ttemperetura - od {testSATempStart} do {testSATempEnd} co {testSATempStep}";
+                output += $"\r\n\tLambda - od {testSALamdaStart} do {testSALambaEnd} co {testSALambaStep}";
+                output += $"\r\n\tPowtrórzenia - od {testSARepStart} do {testSARepEnd} co {testSARepStep}";
+                output += $"\r\n\tPopulacja - od {testGAPopStart} do {testGAPopEnd} co {testGAPopStep}";
+                output += $"\r\n\tPokolenia - od {testGAGenStart} do {testGAGenEnd} co {testGAGenStep}";
+                output += $"\r\n\tUsuwanie duplikatów - od {testGASievStart} do {testGASievEnd} co {testGASievStep}\r\n";
+                Console.Write(output);
+                testResultsTb.AppendText(output);
+                Application.DoEvents();
+            }
+            else if (type == AlgorithmType.annealing)
+            {
+                output = $"Algorytm genetyczny\r\nParametry:\r\n\ttemperetura - od {testSATempStart} do {testSATempEnd} co {testSATempStep}";
+                output += $"\r\n\tLambda - od {testSALamdaStart} do {testSALambaEnd} co {testSALambaStep}";
+                output += $"\r\n\tPowtrórzenia - od {testSARepStart} do {testSARepEnd} co {testSARepStep}\r\n";
+                Console.Write(output);
+                testResultsTb.AppendText(output);
+                Application.DoEvents();
+            }
+            else
+            {
+                output = "Random search\r\n";
+                Console.Write(output);
+                testResultsTb.AppendText(output);
+                Application.DoEvents();
+            }
+
+            for (int testSATemp = testSATempStart; testSATemp <= testSATempEnd; testSATemp += testSATempStep)
+            {
+                for (float testSALamba = testSALamdaStart; testSALamba <= testSALambaEnd; testSALamba += testSALambaStep)
+                {
+                    for (int testSARep = testSARepStart; testSARep <= testSARepEnd; testSARep += testSARepStep)
+                    {
+                        for (int testGAPop = testGAPopStart; testGAPop <= testGAPopEnd; testGAPop += testGAPopStep)
+                        {
+                            for (int testGAGen = testGAGenStart; testGAGen <= testGAGenEnd; testGAGen += testGAGenStep)
+                            {
+                                for (int testGASiev = testGASievStart; testGASiev <= testGASievEnd; testGASiev += testGASievStep)
+                                {
+                                    Stopwatch timer = new Stopwatch();
+                                    timer.Start();
+                                    long allDistance = 0;
+                                    long allTime = 0;
+                                    for (int r = 0; r < rep; r++)
+                                    {
+                                        int neighbourhoodSize = carCapacity / smallPackageSize;
+                                        if (Graph.numberOfDelivered > 0)
+                                        {
+                                            Graph.Clear();
+                                        }
+                                        long[,] costs;
+                                        if (target == OptimizitaionTarget.distance)
+                                        {
+                                            costs = Matrices.Distance;
+                                        }
+                                        else if (target == OptimizitaionTarget.time)
+                                        {
+                                            costs = Matrices.Time;
+                                        }
+                                        else
+                                        {
+                                            throw new InvalidEnumArgumentException("Wrong optization target!");
+                                        }
+
+                                        int carId = 0;
+                                        long[] carsTimes = Enumerable.Repeat(0L, carsNumber).ToArray();
+                                        while (Graph.numberOfDelivered < PackagesList.numberOfPackages)
+                                        {
+                                            if ((PackagesList.numberOfPackages - Graph.numberOfDelivered) < neighbourhoodSize)
+                                            {
+                                                neighbourhoodSize = PackagesList.numberOfPackages - Graph.numberOfDelivered;
+                                            }
+                                            int[] toDeliver = Tsp.getNeighbors(neighbourhoodSize, Matrices.Distance);
+
+                                            Knapsack packageSelector = new Knapsack(toDeliver, sizeMap, carCapacity);
+                                            int[] finalToDeliver;
+                                            if (type == AlgorithmType.random)
+                                            {
+                                                finalToDeliver = new RandomSearch().Calculate(packageSelector);
+                                            }
+                                            else
+                                            {
+                                                finalToDeliver = new SimulatedAnnealing(testSATemp, testSALamba, testSARep).Calculate(packageSelector);
+                                            }
+                                            
+
+                                            Tsp pointsSorter;
+                                            if (target == OptimizitaionTarget.time)
+                                            {
+                                                pointsSorter = new Tsp(finalToDeliver, costs, timeMap, true);
+                                            }
+                                            else if (target == OptimizitaionTarget.distance)
+                                            {
+                                                pointsSorter = new Tsp(finalToDeliver, costs, null, true);
+                                            }
+                                            else
+                                            {
+                                                throw new InvalidEnumArgumentException("Wrong optization target!");
+                                            }
+
+                                            int[] solution;
+                                            long travelTime;
+                                            if (type == AlgorithmType.annealing)
+                                            {
+                                                solution = (new SimulatedAnnealing(testSATemp, testSALamba, testSARep)).Calculate(pointsSorter);
+                                            }
+                                            else if (type == AlgorithmType.genetic)
+                                            {
+                                                solution = (new GeneticAlgorithm(testGAPop, testGAGen, testGASiev)).Calculate(pointsSorter);
+                                            }
+                                            else if (type == AlgorithmType.random)
+                                            {
+                                                solution = (new RandomSearch().Calculate(pointsSorter));
+                                            }
+                                            else
+                                            {
+                                                throw new InvalidEnumArgumentException("Wrong algorithm type!");
+                                            }
+                                            long[] times = CalcTimes(solution, carsTimes[carId], timeMap);
+
+                                            if (target == OptimizitaionTarget.time)
+                                            {
+                                                travelTime = pointsSorter.GetCost(solution);
+                                                Graph.totalTime += travelTime;
+                                                carsTimes[carId] += travelTime;
+                                                Graph.totalDistance += (new Tsp(finalToDeliver, Matrices.Distance, null, true)).GetCost(solution);
+                                            }
+                                            else if (target == OptimizitaionTarget.distance)
+                                            {
+                                                Graph.totalDistance += pointsSorter.GetCost(solution);
+                                                travelTime = (new Tsp(finalToDeliver, Matrices.Time, timeMap, true)).GetCost(solution);
+                                                carsTimes[carId] += travelTime;
+                                                Graph.totalTime += travelTime;
+                                            }
+                                            else
+                                            {
+                                                throw new InvalidEnumArgumentException("Wrong optization target!");
+                                            }
+
+                                            
+                                            for (int i = 0; i < solution.Length; i++)
+                                            {
+                                                Graph.deliveredItems.Add(new DeliveryItem(PackagesList.packagesList[solution[i]], times[i], carId)); // Set package as delived
+                                            }
+                                            if (++carId >= carsNumber)
+                                            {
+                                                carId = 0;
+                                            }
+                                        }
+                                        allDistance += Graph.totalDistance;
+                                        allTime += Graph.totalTime;
+                                    }
+                                    timer.Stop();
+                                    output = "Średni czas obliczeń: " + (timer.ElapsedMilliseconds / (double)rep);
+                                    output += "\r\nŚrednia odległość to: " + (allDistance / (double)rep) +"\r\nŚredni czas to: " + (allTime / (double)rep) + "\r\n";
+                                    Console.Write(output);
+                                    testResultsTb.AppendText(output);
+                                    Application.DoEvents();
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
