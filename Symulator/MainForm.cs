@@ -612,7 +612,7 @@ namespace Symulator
             }
             else if (type == AlgorithmType.annealing)
             {
-                output = $"Algorytm genetyczny\r\nParametry:\r\n\ttemperetura - od {testSATempStart} do {testSATempEnd} co {testSATempStep}";
+                output = $"Symulowane wyrzażanie\r\nParametry:\r\n\ttemperetura - od {testSATempStart} do {testSATempEnd} co {testSATempStep}";
                 output += $"\r\n\tLambda - od {testSALamdaStart} do {testSALambaEnd} co {testSALambaStep}";
                 output += $"\r\n\tPowtrórzenia - od {testSARepStart} do {testSARepEnd} co {testSARepStep}\r\n";
                 Console.Write(output);
@@ -627,6 +627,10 @@ namespace Symulator
                 Application.DoEvents();
             }
 
+            output = "Średni czas obliczeń;Średnia odległość;Średni czas\r\n";
+            Console.Write(output);
+            testResultsTb.AppendText(output);
+            Application.DoEvents();
             for (int testSATemp = testSATempStart; testSATemp <= testSATempEnd; testSATemp += testSATempStep)
             {
                 for (float testSALamba = testSALamdaStart; testSALamba <= testSALambaEnd; testSALamba += testSALambaStep)
@@ -753,8 +757,9 @@ namespace Symulator
                                         allTime += Graph.totalTime;
                                     }
                                     timer.Stop();
-                                    output = "Średni czas obliczeń: " + (timer.ElapsedMilliseconds / (double)rep);
-                                    output += "\r\nŚrednia odległość to: " + (allDistance / (double)rep) +"\r\nŚredni czas to: " + (allTime / (double)rep) + "\r\n";
+                                    //output = "Średni czas obliczeń: " + (timer.ElapsedMilliseconds / (double)rep);
+                                    //output += "\r\nŚrednia odległość to: " + (allDistance / (double)rep) +"\r\nŚredni czas to: " + (allTime / (double)rep) + "\r\n";
+                                    output = $"{(timer.ElapsedMilliseconds / (double)rep)};{(allDistance / (double)rep)};{(allTime / (double)rep)}\r\n";
                                     Console.Write(output);
                                     testResultsTb.AppendText(output);
                                     Application.DoEvents();
