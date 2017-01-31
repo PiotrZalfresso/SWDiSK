@@ -38,7 +38,8 @@ namespace Symulator
             OptBtn.Enabled = readPackages = false;
             ExportDistMatrixBtn.Enabled = ExportTimeMatrixBtn.Enabled =
                 ShowDistMatrixBtn.Enabled = ShowTimeMatrixBtn.Enabled = ExportSolutionBtn.Enabled =
-                    ShowRouteBtn.Enabled = readMatrix = textBox14.Visible = CalcTimeDtp.Enabled = false;
+                    ShowRouteBtn.Enabled = readMatrix = textBox14.Visible = CalcTimeDtp.Enabled =
+                    testCleanOutputBtn.Enabled = false;
 
         }
 
@@ -528,6 +529,8 @@ namespace Symulator
             testOptimize();
 
             StatusLbl.Text = "";
+
+            testCleanOutputBtn.Enabled = true;
         }
 
         private void testOptimize()
@@ -769,6 +772,12 @@ namespace Symulator
                     }
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            testCleanOutputBtn.Enabled = false;
+            testResultsTb.Clear();
         }
     }
 }

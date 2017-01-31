@@ -69,6 +69,52 @@
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.TestingTab = new System.Windows.Forms.TabPage();
+            this.testCleanOutputBtn = new System.Windows.Forms.Button();
+            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.testResultsTb = new System.Windows.Forms.TextBox();
+            this.testStartBt = new System.Windows.Forms.Button();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.groupBox13 = new System.Windows.Forms.GroupBox();
+            this.testGASievStepTb = new System.Windows.Forms.TextBox();
+            this.testGAGenStepTb = new System.Windows.Forms.TextBox();
+            this.testGAPopStepTb = new System.Windows.Forms.TextBox();
+            this.testGASievEndTb = new System.Windows.Forms.TextBox();
+            this.testGAGenEndTb = new System.Windows.Forms.TextBox();
+            this.testGAPopEndTb = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.testGASievStartTb = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label32 = new System.Windows.Forms.Label();
+            this.label29 = new System.Windows.Forms.Label();
+            this.testGAGenStartTb = new System.Windows.Forms.TextBox();
+            this.testGAPopStartTb = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.testSARepStepTb = new System.Windows.Forms.TextBox();
+            this.testSALambaStepTb = new System.Windows.Forms.TextBox();
+            this.testSATempStepTb = new System.Windows.Forms.TextBox();
+            this.testSARepEndTb = new System.Windows.Forms.TextBox();
+            this.testSALambaEndTb = new System.Windows.Forms.TextBox();
+            this.testSATempEndTb = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.testSATempStartTb = new System.Windows.Forms.TextBox();
+            this.testSALambaStartTb = new System.Windows.Forms.TextBox();
+            this.testSARepStartTb = new System.Windows.Forms.TextBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.testGeneralInstanceSizeTb = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.testGeneralCountTb = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
             this.SettingsTab = new System.Windows.Forms.TabPage();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -127,60 +173,21 @@
             this.pckMdTimeTb = new System.Windows.Forms.TextBox();
             this.pckSmSizeTb = new System.Windows.Forms.TextBox();
             this.pckSmTimeTb = new System.Windows.Forms.TextBox();
-            this.TestingTab = new System.Windows.Forms.TabPage();
-            this.testStartBt = new System.Windows.Forms.Button();
-            this.groupBox11 = new System.Windows.Forms.GroupBox();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.groupBox13 = new System.Windows.Forms.GroupBox();
-            this.testGASievStepTb = new System.Windows.Forms.TextBox();
-            this.testGAGenStepTb = new System.Windows.Forms.TextBox();
-            this.testGAPopStepTb = new System.Windows.Forms.TextBox();
-            this.testGASievEndTb = new System.Windows.Forms.TextBox();
-            this.testGAGenEndTb = new System.Windows.Forms.TextBox();
-            this.testGAPopEndTb = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.testGASievStartTb = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
-            this.testGAGenStartTb = new System.Windows.Forms.TextBox();
-            this.testGAPopStartTb = new System.Windows.Forms.TextBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.label34 = new System.Windows.Forms.Label();
-            this.groupBox12 = new System.Windows.Forms.GroupBox();
-            this.testSARepStepTb = new System.Windows.Forms.TextBox();
-            this.testSALambaStepTb = new System.Windows.Forms.TextBox();
-            this.testSATempStepTb = new System.Windows.Forms.TextBox();
-            this.testSARepEndTb = new System.Windows.Forms.TextBox();
-            this.testSALambaEndTb = new System.Windows.Forms.TextBox();
-            this.testSATempEndTb = new System.Windows.Forms.TextBox();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.testSATempStartTb = new System.Windows.Forms.TextBox();
-            this.testSALambaStartTb = new System.Windows.Forms.TextBox();
-            this.testSARepStartTb = new System.Windows.Forms.TextBox();
-            this.groupBox10 = new System.Windows.Forms.GroupBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.testGeneralInstanceSizeTb = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.testGeneralCountTb = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
             this.StatusBar = new System.Windows.Forms.GroupBox();
             this.StatusLbl = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.testResultsTb = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.MainTabControl.SuspendLayout();
             this.StartTab.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.LoadDataBox.SuspendLayout();
             this.HistoryTab.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.TestingTab.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox13.SuspendLayout();
+            this.groupBox12.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.SettingsTab.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -188,12 +195,6 @@
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            this.TestingTab.SuspendLayout();
-            this.groupBox11.SuspendLayout();
-            this.groupBox9.SuspendLayout();
-            this.groupBox13.SuspendLayout();
-            this.groupBox12.SuspendLayout();
-            this.groupBox10.SuspendLayout();
             this.StatusBar.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -550,6 +551,460 @@
             this.columnHeader15.Text = "Nr Pojazdu";
             this.columnHeader15.Width = 66;
             // 
+            // TestingTab
+            // 
+            this.TestingTab.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.TestingTab.Controls.Add(this.testCleanOutputBtn);
+            this.TestingTab.Controls.Add(this.textBox4);
+            this.TestingTab.Controls.Add(this.testResultsTb);
+            this.TestingTab.Controls.Add(this.testStartBt);
+            this.TestingTab.Controls.Add(this.groupBox11);
+            this.TestingTab.Location = new System.Drawing.Point(4, 34);
+            this.TestingTab.Name = "TestingTab";
+            this.TestingTab.Padding = new System.Windows.Forms.Padding(3);
+            this.TestingTab.Size = new System.Drawing.Size(1075, 492);
+            this.TestingTab.TabIndex = 4;
+            this.TestingTab.Text = "Testowanie";
+            // 
+            // testCleanOutputBtn
+            // 
+            this.testCleanOutputBtn.Location = new System.Drawing.Point(575, 451);
+            this.testCleanOutputBtn.Name = "testCleanOutputBtn";
+            this.testCleanOutputBtn.Size = new System.Drawing.Size(75, 23);
+            this.testCleanOutputBtn.TabIndex = 50;
+            this.testCleanOutputBtn.Text = "Czyść";
+            this.testCleanOutputBtn.UseVisualStyleBackColor = true;
+            this.testCleanOutputBtn.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox4
+            // 
+            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox4.Enabled = false;
+            this.textBox4.Location = new System.Drawing.Point(934, 439);
+            this.textBox4.Multiline = true;
+            this.textBox4.Name = "textBox4";
+            this.textBox4.ReadOnly = true;
+            this.textBox4.Size = new System.Drawing.Size(134, 49);
+            this.textBox4.TabIndex = 49;
+            this.textBox4.Text = "Uwaga: Badany jest algorytm podany w ustawieniach";
+            // 
+            // testResultsTb
+            // 
+            this.testResultsTb.AcceptsReturn = true;
+            this.testResultsTb.AcceptsTab = true;
+            this.testResultsTb.Location = new System.Drawing.Point(575, 15);
+            this.testResultsTb.Multiline = true;
+            this.testResultsTb.Name = "testResultsTb";
+            this.testResultsTb.ReadOnly = true;
+            this.testResultsTb.Size = new System.Drawing.Size(493, 418);
+            this.testResultsTb.TabIndex = 32;
+            // 
+            // testStartBt
+            // 
+            this.testStartBt.Enabled = false;
+            this.testStartBt.Location = new System.Drawing.Point(801, 451);
+            this.testStartBt.Name = "testStartBt";
+            this.testStartBt.Size = new System.Drawing.Size(75, 23);
+            this.testStartBt.TabIndex = 31;
+            this.testStartBt.Text = "Licz";
+            this.testStartBt.UseVisualStyleBackColor = true;
+            this.testStartBt.Click += new System.EventHandler(this.testStartBt_Click);
+            // 
+            // groupBox11
+            // 
+            this.groupBox11.Controls.Add(this.groupBox9);
+            this.groupBox11.Controls.Add(this.groupBox13);
+            this.groupBox11.Controls.Add(this.groupBox12);
+            this.groupBox11.Controls.Add(this.groupBox10);
+            this.groupBox11.Location = new System.Drawing.Point(6, 6);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.Size = new System.Drawing.Size(563, 480);
+            this.groupBox11.TabIndex = 30;
+            this.groupBox11.TabStop = false;
+            this.groupBox11.Text = "Konfiguracja";
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.textBox3);
+            this.groupBox9.Location = new System.Drawing.Point(6, 433);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(549, 41);
+            this.groupBox9.TabIndex = 30;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "Random search";
+            // 
+            // textBox3
+            // 
+            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Enabled = false;
+            this.textBox3.Location = new System.Drawing.Point(9, 20);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(409, 15);
+            this.textBox3.TabIndex = 32;
+            this.textBox3.Text = "Co tu chciałbyś ustawić?";
+            // 
+            // groupBox13
+            // 
+            this.groupBox13.Controls.Add(this.testGASievStepTb);
+            this.groupBox13.Controls.Add(this.testGAGenStepTb);
+            this.groupBox13.Controls.Add(this.testGAPopStepTb);
+            this.groupBox13.Controls.Add(this.testGASievEndTb);
+            this.groupBox13.Controls.Add(this.testGAGenEndTb);
+            this.groupBox13.Controls.Add(this.testGAPopEndTb);
+            this.groupBox13.Controls.Add(this.label31);
+            this.groupBox13.Controls.Add(this.testGASievStartTb);
+            this.groupBox13.Controls.Add(this.label30);
+            this.groupBox13.Controls.Add(this.label32);
+            this.groupBox13.Controls.Add(this.label29);
+            this.groupBox13.Controls.Add(this.testGAGenStartTb);
+            this.groupBox13.Controls.Add(this.testGAPopStartTb);
+            this.groupBox13.Controls.Add(this.label33);
+            this.groupBox13.Controls.Add(this.label34);
+            this.groupBox13.Location = new System.Drawing.Point(6, 263);
+            this.groupBox13.Name = "groupBox13";
+            this.groupBox13.Size = new System.Drawing.Size(549, 164);
+            this.groupBox13.TabIndex = 31;
+            this.groupBox13.TabStop = false;
+            this.groupBox13.Text = "Algorytm genetyczny";
+            // 
+            // testGASievStepTb
+            // 
+            this.testGASievStepTb.Location = new System.Drawing.Point(332, 123);
+            this.testGASievStepTb.Name = "testGASievStepTb";
+            this.testGASievStepTb.Size = new System.Drawing.Size(42, 22);
+            this.testGASievStepTb.TabIndex = 39;
+            this.testGASievStepTb.Text = "1";
+            // 
+            // testGAGenStepTb
+            // 
+            this.testGAGenStepTb.Location = new System.Drawing.Point(332, 92);
+            this.testGAGenStepTb.Name = "testGAGenStepTb";
+            this.testGAGenStepTb.Size = new System.Drawing.Size(42, 22);
+            this.testGAGenStepTb.TabIndex = 38;
+            this.testGAGenStepTb.Text = "100";
+            // 
+            // testGAPopStepTb
+            // 
+            this.testGAPopStepTb.Location = new System.Drawing.Point(332, 59);
+            this.testGAPopStepTb.Name = "testGAPopStepTb";
+            this.testGAPopStepTb.Size = new System.Drawing.Size(42, 22);
+            this.testGAPopStepTb.TabIndex = 37;
+            this.testGAPopStepTb.Text = "100";
+            // 
+            // testGASievEndTb
+            // 
+            this.testGASievEndTb.Location = new System.Drawing.Point(253, 123);
+            this.testGASievEndTb.Name = "testGASievEndTb";
+            this.testGASievEndTb.Size = new System.Drawing.Size(42, 22);
+            this.testGASievEndTb.TabIndex = 36;
+            this.testGASievEndTb.Text = "20";
+            // 
+            // testGAGenEndTb
+            // 
+            this.testGAGenEndTb.Location = new System.Drawing.Point(253, 92);
+            this.testGAGenEndTb.Name = "testGAGenEndTb";
+            this.testGAGenEndTb.Size = new System.Drawing.Size(42, 22);
+            this.testGAGenEndTb.TabIndex = 35;
+            this.testGAGenEndTb.Text = "800";
+            // 
+            // testGAPopEndTb
+            // 
+            this.testGAPopEndTb.Location = new System.Drawing.Point(253, 59);
+            this.testGAPopEndTb.Name = "testGAPopEndTb";
+            this.testGAPopEndTb.Size = new System.Drawing.Size(42, 22);
+            this.testGAPopEndTb.TabIndex = 34;
+            this.testGAPopEndTb.Text = "1000";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(340, 18);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(34, 16);
+            this.label31.TabIndex = 33;
+            this.label31.Text = "krok";
+            // 
+            // testGASievStartTb
+            // 
+            this.testGASievStartTb.Location = new System.Drawing.Point(175, 123);
+            this.testGASievStartTb.Name = "testGASievStartTb";
+            this.testGASievStartTb.Size = new System.Drawing.Size(42, 22);
+            this.testGASievStartTb.TabIndex = 31;
+            this.testGASievStartTb.Text = "20";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(262, 18);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(24, 16);
+            this.label30.TabIndex = 32;
+            this.label30.Text = "do";
+            // 
+            // label32
+            // 
+            this.label32.AutoSize = true;
+            this.label32.Location = new System.Drawing.Point(6, 126);
+            this.label32.Name = "label32";
+            this.label32.Size = new System.Drawing.Size(163, 16);
+            this.label32.TabIndex = 30;
+            this.label32.Text = "Prób usuwania duplikatów";
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(184, 18);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(24, 16);
+            this.label29.TabIndex = 31;
+            this.label29.Text = "od";
+            // 
+            // testGAGenStartTb
+            // 
+            this.testGAGenStartTb.Location = new System.Drawing.Point(175, 92);
+            this.testGAGenStartTb.Name = "testGAGenStartTb";
+            this.testGAGenStartTb.Size = new System.Drawing.Size(42, 22);
+            this.testGAGenStartTb.TabIndex = 29;
+            this.testGAGenStartTb.Text = "800";
+            // 
+            // testGAPopStartTb
+            // 
+            this.testGAPopStartTb.Location = new System.Drawing.Point(175, 59);
+            this.testGAPopStartTb.Name = "testGAPopStartTb";
+            this.testGAPopStartTb.Size = new System.Drawing.Size(42, 22);
+            this.testGAPopStartTb.TabIndex = 28;
+            this.testGAPopStartTb.Text = "1000";
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Location = new System.Drawing.Point(6, 95);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(88, 16);
+            this.label33.TabIndex = 27;
+            this.label33.Text = "Ilość pokoleń";
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Location = new System.Drawing.Point(6, 65);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(116, 16);
+            this.label34.TabIndex = 26;
+            this.label34.Text = "Rozmiar populacji";
+            // 
+            // groupBox12
+            // 
+            this.groupBox12.Controls.Add(this.testSARepStepTb);
+            this.groupBox12.Controls.Add(this.testSALambaStepTb);
+            this.groupBox12.Controls.Add(this.testSATempStepTb);
+            this.groupBox12.Controls.Add(this.testSARepEndTb);
+            this.groupBox12.Controls.Add(this.testSALambaEndTb);
+            this.groupBox12.Controls.Add(this.testSATempEndTb);
+            this.groupBox12.Controls.Add(this.label38);
+            this.groupBox12.Controls.Add(this.label39);
+            this.groupBox12.Controls.Add(this.label40);
+            this.groupBox12.Controls.Add(this.label37);
+            this.groupBox12.Controls.Add(this.label36);
+            this.groupBox12.Controls.Add(this.label35);
+            this.groupBox12.Controls.Add(this.testSATempStartTb);
+            this.groupBox12.Controls.Add(this.testSALambaStartTb);
+            this.groupBox12.Controls.Add(this.testSARepStartTb);
+            this.groupBox12.Location = new System.Drawing.Point(6, 106);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.Size = new System.Drawing.Size(549, 151);
+            this.groupBox12.TabIndex = 30;
+            this.groupBox12.TabStop = false;
+            this.groupBox12.Text = "Symulowane wyżarzanie";
+            // 
+            // testSARepStepTb
+            // 
+            this.testSARepStepTb.Location = new System.Drawing.Point(332, 106);
+            this.testSARepStepTb.Name = "testSARepStepTb";
+            this.testSARepStepTb.Size = new System.Drawing.Size(42, 22);
+            this.testSARepStepTb.TabIndex = 48;
+            this.testSARepStepTb.Text = "100";
+            // 
+            // testSALambaStepTb
+            // 
+            this.testSALambaStepTb.Location = new System.Drawing.Point(332, 75);
+            this.testSALambaStepTb.Name = "testSALambaStepTb";
+            this.testSALambaStepTb.Size = new System.Drawing.Size(42, 22);
+            this.testSALambaStepTb.TabIndex = 47;
+            this.testSALambaStepTb.Text = "0,009";
+            // 
+            // testSATempStepTb
+            // 
+            this.testSATempStepTb.Location = new System.Drawing.Point(332, 42);
+            this.testSATempStepTb.Name = "testSATempStepTb";
+            this.testSATempStepTb.Size = new System.Drawing.Size(42, 22);
+            this.testSATempStepTb.TabIndex = 46;
+            this.testSATempStepTb.Text = "1000";
+            // 
+            // testSARepEndTb
+            // 
+            this.testSARepEndTb.Location = new System.Drawing.Point(248, 106);
+            this.testSARepEndTb.Name = "testSARepEndTb";
+            this.testSARepEndTb.Size = new System.Drawing.Size(42, 22);
+            this.testSARepEndTb.TabIndex = 45;
+            this.testSARepEndTb.Text = "8100";
+            // 
+            // testSALambaEndTb
+            // 
+            this.testSALambaEndTb.Location = new System.Drawing.Point(248, 75);
+            this.testSALambaEndTb.Name = "testSALambaEndTb";
+            this.testSALambaEndTb.Size = new System.Drawing.Size(42, 22);
+            this.testSALambaEndTb.TabIndex = 44;
+            this.testSALambaEndTb.Text = "0,027";
+            // 
+            // testSATempEndTb
+            // 
+            this.testSATempEndTb.Location = new System.Drawing.Point(248, 42);
+            this.testSATempEndTb.Name = "testSATempEndTb";
+            this.testSATempEndTb.Size = new System.Drawing.Size(42, 22);
+            this.testSATempEndTb.TabIndex = 43;
+            this.testSATempEndTb.Text = "300";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(340, 18);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(34, 16);
+            this.label38.TabIndex = 42;
+            this.label38.Text = "krok";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(262, 18);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(24, 16);
+            this.label39.TabIndex = 41;
+            this.label39.Text = "do";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(184, 18);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(24, 16);
+            this.label40.TabIndex = 40;
+            this.label40.Text = "od";
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(6, 50);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(86, 16);
+            this.label37.TabIndex = 14;
+            this.label37.Text = "Temperatura";
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(6, 80);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(58, 16);
+            this.label36.TabIndex = 15;
+            this.label36.Text = "Lambda";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(6, 108);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(81, 16);
+            this.label35.TabIndex = 16;
+            this.label35.Text = "Powtórzenia";
+            // 
+            // testSATempStartTb
+            // 
+            this.testSATempStartTb.Location = new System.Drawing.Point(175, 45);
+            this.testSATempStartTb.Name = "testSATempStartTb";
+            this.testSATempStartTb.Size = new System.Drawing.Size(42, 22);
+            this.testSATempStartTb.TabIndex = 17;
+            this.testSATempStartTb.Text = "300";
+            // 
+            // testSALambaStartTb
+            // 
+            this.testSALambaStartTb.Location = new System.Drawing.Point(175, 75);
+            this.testSALambaStartTb.Name = "testSALambaStartTb";
+            this.testSALambaStartTb.Size = new System.Drawing.Size(42, 22);
+            this.testSALambaStartTb.TabIndex = 18;
+            this.testSALambaStartTb.Text = "0,027";
+            // 
+            // testSARepStartTb
+            // 
+            this.testSARepStartTb.Location = new System.Drawing.Point(175, 106);
+            this.testSARepStartTb.Name = "testSARepStartTb";
+            this.testSARepStartTb.Size = new System.Drawing.Size(42, 22);
+            this.testSARepStartTb.TabIndex = 19;
+            this.testSARepStartTb.Text = "8100";
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.textBox2);
+            this.groupBox10.Controls.Add(this.testGeneralInstanceSizeTb);
+            this.groupBox10.Controls.Add(this.label28);
+            this.groupBox10.Controls.Add(this.testGeneralCountTb);
+            this.groupBox10.Controls.Add(this.label27);
+            this.groupBox10.Location = new System.Drawing.Point(6, 21);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(549, 79);
+            this.groupBox10.TabIndex = 29;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "Ogólne";
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
+            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox2.Enabled = false;
+            this.textBox2.Location = new System.Drawing.Point(9, 54);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(409, 15);
+            this.textBox2.TabIndex = 31;
+            this.textBox2.Text = "Pojemność samochodu i wagi przesyłek określone w ustawieniach";
+            // 
+            // testGeneralInstanceSizeTb
+            // 
+            this.testGeneralInstanceSizeTb.Location = new System.Drawing.Point(450, 29);
+            this.testGeneralInstanceSizeTb.Name = "testGeneralInstanceSizeTb";
+            this.testGeneralInstanceSizeTb.Size = new System.Drawing.Size(42, 22);
+            this.testGeneralInstanceSizeTb.TabIndex = 30;
+            this.testGeneralInstanceSizeTb.Text = "10";
+            this.testGeneralInstanceSizeTb.Visible = false;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(329, 32);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(109, 16);
+            this.label28.TabIndex = 29;
+            this.label28.Text = "Rozmiar instancji";
+            this.label28.Visible = false;
+            // 
+            // testGeneralCountTb
+            // 
+            this.testGeneralCountTb.Location = new System.Drawing.Point(175, 26);
+            this.testGeneralCountTb.Name = "testGeneralCountTb";
+            this.testGeneralCountTb.Size = new System.Drawing.Size(42, 22);
+            this.testGeneralCountTb.TabIndex = 28;
+            this.testGeneralCountTb.Text = "1000";
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(6, 29);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(153, 16);
+            this.label27.TabIndex = 27;
+            this.label27.Text = "Ilość powtórzeń obliczeń";
+            // 
             // SettingsTab
             // 
             this.SettingsTab.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -679,6 +1134,8 @@
             // reabTablesFromFile
             // 
             this.reabTablesFromFile.AutoSize = true;
+            this.reabTablesFromFile.Checked = true;
+            this.reabTablesFromFile.CheckState = System.Windows.Forms.CheckState.Checked;
             this.reabTablesFromFile.Location = new System.Drawing.Point(8, 158);
             this.reabTablesFromFile.Name = "reabTablesFromFile";
             this.reabTablesFromFile.Size = new System.Drawing.Size(157, 20);
@@ -690,12 +1147,10 @@
             // distanceOptimization
             // 
             this.distanceOptimization.AutoSize = true;
-            this.distanceOptimization.Checked = true;
             this.distanceOptimization.Location = new System.Drawing.Point(31, 63);
             this.distanceOptimization.Name = "distanceOptimization";
             this.distanceOptimization.Size = new System.Drawing.Size(75, 20);
             this.distanceOptimization.TabIndex = 1;
-            this.distanceOptimization.TabStop = true;
             this.distanceOptimization.Text = "Dystans";
             this.distanceOptimization.UseVisualStyleBackColor = true;
             this.distanceOptimization.CheckedChanged += new System.EventHandler(this.OptChooseChange);
@@ -703,6 +1158,7 @@
             // timeOptimization
             // 
             this.timeOptimization.AutoSize = true;
+            this.timeOptimization.Checked = true;
             this.timeOptimization.Location = new System.Drawing.Point(31, 37);
             this.timeOptimization.Name = "timeOptimization";
             this.timeOptimization.Size = new System.Drawing.Size(56, 20);
@@ -758,7 +1214,7 @@
             this.carCapTb.Name = "carCapTb";
             this.carCapTb.Size = new System.Drawing.Size(42, 22);
             this.carCapTb.TabIndex = 0;
-            this.carCapTb.Text = "25";
+            this.carCapTb.Text = "100";
             this.carCapTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // groupBox5
@@ -809,7 +1265,6 @@
             this.randomSearch.Name = "randomSearch";
             this.randomSearch.Size = new System.Drawing.Size(122, 20);
             this.randomSearch.TabIndex = 11;
-            this.randomSearch.TabStop = true;
             this.randomSearch.Text = "Random search";
             this.randomSearch.UseVisualStyleBackColor = true;
             // 
@@ -901,6 +1356,7 @@
             // geneticAlgorithm
             // 
             this.geneticAlgorithm.AutoSize = true;
+            this.geneticAlgorithm.Checked = true;
             this.geneticAlgorithm.Location = new System.Drawing.Point(6, 170);
             this.geneticAlgorithm.Name = "geneticAlgorithm";
             this.geneticAlgorithm.Size = new System.Drawing.Size(150, 20);
@@ -912,12 +1368,10 @@
             // simulatedAnnealing
             // 
             this.simulatedAnnealing.AutoSize = true;
-            this.simulatedAnnealing.Checked = true;
             this.simulatedAnnealing.Location = new System.Drawing.Point(6, 34);
             this.simulatedAnnealing.Name = "simulatedAnnealing";
             this.simulatedAnnealing.Size = new System.Drawing.Size(172, 20);
             this.simulatedAnnealing.TabIndex = 0;
-            this.simulatedAnnealing.TabStop = true;
             this.simulatedAnnealing.Text = "Symulowane wyżarzanie";
             this.simulatedAnnealing.UseVisualStyleBackColor = true;
             // 
@@ -1090,7 +1544,7 @@
             this.pckBgSizeTb.Name = "pckBgSizeTb";
             this.pckBgSizeTb.Size = new System.Drawing.Size(42, 22);
             this.pckBgSizeTb.TabIndex = 0;
-            this.pckBgSizeTb.Text = "8";
+            this.pckBgSizeTb.Text = "50";
             this.pckBgSizeTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // label7
@@ -1108,7 +1562,7 @@
             this.pckBgTimeTb.Name = "pckBgTimeTb";
             this.pckBgTimeTb.Size = new System.Drawing.Size(42, 22);
             this.pckBgTimeTb.TabIndex = 0;
-            this.pckBgTimeTb.Text = "8";
+            this.pckBgTimeTb.Text = "15";
             this.pckBgTimeTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // pckMdSizeTb
@@ -1117,7 +1571,7 @@
             this.pckMdSizeTb.Name = "pckMdSizeTb";
             this.pckMdSizeTb.Size = new System.Drawing.Size(42, 22);
             this.pckMdSizeTb.TabIndex = 0;
-            this.pckMdSizeTb.Text = "5";
+            this.pckMdSizeTb.Text = "20";
             this.pckMdSizeTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // pckMdTimeTb
@@ -1147,426 +1601,6 @@
             this.pckSmTimeTb.Text = "3";
             this.pckSmTimeTb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // TestingTab
-            // 
-            this.TestingTab.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.TestingTab.Controls.Add(this.textBox4);
-            this.TestingTab.Controls.Add(this.testResultsTb);
-            this.TestingTab.Controls.Add(this.testStartBt);
-            this.TestingTab.Controls.Add(this.groupBox11);
-            this.TestingTab.Location = new System.Drawing.Point(4, 34);
-            this.TestingTab.Name = "TestingTab";
-            this.TestingTab.Padding = new System.Windows.Forms.Padding(3);
-            this.TestingTab.Size = new System.Drawing.Size(1075, 492);
-            this.TestingTab.TabIndex = 4;
-            this.TestingTab.Text = "Testowanie";
-            // 
-            // testStartBt
-            // 
-            this.testStartBt.Enabled = false;
-            this.testStartBt.Location = new System.Drawing.Point(801, 439);
-            this.testStartBt.Name = "testStartBt";
-            this.testStartBt.Size = new System.Drawing.Size(75, 23);
-            this.testStartBt.TabIndex = 31;
-            this.testStartBt.Text = "Licz";
-            this.testStartBt.UseVisualStyleBackColor = true;
-            this.testStartBt.Click += new System.EventHandler(this.testStartBt_Click);
-            // 
-            // groupBox11
-            // 
-            this.groupBox11.Controls.Add(this.groupBox9);
-            this.groupBox11.Controls.Add(this.groupBox13);
-            this.groupBox11.Controls.Add(this.groupBox12);
-            this.groupBox11.Controls.Add(this.groupBox10);
-            this.groupBox11.Location = new System.Drawing.Point(6, 6);
-            this.groupBox11.Name = "groupBox11";
-            this.groupBox11.Size = new System.Drawing.Size(563, 480);
-            this.groupBox11.TabIndex = 30;
-            this.groupBox11.TabStop = false;
-            this.groupBox11.Text = "Konfiguracja";
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.textBox3);
-            this.groupBox9.Location = new System.Drawing.Point(6, 433);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(549, 41);
-            this.groupBox9.TabIndex = 30;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Random search";
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(9, 20);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(409, 15);
-            this.textBox3.TabIndex = 32;
-            this.textBox3.Text = "Co tu chciałbyś ustawić?";
-            // 
-            // groupBox13
-            // 
-            this.groupBox13.Controls.Add(this.testGASievStepTb);
-            this.groupBox13.Controls.Add(this.testGAGenStepTb);
-            this.groupBox13.Controls.Add(this.testGAPopStepTb);
-            this.groupBox13.Controls.Add(this.testGASievEndTb);
-            this.groupBox13.Controls.Add(this.testGAGenEndTb);
-            this.groupBox13.Controls.Add(this.testGAPopEndTb);
-            this.groupBox13.Controls.Add(this.label31);
-            this.groupBox13.Controls.Add(this.testGASievStartTb);
-            this.groupBox13.Controls.Add(this.label30);
-            this.groupBox13.Controls.Add(this.label32);
-            this.groupBox13.Controls.Add(this.label29);
-            this.groupBox13.Controls.Add(this.testGAGenStartTb);
-            this.groupBox13.Controls.Add(this.testGAPopStartTb);
-            this.groupBox13.Controls.Add(this.label33);
-            this.groupBox13.Controls.Add(this.label34);
-            this.groupBox13.Location = new System.Drawing.Point(6, 263);
-            this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Size = new System.Drawing.Size(549, 164);
-            this.groupBox13.TabIndex = 31;
-            this.groupBox13.TabStop = false;
-            this.groupBox13.Text = "Algorytm genetyczny";
-            // 
-            // testGASievStepTb
-            // 
-            this.testGASievStepTb.Location = new System.Drawing.Point(332, 123);
-            this.testGASievStepTb.Name = "testGASievStepTb";
-            this.testGASievStepTb.Size = new System.Drawing.Size(42, 22);
-            this.testGASievStepTb.TabIndex = 39;
-            this.testGASievStepTb.Text = "1";
-            // 
-            // testGAGenStepTb
-            // 
-            this.testGAGenStepTb.Location = new System.Drawing.Point(332, 92);
-            this.testGAGenStepTb.Name = "testGAGenStepTb";
-            this.testGAGenStepTb.Size = new System.Drawing.Size(42, 22);
-            this.testGAGenStepTb.TabIndex = 38;
-            this.testGAGenStepTb.Text = "100";
-            // 
-            // testGAPopStepTb
-            // 
-            this.testGAPopStepTb.Location = new System.Drawing.Point(332, 59);
-            this.testGAPopStepTb.Name = "testGAPopStepTb";
-            this.testGAPopStepTb.Size = new System.Drawing.Size(42, 22);
-            this.testGAPopStepTb.TabIndex = 37;
-            this.testGAPopStepTb.Text = "100";
-            // 
-            // testGASievEndTb
-            // 
-            this.testGASievEndTb.Location = new System.Drawing.Point(253, 123);
-            this.testGASievEndTb.Name = "testGASievEndTb";
-            this.testGASievEndTb.Size = new System.Drawing.Size(42, 22);
-            this.testGASievEndTb.TabIndex = 36;
-            this.testGASievEndTb.Text = "10";
-            // 
-            // testGAGenEndTb
-            // 
-            this.testGAGenEndTb.Location = new System.Drawing.Point(253, 92);
-            this.testGAGenEndTb.Name = "testGAGenEndTb";
-            this.testGAGenEndTb.Size = new System.Drawing.Size(42, 22);
-            this.testGAGenEndTb.TabIndex = 35;
-            this.testGAGenEndTb.Text = "500";
-            // 
-            // testGAPopEndTb
-            // 
-            this.testGAPopEndTb.Location = new System.Drawing.Point(253, 59);
-            this.testGAPopEndTb.Name = "testGAPopEndTb";
-            this.testGAPopEndTb.Size = new System.Drawing.Size(42, 22);
-            this.testGAPopEndTb.TabIndex = 34;
-            this.testGAPopEndTb.Text = "200";
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(340, 18);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(34, 16);
-            this.label31.TabIndex = 33;
-            this.label31.Text = "krok";
-            // 
-            // testGASievStartTb
-            // 
-            this.testGASievStartTb.Location = new System.Drawing.Point(175, 123);
-            this.testGASievStartTb.Name = "testGASievStartTb";
-            this.testGASievStartTb.Size = new System.Drawing.Size(42, 22);
-            this.testGASievStartTb.TabIndex = 31;
-            this.testGASievStartTb.Text = "10";
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Location = new System.Drawing.Point(262, 18);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(24, 16);
-            this.label30.TabIndex = 32;
-            this.label30.Text = "do";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Location = new System.Drawing.Point(6, 126);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(163, 16);
-            this.label32.TabIndex = 30;
-            this.label32.Text = "Prób usuwania duplikatów";
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(184, 18);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(24, 16);
-            this.label29.TabIndex = 31;
-            this.label29.Text = "od";
-            // 
-            // testGAGenStartTb
-            // 
-            this.testGAGenStartTb.Location = new System.Drawing.Point(175, 92);
-            this.testGAGenStartTb.Name = "testGAGenStartTb";
-            this.testGAGenStartTb.Size = new System.Drawing.Size(42, 22);
-            this.testGAGenStartTb.TabIndex = 29;
-            this.testGAGenStartTb.Text = "500";
-            // 
-            // testGAPopStartTb
-            // 
-            this.testGAPopStartTb.Location = new System.Drawing.Point(175, 59);
-            this.testGAPopStartTb.Name = "testGAPopStartTb";
-            this.testGAPopStartTb.Size = new System.Drawing.Size(42, 22);
-            this.testGAPopStartTb.TabIndex = 28;
-            this.testGAPopStartTb.Text = "200";
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(6, 95);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(88, 16);
-            this.label33.TabIndex = 27;
-            this.label33.Text = "Ilość pokoleń";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(6, 65);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(116, 16);
-            this.label34.TabIndex = 26;
-            this.label34.Text = "Rozmiar populacji";
-            // 
-            // groupBox12
-            // 
-            this.groupBox12.Controls.Add(this.testSARepStepTb);
-            this.groupBox12.Controls.Add(this.testSALambaStepTb);
-            this.groupBox12.Controls.Add(this.testSATempStepTb);
-            this.groupBox12.Controls.Add(this.testSARepEndTb);
-            this.groupBox12.Controls.Add(this.testSALambaEndTb);
-            this.groupBox12.Controls.Add(this.testSATempEndTb);
-            this.groupBox12.Controls.Add(this.label38);
-            this.groupBox12.Controls.Add(this.label39);
-            this.groupBox12.Controls.Add(this.label40);
-            this.groupBox12.Controls.Add(this.label37);
-            this.groupBox12.Controls.Add(this.label36);
-            this.groupBox12.Controls.Add(this.label35);
-            this.groupBox12.Controls.Add(this.testSATempStartTb);
-            this.groupBox12.Controls.Add(this.testSALambaStartTb);
-            this.groupBox12.Controls.Add(this.testSARepStartTb);
-            this.groupBox12.Location = new System.Drawing.Point(6, 106);
-            this.groupBox12.Name = "groupBox12";
-            this.groupBox12.Size = new System.Drawing.Size(549, 151);
-            this.groupBox12.TabIndex = 30;
-            this.groupBox12.TabStop = false;
-            this.groupBox12.Text = "Symulowane wyżarzanie";
-            // 
-            // testSARepStepTb
-            // 
-            this.testSARepStepTb.Location = new System.Drawing.Point(332, 106);
-            this.testSARepStepTb.Name = "testSARepStepTb";
-            this.testSARepStepTb.Size = new System.Drawing.Size(42, 22);
-            this.testSARepStepTb.TabIndex = 48;
-            this.testSARepStepTb.Text = "100";
-            // 
-            // testSALambaStepTb
-            // 
-            this.testSALambaStepTb.Location = new System.Drawing.Point(332, 75);
-            this.testSALambaStepTb.Name = "testSALambaStepTb";
-            this.testSALambaStepTb.Size = new System.Drawing.Size(42, 22);
-            this.testSALambaStepTb.TabIndex = 47;
-            this.testSALambaStepTb.Text = "0,009";
-            // 
-            // testSATempStepTb
-            // 
-            this.testSATempStepTb.Location = new System.Drawing.Point(332, 42);
-            this.testSATempStepTb.Name = "testSATempStepTb";
-            this.testSATempStepTb.Size = new System.Drawing.Size(42, 22);
-            this.testSATempStepTb.TabIndex = 46;
-            this.testSATempStepTb.Text = "1000";
-            // 
-            // testSARepEndTb
-            // 
-            this.testSARepEndTb.Location = new System.Drawing.Point(248, 106);
-            this.testSARepEndTb.Name = "testSARepEndTb";
-            this.testSARepEndTb.Size = new System.Drawing.Size(42, 22);
-            this.testSARepEndTb.TabIndex = 45;
-            this.testSARepEndTb.Text = "1000";
-            // 
-            // testSALambaEndTb
-            // 
-            this.testSALambaEndTb.Location = new System.Drawing.Point(248, 75);
-            this.testSALambaEndTb.Name = "testSALambaEndTb";
-            this.testSALambaEndTb.Size = new System.Drawing.Size(42, 22);
-            this.testSALambaEndTb.TabIndex = 44;
-            this.testSALambaEndTb.Text = "0,9";
-            // 
-            // testSATempEndTb
-            // 
-            this.testSATempEndTb.Location = new System.Drawing.Point(248, 42);
-            this.testSATempEndTb.Name = "testSATempEndTb";
-            this.testSATempEndTb.Size = new System.Drawing.Size(42, 22);
-            this.testSATempEndTb.TabIndex = 43;
-            this.testSATempEndTb.Text = "10000";
-            // 
-            // label38
-            // 
-            this.label38.AutoSize = true;
-            this.label38.Location = new System.Drawing.Point(340, 18);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(34, 16);
-            this.label38.TabIndex = 42;
-            this.label38.Text = "krok";
-            // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Location = new System.Drawing.Point(262, 18);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(24, 16);
-            this.label39.TabIndex = 41;
-            this.label39.Text = "do";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Location = new System.Drawing.Point(184, 18);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(24, 16);
-            this.label40.TabIndex = 40;
-            this.label40.Text = "od";
-            // 
-            // label37
-            // 
-            this.label37.AutoSize = true;
-            this.label37.Location = new System.Drawing.Point(6, 50);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(86, 16);
-            this.label37.TabIndex = 14;
-            this.label37.Text = "Temperatura";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Location = new System.Drawing.Point(6, 80);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(58, 16);
-            this.label36.TabIndex = 15;
-            this.label36.Text = "Lambda";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Location = new System.Drawing.Point(6, 108);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(81, 16);
-            this.label35.TabIndex = 16;
-            this.label35.Text = "Powtórzenia";
-            // 
-            // testSATempStartTb
-            // 
-            this.testSATempStartTb.Location = new System.Drawing.Point(175, 45);
-            this.testSATempStartTb.Name = "testSATempStartTb";
-            this.testSATempStartTb.Size = new System.Drawing.Size(42, 22);
-            this.testSATempStartTb.TabIndex = 17;
-            this.testSATempStartTb.Text = "10000";
-            // 
-            // testSALambaStartTb
-            // 
-            this.testSALambaStartTb.Location = new System.Drawing.Point(175, 75);
-            this.testSALambaStartTb.Name = "testSALambaStartTb";
-            this.testSALambaStartTb.Size = new System.Drawing.Size(42, 22);
-            this.testSALambaStartTb.TabIndex = 18;
-            this.testSALambaStartTb.Text = "0,9";
-            // 
-            // testSARepStartTb
-            // 
-            this.testSARepStartTb.Location = new System.Drawing.Point(175, 106);
-            this.testSARepStartTb.Name = "testSARepStartTb";
-            this.testSARepStartTb.Size = new System.Drawing.Size(42, 22);
-            this.testSARepStartTb.TabIndex = 19;
-            this.testSARepStartTb.Text = "1000";
-            // 
-            // groupBox10
-            // 
-            this.groupBox10.Controls.Add(this.textBox2);
-            this.groupBox10.Controls.Add(this.testGeneralInstanceSizeTb);
-            this.groupBox10.Controls.Add(this.label28);
-            this.groupBox10.Controls.Add(this.testGeneralCountTb);
-            this.groupBox10.Controls.Add(this.label27);
-            this.groupBox10.Location = new System.Drawing.Point(6, 21);
-            this.groupBox10.Name = "groupBox10";
-            this.groupBox10.Size = new System.Drawing.Size(549, 79);
-            this.groupBox10.TabIndex = 29;
-            this.groupBox10.TabStop = false;
-            this.groupBox10.Text = "Ogólne";
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.SystemColors.Control;
-            this.textBox2.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox2.Enabled = false;
-            this.textBox2.Location = new System.Drawing.Point(9, 54);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(409, 15);
-            this.textBox2.TabIndex = 31;
-            this.textBox2.Text = "Pojemność samochodu i wagi przesyłek określone w ustawieniach";
-            // 
-            // testGeneralInstanceSizeTb
-            // 
-            this.testGeneralInstanceSizeTb.Location = new System.Drawing.Point(450, 29);
-            this.testGeneralInstanceSizeTb.Name = "testGeneralInstanceSizeTb";
-            this.testGeneralInstanceSizeTb.Size = new System.Drawing.Size(42, 22);
-            this.testGeneralInstanceSizeTb.TabIndex = 30;
-            this.testGeneralInstanceSizeTb.Text = "10";
-            this.testGeneralInstanceSizeTb.Visible = false;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(329, 32);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(109, 16);
-            this.label28.TabIndex = 29;
-            this.label28.Text = "Rozmiar instancji";
-            this.label28.Visible = false;
-            // 
-            // testGeneralCountTb
-            // 
-            this.testGeneralCountTb.Location = new System.Drawing.Point(175, 26);
-            this.testGeneralCountTb.Name = "testGeneralCountTb";
-            this.testGeneralCountTb.Size = new System.Drawing.Size(42, 22);
-            this.testGeneralCountTb.TabIndex = 28;
-            this.testGeneralCountTb.Text = "1000";
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Location = new System.Drawing.Point(6, 29);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(153, 16);
-            this.label27.TabIndex = 27;
-            this.label27.Text = "Ilość powtórzeń obliczeń";
-            // 
             // StatusBar
             // 
             this.StatusBar.Controls.Add(this.StatusLbl);
@@ -1584,29 +1618,6 @@
             this.StatusLbl.Name = "StatusLbl";
             this.StatusLbl.Size = new System.Drawing.Size(0, 13);
             this.StatusLbl.TabIndex = 0;
-            // 
-            // testResultsTb
-            // 
-            this.testResultsTb.AcceptsReturn = true;
-            this.testResultsTb.AcceptsTab = true;
-            this.testResultsTb.Location = new System.Drawing.Point(575, 15);
-            this.testResultsTb.Multiline = true;
-            this.testResultsTb.Name = "testResultsTb";
-            this.testResultsTb.ReadOnly = true;
-            this.testResultsTb.Size = new System.Drawing.Size(493, 418);
-            this.testResultsTb.TabIndex = 32;
-            // 
-            // textBox4
-            // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(959, 439);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(109, 49);
-            this.textBox4.TabIndex = 49;
-            this.textBox4.Text = "Uwaga: Badany jest algorytm podany w ustawieniach";
             // 
             // MainForm
             // 
@@ -1626,6 +1637,17 @@
             this.HistoryTab.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.TestingTab.ResumeLayout(false);
+            this.TestingTab.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.groupBox13.ResumeLayout(false);
+            this.groupBox13.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.SettingsTab.ResumeLayout(false);
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
@@ -1639,17 +1661,6 @@
             this.groupBox4.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
-            this.TestingTab.ResumeLayout(false);
-            this.TestingTab.PerformLayout();
-            this.groupBox11.ResumeLayout(false);
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
-            this.groupBox13.ResumeLayout(false);
-            this.groupBox13.PerformLayout();
-            this.groupBox12.ResumeLayout(false);
-            this.groupBox12.PerformLayout();
-            this.groupBox10.ResumeLayout(false);
-            this.groupBox10.PerformLayout();
             this.StatusBar.ResumeLayout(false);
             this.StatusBar.PerformLayout();
             this.ResumeLayout(false);
@@ -1804,6 +1815,7 @@
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox testResultsTb;
         private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.Button testCleanOutputBtn;
     }
 }
 
